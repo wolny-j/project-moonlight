@@ -9,33 +9,69 @@ using UnityEngine.UI;
 
 public class LevelGenerator : MonoBehaviour
 {
-    List<GameObject> gameObjects = new List<GameObject>();
-    [SerializeField] GameObject cam;
-    [SerializeField] List<GameObject> segment4Exits = new List<GameObject>();
-    [SerializeField] List<GameObject> segment3Exits = new List<GameObject>();
-    [SerializeField] List<GameObject> segment2Exits = new List<GameObject>();
-    [SerializeField] List<GameObject> segment1Exit = new List<GameObject>();
-    [SerializeField] List<GameObject> mapObjects = new List<GameObject>();
+    //Lists with gameobjects
+    private List<GameObject> gameObjects = new List<GameObject>();
+    private List<GameObject> mapObjects = new List<GameObject>();
+    [SerializeField] private GameObject cam;
+    [SerializeField] private List<GameObject> segment4Exits = new List<GameObject>();
+    [SerializeField] private List<GameObject> segment3Exits = new List<GameObject>();
+    [SerializeField] private List<GameObject> segment2Exits = new List<GameObject>();
+    [SerializeField] private List<GameObject> segment1Exit = new List<GameObject>();
+    
     // Map dimensions
-    int rows = 8;
-    int cols = 8;
-    Queue<Tuple<int, int>> points = new Queue<Tuple<int, int>>();
+    private const int rows = 8;
+    private const int cols = 8;
+
     int randRow;
     int randCol;
+
+    int centerRow;
+    int centerCol;
+    Tuple<int, int> point;
+
+    //Queue with grind points to place segments
+    Queue<Tuple<int, int>> points = new Queue<Tuple<int, int>>();
+
     // Initialize the grid
     string[,] grid;
+
+    //Const values 
+    private const int ALGHORITHM_ITERATIONS = 12;
+    private const int OFFSET = 1;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < rows*cols; i++)
+        InitializeGameObjects();
+
+        InitializeGrid();
+
+        GenerateMap();
+
+        CheckNeighbors();
+    }
+
+
+
+    void InitializeGameObjects()
+    {
+        for (int i = 0; i < rows * cols; i++)
         {
-            string name = $"Square ({i + 1})";
-            gameObjects.Add(GameObject.Find(name));
-            name = $"Image ({i})";
-            mapObjects.Add(GameObject.Find(name));
-            mapObjects[i].GetComponent<Image>().color = new Color(255, 255, 255, 0);
+            string squareName = $"Square ({i + 1})";
+            GameObject squareGO = GameObject.Find(squareName);
+            gameObjects.Add(squareGO);
+
+            string imageName = $"Image ({i})";
+            GameObject imageGO = GameObject.Find(imageName);
+            mapObjects.Add(imageGO);
+            imageGO.GetComponent<Image>().color = Color.clear;
         }
+    }
+
+
+    private void InitializeGrid()
+    {
         grid = new string[rows, cols];
         for (int i = 0; i < rows; i++)
         {
@@ -45,140 +81,83 @@ public class LevelGenerator : MonoBehaviour
             }
         }
 
-        // Place the 'x' in the center of the grid
-        int centerRow = rows / 2;
-        int centerCol = cols / 2;
+        centerRow = rows / 2;
+        centerCol = cols / 2;
         grid[centerRow, centerCol] = "o";
+    }
 
-        for (int iterates = 0; iterates < 12; iterates++)
+    void GenerateMap()
+    {
+        for (int iteration = 0; iteration < ALGHORITHM_ITERATIONS; iteration++)
         {
             // Generate a random number of 'x' values between 1 and 3
             System.Random random = new System.Random();
-            int numX = 1;
-            int rand = random.Next(0, 10);
-            if (rand < 8)
-            {
-                numX = random.Next(1, 2);
-            }
-            else
-            {
-                numX = random.Next(1, 3);
-            }
-        
-            if (iterates == 0)
-            {
-                randRow = centerRow;
-                randCol = centerCol;
-            }
-            else
-            {
-                Tuple<int, int> temp = points.Dequeue();
-                randRow = temp.Item1;
-                randCol = temp.Item2;
-            }
+            int numX = GetRandomSegmentNumber(random);
+
+            GetNextPointFromQueue(iteration);
+            
             for (int i = 0; i < numX; i++)
             {
                 // Place the 'x' in a random direction around the center
                 int randDirection = random.Next(6);
-                int randOffset = 1;
 
-
-                switch (randDirection)
-                {
-                    case 0: // North
-                        randRow -= randOffset;
-                        break;
-                    case 1: // East
-                        randCol += randOffset;
-                        break;
-                    case 2: // South
-                        randRow += randOffset;
-                        break;
-                    case 3: // West
-                        randCol -= randOffset;
-                        break;
-                    case 4: // West
-                        randCol -= randOffset;
-                        break;
-                    case 5: // East
-                        randCol += randOffset;
-                        break;
-
-                }
+                point = GetNeighborPoint(point, randDirection, OFFSET);
 
                 // Ensure that the random 'x' is within the bounds of the grid
-                randRow = Math.Max(0, Math.Min(rows - 1, randRow));
-                randCol = Math.Max(0, Math.Min(cols - 1, randCol));
+                randRow = Math.Max(0, Math.Min(rows - 1, point.Item1));
+                randCol = Math.Max(0, Math.Min(cols - 1, point.Item2));
 
-                if (grid[randRow, randCol] == "x" || grid[randRow, randCol] == "o")
+                point = new Tuple<int, int>(randRow, randCol);
+
+                if (grid[point.Item1, point.Item2] == "x" || grid[point.Item1, point.Item2] == "o")
                 {
                     continue;
                 }
 
-                grid[randRow, randCol] = "x";
-                
-            }
-            points.Enqueue(new Tuple<int, int>(randRow, randCol));
-        }
+                grid[point.Item1, point.Item2] = "x";
 
+            }
+            points.Enqueue(point);
+        }
+    }
+
+    private void CheckNeighbors()
+    {
         int counter = 0;
         bool first = true;
-        // Check each 'x' for its neighboring 'x' and from which direction
         for (int i = 0; i < rows; i++)
         {
-            
             for (int j = 0; j < cols; j++)
             {
                 bool top = false;
                 bool bottom = false;
                 bool left = false;
                 bool right = false;
-                
+
                 if (grid[j, i] == "x")
                 {
-                    if(first)
+                    if (first)
                     {
-                        Transform cameraSpawn = gameObjects[counter].transform;
-                        cam.transform.position = new Vector3(cameraSpawn.position.x + 0.2f, cameraSpawn.position.y, cam.transform.position.z);
+                        SetCameraSpawn(counter);
                         first = false;
                     }
-                    
 
-                    // Check north neighbor
-                    if (j > 0 &&( grid[j - 1, i] == "x"))
-                    {
-                        top = true;
-                    }
+                    CheckTop(j, i, ref top);
+                    CheckRight(j, i, ref right);
+                    CheckBottom(j, i, ref bottom);
+                    CheckLeft(j, i, ref left);
 
-                    // Check east neighbor
-                    if (i < cols - 1 && grid[j, i + 1] == "x")
-                    {
-                        right = true;
-                    }
-
-                    // Check south neighbor
-                    if (j < rows - 1 && grid[j + 1, i] == "x")
-                    {
-                        bottom = true;
-                    }
-
-                    // Check west neighbor
-                    if (i > 0 && grid[j, i - 1] == "x")
-                    {
-                        left = true;
-                    }
 
                     mapObjects[counter].GetComponent<Image>().color = new Color(255, 255, 255, 0.7f);
-                    SpawnAllSides(top, bottom, left, right, counter);
+                    InitializeSegments(top, bottom, left, right, counter);
                 }
                 counter++;
             }
         }
     }
 
-    void SpawnAllSides(bool top, bool bottom, bool left, bool right, int counter)
+    void InitializeSegments(bool top, bool bottom, bool left, bool right, int counter)
     {
-        Debug.Log(counter);
         int mask = (top ? 8 : 0) | (bottom ? 4 : 0) | (left ? 2 : 0) | (right ? 1 : 0);
 
         switch (mask)
@@ -224,7 +203,6 @@ public class LevelGenerator : MonoBehaviour
                 break;
             case 10: // 1010
                 Instantiate(segment2Exits[5], gameObjects[counter].transform);
-
                 // Top and left walls
                 break;
             case 11: // 1011
@@ -247,6 +225,102 @@ public class LevelGenerator : MonoBehaviour
                 Instantiate(segment4Exits[0], gameObjects[counter].transform);
                 // All walls
                 break;
+        }
+    }
+
+    private Tuple<int, int> GetNeighborPoint(Tuple<int, int> point, int direction, int offset)
+    {
+        var (row, col) = point;
+
+        switch (direction)
+        {
+            case 0: // North
+                row -= offset;
+                break;
+            case 1: // East
+                col += offset;
+                break;
+            case 2: // South
+                row += offset;
+                break;
+            case 3: // West
+                col -= offset;
+                break;
+            case 4: // West
+                col -= offset;
+                break;
+            case 5: // East
+                col += offset;
+                break;
+        }
+
+        return new Tuple<int, int>(row, col);
+    }
+
+    private void CheckTop(int j, int i, ref bool top)
+    {
+        if (j > 0 && grid[j - 1, i] == "x")
+        {
+            top = true;
+        }
+    }
+
+    private void CheckRight(int j, int i, ref bool right)
+    {
+        if (i < cols - 1 && grid[j, i + 1] == "x")
+        {
+            right = true;
+        }
+    }
+
+    private void CheckBottom(int j, int i, ref bool bottom)
+    {
+        if (j < rows - 1 && grid[j + 1, i] == "x")
+        {
+            bottom = true;
+        }
+    }
+
+    private void CheckLeft(int j, int i, ref bool left)
+    {
+        if (i > 0 && grid[j, i - 1] == "x")
+        {
+            left = true;
+        }
+    }
+
+    private void SetCameraSpawn(int counter)
+    {
+        Transform cameraSpawn = gameObjects[counter].transform;
+        cam.transform.position = new Vector3(cameraSpawn.position.x + 0.2f, cameraSpawn.position.y, cam.transform.position.z);
+    }
+
+    int GetRandomSegmentNumber(System.Random seed)
+    {
+        int rand = seed.Next(0, 10);
+        int numX;
+
+        if (rand < 8)
+        {
+            numX = seed.Next(1, 2);
+        }
+        else
+        {
+            numX = seed.Next(1, 3);
+        }
+
+        return numX;
+    }
+
+    void GetNextPointFromQueue(int iteration)
+    {
+        if (iteration == 0)
+        {
+            point = new Tuple<int, int>(centerRow, centerCol);
+        }
+        else
+        {
+            point = points.Dequeue();
         }
     }
 }
