@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
     string[,] grid;
 
     //Const values 
-    private const int ALGHORITHM_ITERATIONS = 12;
+    private const int ALGHORITHM_ITERATIONS = 10;
     private const int OFFSET = 1;
     
 
@@ -83,7 +83,7 @@ public class LevelGenerator : MonoBehaviour
 
         centerRow = rows / 2;
         centerCol = cols / 2;
-        grid[centerRow, centerCol] = "o";
+        grid[centerRow, centerCol] = "x";
     }
 
     void GenerateMap()
@@ -95,7 +95,7 @@ public class LevelGenerator : MonoBehaviour
             int numX = GetRandomSegmentNumber(random);
 
             GetNextPointFromQueue(iteration);
-            
+
             for (int i = 0; i < numX; i++)
             {
                 // Place the 'x' in a random direction around the center
@@ -109,7 +109,7 @@ public class LevelGenerator : MonoBehaviour
 
                 point = new Tuple<int, int>(randRow, randCol);
 
-                if (grid[point.Item1, point.Item2] == "x" || grid[point.Item1, point.Item2] == "o")
+                if (grid[point.Item1, point.Item2] == "x")
                 {
                     continue;
                 }
@@ -117,6 +117,7 @@ public class LevelGenerator : MonoBehaviour
                 grid[point.Item1, point.Item2] = "x";
 
             }
+
             points.Enqueue(point);
         }
     }
@@ -298,18 +299,14 @@ public class LevelGenerator : MonoBehaviour
     int GetRandomSegmentNumber(System.Random seed)
     {
         int rand = seed.Next(0, 10);
-        int numX;
-
-        if (rand < 8)
+        if (rand < 7)
         {
-            numX = seed.Next(1, 2);
+            return seed.Next(1, 4); ;
         }
         else
         {
-            numX = seed.Next(1, 3);
+            return seed.Next(0, 1);
         }
-
-        return numX;
     }
 
     void GetNextPointFromQueue(int iteration)

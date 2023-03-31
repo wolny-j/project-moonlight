@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Segment : MonoBehaviour
 {
-    private GameObject cam;
+    [SerializeField] private float cameraOffsetX = 0.2f;
+
+    private Camera mainCamera;
 
     private void Awake()
     {
-        cam = GameObject.Find("Main Camera");
-
+        mainCamera = Camera.main;
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(collision.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            Transform cameraSpawn = transform;
-            cam.transform.position = new Vector3(cameraSpawn.position.x + 0.2f, cameraSpawn.position.y, cam.transform.position.z);
+            Vector3 cameraSpawnPosition = transform.position + new Vector3(cameraOffsetX, 0f, -10f);
+            mainCamera.transform.position = cameraSpawnPosition;
         }
     }
-
-
-
 }
