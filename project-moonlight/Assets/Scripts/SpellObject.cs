@@ -9,7 +9,7 @@ public class SpellObject : MonoBehaviour
     private const float SLOWDOWN_FACTOR = 0.99f;
     private const float SPEEEDUP_FACTOR = 1.99f;
 
-    private Vector3 INITIAL_POSITION = new Vector3(0, 0, 1);
+    private Vector3 INITIAL_POSITION = new(0, 0, 1);
 
     private Rigidbody2D spellRB;
     private float timer = 0f;

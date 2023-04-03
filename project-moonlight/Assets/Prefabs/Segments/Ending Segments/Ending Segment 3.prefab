@@ -840,6 +840,7 @@ GameObject:
   - component: {fileID: 2545370993264654869}
   - component: {fileID: -9124862238596680395}
   - component: {fileID: 4040522432882763430}
+  - component: {fileID: -676693861438013260}
   m_Layer: 0
   m_Name: Ending Segment 3
   m_TagString: Untagged
@@ -959,3 +960,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-676693861438013260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900259747049181915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efee4c63a3719ab4b8a3e23bcd8875c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}

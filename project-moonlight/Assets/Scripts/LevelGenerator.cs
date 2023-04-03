@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -140,7 +141,7 @@ public class LevelGenerator : MonoBehaviour
                     if (first)
                     {
                         SetCameraSpawn(counter);
-                        first = false;
+                        
                     }
 
                     CheckTop(j, i, ref top);
@@ -150,83 +151,85 @@ public class LevelGenerator : MonoBehaviour
 
 
                     mapObjects[counter].GetComponent<Image>().color = new Color(255, 255, 255, 0.7f);
-                    InitializeSegments(top, bottom, left, right, counter);
+                    InitializeSegments(top, bottom, left, right, counter, first);
+                    first = first && false;
                 }
                 counter++;
             }
         }
     }
 
-    void InitializeSegments(bool top, bool bottom, bool left, bool right, int counter)
+    void InitializeSegments(bool top, bool bottom, bool left, bool right, int counter, bool isFirst)
     {
         int mask = (top ? 8 : 0) | (bottom ? 4 : 0) | (left ? 2 : 0) | (right ? 1 : 0);
-
+        GameObject segment = new GameObject();
         switch (mask)
         {
-            case 0: // 0000
-                    // No walls
+            case 0: // 0000 
                 break;
             case 1: // 0001
                 //Right wall only
-                Instantiate(segment1Exit[3], gameObjects[counter].transform);
+                segment = Instantiate(segment1Exit[3], gameObjects[counter].transform);
                 break;
             case 2: // 0010
-                Instantiate(segment1Exit[0], gameObjects[counter].transform);
+                segment = Instantiate(segment1Exit[0], gameObjects[counter].transform);
                 // Left wall only
                 break;
             case 3: // 0011
-                Instantiate(segment2Exits[0], gameObjects[counter].transform);
+                segment = Instantiate(segment2Exits[0], gameObjects[counter].transform);
                 // Left and right walls
                 break;
             case 4: // 0100
-                Instantiate(segment1Exit[1], gameObjects[counter].transform);
+                segment = Instantiate(segment1Exit[1], gameObjects[counter].transform);
                 // Bottom wall only
                 break;
             case 5: // 0101
-                Instantiate(segment2Exits[4], gameObjects[counter].transform);
+                segment = Instantiate(segment2Exits[4], gameObjects[counter].transform);
                 // Bottom and right walls
                 break;
             case 6: // 0110
-                Instantiate(segment2Exits[3], gameObjects[counter].transform);
+                segment = Instantiate(segment2Exits[3], gameObjects[counter].transform);
                 // Bottom and left walls
                 break;
             case 7: // 0111
-                Instantiate(segment3Exits[2], gameObjects[counter].transform);
+                segment = Instantiate(segment3Exits[2], gameObjects[counter].transform);
                 // Bottom, left, and right walls
                 break;
             case 8: // 1000
-                Instantiate(segment1Exit[2], gameObjects[counter].transform);
+                segment = Instantiate(segment1Exit[2], gameObjects[counter].transform);
                 // Top wall only
                 break;
             case 9: // 1001
-                Instantiate(segment2Exits[2], gameObjects[counter].transform);
+                segment = Instantiate(segment2Exits[2], gameObjects[counter].transform);
                 // Top and right walls
                 break;
             case 10: // 1010
-                Instantiate(segment2Exits[5], gameObjects[counter].transform);
+                segment = Instantiate(segment2Exits[5], gameObjects[counter].transform);
                 // Top and left walls
                 break;
             case 11: // 1011
-                Instantiate(segment3Exits[1], gameObjects[counter].transform);
+                segment = Instantiate(segment3Exits[1], gameObjects[counter].transform);
                 // Top, left, and right walls
                 break;
             case 12: // 1100
-                Instantiate(segment2Exits[1], gameObjects[counter].transform);
+                segment = Instantiate(segment2Exits[1], gameObjects[counter].transform);
                 // Top and bottom walls
                 break;
             case 13: // 1101
-                Instantiate(segment3Exits[3], gameObjects[counter].transform);
+                segment = Instantiate(segment3Exits[3], gameObjects[counter].transform);
                 // Top, bottom, and right walls
                 break;
             case 14: // 1110
-                Instantiate(segment3Exits[0], gameObjects[counter].transform);
+                segment = Instantiate(segment3Exits[0], gameObjects[counter].transform);
                 // Top, bottom, and left walls
                 break;
             case 15: // 1111
-                Instantiate(segment4Exits[0], gameObjects[counter].transform);
+                segment = Instantiate(segment4Exits[0], gameObjects[counter].transform);
                 // All walls
                 break;
         }
+       
+        segment.GetComponent<SpawnEnemy>().isStartintgSegment = isFirst && true;
     }
 
     private Tuple<int, int> GetNeighborPoint(Tuple<int, int> point, int direction, int offset)

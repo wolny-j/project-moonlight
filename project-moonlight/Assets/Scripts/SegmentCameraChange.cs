@@ -1,6 +1,7 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
-public class Segment : MonoBehaviour
+public class SegmentCameraChange : MonoBehaviour
 {
     [SerializeField] private float cameraOffsetX = 0.2f;
 
@@ -16,7 +17,7 @@ public class Segment : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Vector3 cameraSpawnPosition = transform.position + new Vector3(cameraOffsetX, 0f, -10f);
-            mainCamera.transform.position = cameraSpawnPosition;
+            mainCamera.transform.position = cameraSpawnPosition;            
         }
     }
 }
