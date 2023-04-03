@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
-    public float speed = 0.3f;
+    public float speed = 0.4f;
     private float health = 20f;
     private Vector3 destination;
     private Transform player;
@@ -12,6 +12,8 @@ public class BasicEnemy : MonoBehaviour
     private bool aim = false;
     private const float RUSH_MULTIPLAYER = 3.5f;
     private const float RUSH_DISTANCE = 2f;
+
+    [SerializeField] GameObject hearthPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class BasicEnemy : MonoBehaviour
         
         if (health <= 0)
         {
+            DropItemOnDeath();
             Destroy(gameObject);
         }
 
@@ -91,5 +94,16 @@ public class BasicEnemy : MonoBehaviour
         yield return new WaitForSeconds(1);
         isAiming = true;
         Destroy(target);
+    }
+
+    private void DropItemOnDeath()
+    {
+        System.Random random = new System.Random();
+        int chance = random.Next(100);
+        Debug.Log(chance);
+        if(chance >= 92)
+        {
+            Instantiate(hearthPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

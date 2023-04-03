@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - BasicSpell
+  - Enemy
+  - Hearth
   layers:
   - Default
   - TransparentFX
