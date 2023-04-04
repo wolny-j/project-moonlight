@@ -35,19 +35,20 @@ public class SpawnEnemy : MonoBehaviour
                     System.Random rand = new System.Random();
                     int enemyCount;
                     int enemyType = rand.Next(1, 3);
-
+                    
                     if(enemyType == 1)
                     {
                          enemyCount = rand.Next(5);
                     }
-                    else if (enemyType == 2)
+                    else if (enemyType==2)
                     {
-                        enemyCount = rand.Next(2);
+                        enemyCount = rand.Next(1, 3);
                     }
                     else
                     {
-                        enemyCount = 0;
+                        enemyCount = 1;
                     }
+                    Debug.Log($"Enemy count: {enemyCount} Enemy type: {enemyType}");
                     for (int i = 0; i < enemyCount; i++)
                     {
                         GameObject enemy = Instantiate(basicEnemy, transform);
@@ -55,6 +56,8 @@ public class SpawnEnemy : MonoBehaviour
                         enemyList.Add(enemy);
                         if(enemyType == 2)
                         {
+                            Debug.Log("Rushed spawned");
+                            
                             enemy.GetComponent<BasicEnemy>().isAiming = true;
                             enemy.GetComponent<BasicEnemy>().speed = 0.15f;
                         }

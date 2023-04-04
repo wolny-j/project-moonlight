@@ -13,11 +13,20 @@ public class BasicEnemy : MonoBehaviour
     private const float RUSH_MULTIPLAYER = 3.5f;
     private const float RUSH_DISTANCE = 2f;
 
+    SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite normalSprite;
+    [SerializeField] Sprite normalSpriteInverted;
+    [SerializeField] Sprite RushSprite;
+    [SerializeField] Sprite rushSpriteInverted;
+
     [SerializeField] GameObject hearthPrefab;
+
+    private float timer = 0; 
 
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player(Clone)").transform;
         SetNewDestination();
     }
@@ -25,6 +34,7 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         
         if (health <= 0)
         {
@@ -39,7 +49,7 @@ public class BasicEnemy : MonoBehaviour
 
         float distance = Vector2.Distance(player.position, transform.position);
 
-        if (isAiming && distance < RUSH_DISTANCE && !aim)
+        if (isAiming && distance < RUSH_DISTANCE && !aim && timer > 2f)
         {
             Aim();
         }
@@ -68,6 +78,29 @@ public class BasicEnemy : MonoBehaviour
 
     private void MoveToDestination()
     {
+        if(destination.x > transform.localPosition.x)
+        {
+            if(aim)
+            {
+                spriteRenderer.sprite = RushSprite;
+            }
+            else
+            {
+                spriteRenderer.sprite = normalSprite;
+            }
+            
+        }
+        else
+        {
+            if (aim)
+            {
+                spriteRenderer.sprite = rushSpriteInverted;
+            }
+            else
+            {
+                spriteRenderer.sprite = normalSpriteInverted;
+            }
+        }    
         float step = speed * Time.deltaTime;
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, destination, step);
     }
@@ -85,7 +118,7 @@ public class BasicEnemy : MonoBehaviour
     IEnumerator StunEnemy(GameObject target)
     {
         float temp = speed;
-        speed = 0;
+        speed = 0.01f   ;
         isAiming = false;
         aim = false;
         yield return new WaitForSeconds(2);
@@ -101,7 +134,7 @@ public class BasicEnemy : MonoBehaviour
         System.Random random = new System.Random();
         int chance = random.Next(100);
         Debug.Log(chance);
-        if(chance >= 92)
+        if(chance >= 1)
         {
             Instantiate(hearthPrefab, transform.position, Quaternion.identity);
         }
