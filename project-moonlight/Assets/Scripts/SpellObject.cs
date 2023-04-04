@@ -5,7 +5,7 @@ public class SpellObject : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float timeToLive = 3f;
 
-    private const float MAX_SPEED = 4f;
+    private const float MAX_SPEED = 1.5f;
     private const float SLOWDOWN_FACTOR = 0.99f;
     private const float SPEEEDUP_FACTOR = 1.99f;
 

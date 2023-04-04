@@ -7,16 +7,10 @@ public class PlayerStats : MonoBehaviour
     public int health { get; set; } = 8;
     HealthUIManager healthUIManager;
     private bool immortality = false;
-    void Start()
+    void Awake()
     {
         healthUIManager = GameObject.Find("GameManager").GetComponent<HealthUIManager>();
         healthUIManager.AddHealth(health);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +18,7 @@ public class PlayerStats : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy") && !immortality)
         {
             health--;
-            healthUIManager.SubstractHealth(health);
+            healthUIManager.SubtractHealth(health);
             StartCoroutine(ShortImmortality());
         }
         if (collision.gameObject.CompareTag("Hearth") && health < 8)

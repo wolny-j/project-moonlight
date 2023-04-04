@@ -4,7 +4,7 @@ using UnityEngine;
 public class BasicEnemy : MonoBehaviour
 {
     public float speed = 0.4f;
-    private float health = 20f;
+    private float health = 10f;
     private Vector3 destination;
     private Transform player;
     private GameObject target;
@@ -12,6 +12,7 @@ public class BasicEnemy : MonoBehaviour
     private bool aim = false;
     private const float RUSH_MULTIPLAYER = 3.5f;
     private const float RUSH_DISTANCE = 2f;
+    private const float HEARTH_CHANCE = 94f;
 
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite normalSprite;
@@ -78,29 +79,8 @@ public class BasicEnemy : MonoBehaviour
 
     private void MoveToDestination()
     {
-        if(destination.x > transform.localPosition.x)
-        {
-            if(aim)
-            {
-                spriteRenderer.sprite = RushSprite;
-            }
-            else
-            {
-                spriteRenderer.sprite = normalSprite;
-            }
-            
-        }
-        else
-        {
-            if (aim)
-            {
-                spriteRenderer.sprite = rushSpriteInverted;
-            }
-            else
-            {
-                spriteRenderer.sprite = normalSpriteInverted;
-            }
-        }    
+        UpdateSprite();
+
         float step = speed * Time.deltaTime;
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, destination, step);
     }
@@ -134,9 +114,36 @@ public class BasicEnemy : MonoBehaviour
         System.Random random = new System.Random();
         int chance = random.Next(100);
         Debug.Log(chance);
-        if(chance >= 1)
+        if(chance >= HEARTH_CHANCE)
         {
             Instantiate(hearthPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void UpdateSprite()
+    {
+        if (destination.x > transform.localPosition.x)
+        {
+            if (aim)
+            {
+                spriteRenderer.sprite = RushSprite;
+            }
+            else
+            {
+                spriteRenderer.sprite = normalSprite;
+            }
+
+        }
+        else
+        {
+            if (aim)
+            {
+                spriteRenderer.sprite = rushSpriteInverted;
+            }
+            else
+            {
+                spriteRenderer.sprite = normalSpriteInverted;
+            }
         }
     }
 }

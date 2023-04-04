@@ -3,7 +3,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] GameObject spellPrefab;
-    private float cooldown = 0.1f;
+    private float cooldown = 0.4f;
     private float timer = 0;
     // Update is called once per frame
     void Update()
