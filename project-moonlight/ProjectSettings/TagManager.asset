@@ -8,6 +8,7 @@ TagManager:
   - BasicSpell
   - Enemy
   - Hearth
+  - Map
   layers:
   - Default
   - TransparentFX

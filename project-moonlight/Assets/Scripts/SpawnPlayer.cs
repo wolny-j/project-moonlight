@@ -7,6 +7,7 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField] private GameObject camOB;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject grid;
+    [SerializeField] private GameObject map;
     public GameObject player { get; set; }
     public bool spawned { get; set; } = false;
     // Start is called before the first frame update

@@ -10592,6 +10592,7 @@ GameObject:
   - component: {fileID: 1908093134}
   - component: {fileID: 1908093133}
   - component: {fileID: 1908093135}
+  - component: {fileID: 1908093136}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10614,6 +10615,7 @@ MonoBehaviour:
   camOB: {fileID: 519420028}
   playerPrefab: {fileID: 7256229243687104529, guid: 90677bb4df1a7ab4497fc8bab8936488, type: 3}
   grid: {fileID: 722380486}
+  map: {fileID: 0}
 --- !u!4 &1908093134
 Transform:
   m_ObjectHideFlags: 0
@@ -10651,6 +10653,20 @@ MonoBehaviour:
   - {fileID: 646484548}
   - {fileID: 1530664242}
   - {fileID: 1321496049}
+--- !u!114 &1908093136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908093132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c4687a499928642a00c87eace65c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 1424248520560694328, guid: e943e3836353e214ab2ef70d3f6579c2, type: 3}
+  heart: {fileID: 6816674418525633988, guid: e168101168e3a184a86ce364d2a99891, type: 3}
 --- !u!1 &1909673433
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,21 +12,23 @@ public class BasicEnemy : MonoBehaviour
     private bool aim = false;
     private const float RUSH_MULTIPLAYER = 3.5f;
     private const float RUSH_DISTANCE = 2f;
-    private const float HEARTH_CHANCE = 94f;
+    private const float HEARTH_CHANCE = 92f;
 
+
+    private LevelManager levelManager;
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite normalSprite;
     [SerializeField] Sprite normalSpriteInverted;
     [SerializeField] Sprite RushSprite;
     [SerializeField] Sprite rushSpriteInverted;
 
-    [SerializeField] GameObject hearthPrefab;
 
     private float timer = 0; 
 
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player(Clone)").transform;
         SetNewDestination();
@@ -39,7 +41,16 @@ public class BasicEnemy : MonoBehaviour
         
         if (health <= 0)
         {
-            DropItemOnDeath();
+            bool dropped = false;
+            if (!dropped)
+            {
+                dropped = DropHeartOnDeath();
+            }
+            if (!dropped)
+            {
+                dropped = DropMapOnDeath();
+            }
+            
             Destroy(gameObject);
         }
 
@@ -109,14 +120,44 @@ public class BasicEnemy : MonoBehaviour
         Destroy(target);
     }
 
-    private void DropItemOnDeath()
+    private bool DropHeartOnDeath()
     {
         System.Random random = new System.Random();
         int chance = random.Next(100);
-        Debug.Log(chance);
         if(chance >= HEARTH_CHANCE)
         {
-            Instantiate(hearthPrefab, transform.position, Quaternion.identity);
+            Instantiate(levelManager.heart, transform.position, Quaternion.identity);
+            return true;
+        }
+        else
+        {
+            return false;
+        }    
+    }
+
+    private bool DropMapOnDeath()
+    {
+        if (!levelManager.isMapSpawned)
+        {
+            
+            System.Random random = new System.Random();
+            int chance = random.Next(100);
+            if (chance >= levelManager.mapDropChance)
+            {
+                
+                Instantiate(levelManager.map, transform.position, Quaternion.identity);
+                levelManager.isMapSpawned = true;
+                return true;
+            }
+            else
+            {
+                levelManager.mapDropChance -= 2;
+                return false;
+            }
+        }
+        else
+        {
+            return false;
         }
     }
 

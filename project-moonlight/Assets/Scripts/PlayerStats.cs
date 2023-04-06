@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int health { get; set; } = 8;
+    private GameObject map;
+
     HealthUIManager healthUIManager;
     private bool immortality = false;
+
+    public int health { get; set; } = 8;
+    public bool isMapObtained { get; set; } = false;
+
     void Awake()
     {
+        map = GameObject.Find("Map");
+        map.SetActive(false);
+
         healthUIManager = GameObject.Find("GameManager").GetComponent<HealthUIManager>();
         healthUIManager.AddHealth(health);
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,6 +35,12 @@ public class PlayerStats : MonoBehaviour
         {
             health++;
             healthUIManager.AddHealth(health);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Map"))
+        {
+            map.SetActive(true);
+            isMapObtained= true;
             Destroy(collision.gameObject);
         }
     }
