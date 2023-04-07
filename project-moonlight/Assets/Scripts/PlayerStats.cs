@@ -43,6 +43,12 @@ public class PlayerStats : MonoBehaviour
             isMapObtained= true;
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("Spikes"))
+        {
+            health--;
+            healthUIManager.SubtractHealth(health);
+            StartCoroutine(ShortImmortality());
+        }
     }
 
     IEnumerator ShortImmortality()

@@ -841,6 +841,7 @@ GameObject:
   - component: {fileID: -9124862238596680395}
   - component: {fileID: 8929594199348107230}
   - component: {fileID: 2466667476625807609}
+  - component: {fileID: 2656614270513374012}
   m_Layer: 0
   m_Name: Segment 2
   m_TagString: Untagged
@@ -974,6 +975,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}
+--- !u!114 &2656614270513374012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900259747049181915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62857393af766ac4887e99a6722dc49c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikesPrefab: {fileID: 4865968670334071447, guid: 7f2481badd04e9347a90120880d8e661, type: 3}
 --- !u!1 &7578739540126216459
 GameObject:
   m_ObjectHideFlags: 0
