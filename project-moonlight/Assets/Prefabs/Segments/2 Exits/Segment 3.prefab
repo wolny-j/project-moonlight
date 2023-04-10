@@ -1251,7 +1251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efee4c63a3719ab4b8a3e23bcd8875c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}
+  eyeEnemy: {fileID: 5837036998943562202, guid: 253bd2d65f62bbf449f4dc7a79244505, type: 3}
+  zombieEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}
 --- !u!114 &1610409917620770398
 MonoBehaviour:
   m_ObjectHideFlags: 0

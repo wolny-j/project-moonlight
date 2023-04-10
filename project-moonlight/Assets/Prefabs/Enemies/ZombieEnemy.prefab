@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 940901529455370422}
   - component: {fileID: 7783413041065701823}
-  - component: {fileID: 5180931597155948278}
   - component: {fileID: 1911463241552306370}
+  - component: {fileID: 8597259109727046106}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: ZombieEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,36 +75,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 68b5f0ab7c4bf7b458e5a17395469698, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c94abbd0da054044c9c47e21031a2fd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5180931597155948278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5837036998943562202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be0309b2d9a9ab42b9e557c07bc5e2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.3
-  isAiming: 0
-  normalSprite: {fileID: 21300000, guid: c94abbd0da054044c9c47e21031a2fd1, type: 3}
-  normalSpriteInverted: {fileID: 21300000, guid: a70ed26f89cacac4d96996e817cffcf1, type: 3}
-  RushSprite: {fileID: 21300000, guid: aa58510199b5d684585c4aa8c38f5b9d, type: 3}
-  rushSpriteInverted: {fileID: 21300000, guid: 6e1500b1222cbf64388dec180173b0ce, type: 3}
-  hearthPrefab: {fileID: 6816674418525633988, guid: e168101168e3a184a86ce364d2a99891, type: 3}
 --- !u!61 &1911463241552306370
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -118,16 +99,34 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006839037, y: 0.007600948}
+  m_Offset: {x: 0.046798393, y: 0.0058128834}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.82217455, y: 0.8936087}
+  m_Size: {x: 0.59571266, y: 0.8042121}
   m_EdgeRadius: 0
+--- !u!114 &8597259109727046106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e98ebbb617a81488c62426e1ff21ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.15
+  isAiming: 1
+  normalSprite: {fileID: 21300000, guid: c94abbd0da054044c9c47e21031a2fd1, type: 3}
+  normalSpriteInverted: {fileID: 21300000, guid: a70ed26f89cacac4d96996e817cffcf1, type: 3}
+  RushSprite: {fileID: 21300000, guid: aa58510199b5d684585c4aa8c38f5b9d, type: 3}
+  rushSpriteInverted: {fileID: 21300000, guid: 6e1500b1222cbf64388dec180173b0ce, type: 3}

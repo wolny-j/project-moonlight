@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    [SerializeField] private GameObject basicEnemy;
+    [SerializeField] private GameObject eyeEnemy;
+    [SerializeField] private GameObject zombieEnemy;
     private bool isCompleted = false;
     private bool isEnemySpawned = false;
     private List<GameObject> enemyList = new List<GameObject>();
@@ -65,14 +66,17 @@ public class SpawnEnemy : MonoBehaviour
            
             for (int i = 0; i < enemyCount; i++)
             {
-                GameObject enemy = Instantiate(basicEnemy, transform);
-                enemy.transform.localPosition = new(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
-                enemyList.Add(enemy);
+                if (enemyType == 1)
+                {
+                    GameObject enemy = Instantiate(eyeEnemy, transform);
+                    enemy.transform.localPosition = new(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
+                    enemyList.Add(enemy);
+                }
                 if (enemyType == 2)
                 {
-                    BasicEnemy basicEnemy = enemy.GetComponent<BasicEnemy>();
-                    basicEnemy.isAiming = true;
-                    basicEnemy.speed = 0.15f;
+                    GameObject enemy = Instantiate(zombieEnemy, transform);
+                    enemy.transform.localPosition = new(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
+                    enemyList.Add(enemy);
                 }
             }
 
