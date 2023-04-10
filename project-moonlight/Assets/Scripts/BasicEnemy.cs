@@ -28,7 +28,7 @@ public class BasicEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
+        levelManager = LevelManager.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player(Clone)").transform;
         SetNewDestination();
@@ -48,7 +48,11 @@ public class BasicEnemy : MonoBehaviour
             }
             if (!dropped)
             {
-                dropped = DropMapOnDeath();
+               dropped = DropMapOnDeath();
+            }
+            if (!dropped)
+            {
+               dropped = DropBrainOnDeath();
             }
             
             Destroy(gameObject);
@@ -133,6 +137,20 @@ public class BasicEnemy : MonoBehaviour
         {
             return false;
         }    
+    }
+    private bool DropBrainOnDeath()
+    {
+        System.Random random = new System.Random();
+        int chance = random.Next(100);
+        if (chance >= levelManager.brainDropChance)
+        {
+            Instantiate(levelManager.brain, transform.position, Quaternion.identity);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private bool DropMapOnDeath()

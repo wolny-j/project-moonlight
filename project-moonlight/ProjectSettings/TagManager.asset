@@ -10,6 +10,7 @@ TagManager:
   - Hearth
   - Map
   - Spikes
+  - Brain
   layers:
   - Default
   - TransparentFX

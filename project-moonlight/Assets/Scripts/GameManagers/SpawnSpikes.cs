@@ -33,7 +33,7 @@ public class SpawnSpikes : MonoBehaviour
                 {
                     System.Random rand = new System.Random();
                     int chance = rand.Next(100);
-                    if(chance > 95)
+                    if(chance > 93)
                     {
                         Vector3 spawnpoint = new Vector3(x, y, 1);
 

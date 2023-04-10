@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1959904252262454049}
   - component: {fileID: 3854166401355141838}
   m_Layer: 0
-  m_Name: Heart
-  m_TagString: Hearth
+  m_Name: Brain
+  m_TagString: Brain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a386d00cd928b194b849c9ae5f55fbe3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1dbc16a0952da274a89d26edbe8d9894, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db218609f81f1d44f87d2792c46f232f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: b4d7ac0331bad3e48b20fc533887e46c, type: 2}
+  item: {fileID: 11400000, guid: 011194317454f754da32c90268abd455, type: 2}

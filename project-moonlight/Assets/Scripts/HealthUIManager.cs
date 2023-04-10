@@ -6,6 +6,13 @@ public class HealthUIManager : MonoBehaviour
 {
     [Tooltip("List of heart GameObjects representing the player's health")]
     [SerializeField] List<GameObject> hearts;
+
+    public static HealthUIManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void SubtractHealth(int health)
     {
         for (int i = 7; i > health - 1; i--)
