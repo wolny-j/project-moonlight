@@ -4,47 +4,44 @@ using UnityEngine;
 
 public class SpawnSpikes : MonoBehaviour
 {
-    private bool isCompleted = false;
-    private bool isStartingSegment;
-
     [SerializeField] GameObject spikesPrefab;
-    void Start()
-    {
-        isStartingSegment = gameObject.GetComponent<SpawnEnemy>().isStartintgSegment;
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            GenereteSpikes();
-        }
-    }
 
-    private void GenereteSpikes()
+    //Spawn spikes randomly on the segment
+    public void GenerateSpikes()
     {
-        float x = -0.35f;
-        float y = 0.3f;
-        if (!isCompleted && !isStartingSegment)
+        const float initialX = -0.35f;
+        const float initialY = 0.3f;
+
+        const int spikeChanceThreshold = 95;
+
+        const int spikeSpawnRows = 7;
+        const int spikeSpawnColumns = 15;
+
+        const float spikeSpawnColumnOffset = 0.05f;
+        const float spikeSpawnRowOffset = -0.1f;
+
+        for (int i = 0; i < spikeSpawnColumns; i++)
         {
-            for(int i = 0; i < 15; i++)
+            //Move spikes spawn x position by 'spikesSpawnColumnOffset' each iteration
+            float x = initialX + i * spikeSpawnColumnOffset;
+
+            for (int j = 0; j < spikeSpawnRows; j++)
             {
-                for(int j = 0; j < 7; j++)
-                {
-                    System.Random rand = new System.Random();
-                    int chance = rand.Next(100);
-                    if(chance > 95)
-                    {
-                        Vector3 spawnpoint = new Vector3(x, y, 1);
+                //Move spikes spawn x position by 'spikesSpawnColumnOffset' each iteration
+                float y = initialY + j * spikeSpawnRowOffset;
 
-                        GameObject spikes = Instantiate(spikesPrefab, transform);
-                        spikes.transform.localPosition = spawnpoint;
-                    }
-                    y -= 0.1f;
+                int chance = UnityEngine.Random.Range(0, 100);
+
+                //Spawn spikes prefab if chance is equal or higher than spikeChanceTreshold
+                if (chance >= spikeChanceThreshold)
+                {
+                    Vector3 spawnPoint = new Vector3(x, y, 1);
+                    GameObject spikes = Instantiate(spikesPrefab, transform);
+                    spikes.transform.localPosition = spawnPoint;
                 }
-                x += 0.05f;
-                y = 0.3f;
             }
         }
     }
+
 }

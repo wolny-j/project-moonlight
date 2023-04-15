@@ -17,12 +17,6 @@ public class InventoryUI : MonoBehaviour
         slots = inventoryGrid.GetComponentsInChildren<InventorySlot>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateUI()
     {
         for(int i = 0; i < slots.Length; i++)

@@ -20,9 +20,4 @@ public class PlayerStats : MonoBehaviour
 
         HealthUIManager.Instance.AddHealth(health);
     }
-
-
-
-    
-    
 }

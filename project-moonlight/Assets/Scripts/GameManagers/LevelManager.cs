@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public bool isMapSpawned { get; set; } = false;
     public int mapDropChance { get; set; } = 92;
-    public int brainDropChance { get; set; } =80;
+    public int brainDropChance { get; set; } = 80;
     public int eyeDropChance { get; set; } = 80;
     [SerializeField] public GameObject map;
     [SerializeField] public GameObject heart;
@@ -19,9 +19,4 @@ public class LevelManager : MonoBehaviour
         Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -229,7 +229,7 @@ public class LevelGenerator : MonoBehaviour
                 break;
         }
        
-        segment.GetComponent<SpawnEnemy>().isStartintgSegment = isFirst && true;
+        segment.GetComponent<SegmentCameraChange>().isStartintgSegment = isFirst && true;
     }
 
     private Tuple<int, int> GetNeighborPoint(Tuple<int, int> point, int direction, int offset)

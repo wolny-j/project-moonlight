@@ -6,28 +6,22 @@ public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject eyeEnemy;
     [SerializeField] private GameObject zombieEnemy;
-    private bool isCompleted = false;
+    [SerializeField] private GameObject snailEnemy;
+
     private bool isEnemySpawned = false;
     private List<GameObject> enemyList = new List<GameObject>();
 
     public bool isStartintgSegment { get; set; } = false;
- 
+    public bool isCompleted { get; set; } = false;
     // Update is called once per frame
     void Update()
-    { 
-        if (NoEnemiesLeft() && isEnemySpawned == true)  
+    {
+        if (NoEnemiesLeft() && isEnemySpawned == true)
         {
-            isCompleted= true;
+            isCompleted = true;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            SpawnEnemies();
-        }
-    }
 
     private bool NoEnemiesLeft()
     {
@@ -43,44 +37,51 @@ public class SpawnEnemy : MonoBehaviour
         return true;
     }
 
-    private void SpawnEnemies()
+    public void SpawnEnemies()
     {
-        if (!isStartintgSegment && !isCompleted)
+        //If enemy is already spawned break the function
+        if (isEnemySpawned)
         {
-            System.Random rand = new System.Random();
-            int enemyCount;
-            int enemyType = rand.Next(1, 3);
+            return;
+        }
 
-            switch(enemyType)
-            {
-                default:
-                    enemyCount = 1;
-                    break;
-                case 1:
-                    enemyCount = rand.Next(5);
-                    break;
-                case 2:
-                    enemyCount = rand.Next(1, 3);
-                    break;
-            }
-           
-            for (int i = 0; i < enemyCount; i++)
-            {
-                if (enemyType == 1)
-                {
-                    GameObject enemy = Instantiate(eyeEnemy, transform);
-                    enemy.transform.localPosition = new(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
-                    enemyList.Add(enemy);
-                }
-                if (enemyType == 2)
-                {
-                    GameObject enemy = Instantiate(zombieEnemy, transform);
-                    enemy.transform.localPosition = new(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
-                    enemyList.Add(enemy);
-                }
-            }
+        int enemyType = UnityEngine.Random.Range(1, 4);
+        int enemyCount;
 
-            isEnemySpawned = true;
+        //Spawn enemy based on random given type
+        switch (enemyType)
+        {
+            case 1:
+                enemyCount = UnityEngine.Random.Range(1, 6);
+                SpawnEnemiesOfType(eyeEnemy, enemyCount);
+                break;
+            case 2:
+                enemyCount = UnityEngine.Random.Range(1, 3);
+                SpawnEnemiesOfType(zombieEnemy, enemyCount);
+                break;
+            case 3:
+                enemyCount = UnityEngine.Random.Range(1, 3);
+                SpawnEnemiesOfType(snailEnemy, enemyCount);
+                break;
+            default:
+                enemyCount = 1;
+                SpawnEnemiesOfType(eyeEnemy, enemyCount);
+                break;
+        }
+
+        isEnemySpawned = true;
+    }
+
+    //Loop for enemyCount and spawn each of them in a random position. Next add it to the list (list is used to check if all enemies are dead in NoEnemiesLeft function).
+    private void SpawnEnemiesOfType(GameObject enemyPrefab, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f), 0f);
+            GameObject enemy = Instantiate(enemyPrefab, transform);
+            enemy.transform.localPosition = spawnPosition;
+            enemyList.Add(enemy);
         }
     }
+
 }

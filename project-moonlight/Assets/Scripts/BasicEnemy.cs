@@ -12,10 +12,7 @@ public class BasicEnemy : MonoBehaviour
 
     private LevelManager levelManager;
     SpriteRenderer spriteRenderer;
-    [SerializeField] Sprite normalSprite;
-    [SerializeField] Sprite normalSpriteInverted;
-    [SerializeField] Sprite RushSprite;
-    [SerializeField] Sprite rushSpriteInverted;
+
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
 
@@ -80,10 +77,6 @@ public class BasicEnemy : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, destination, step);
     }
-
-
-
-
 
     private bool DropHeartOnDeath()
     {

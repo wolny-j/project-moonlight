@@ -11818,6 +11818,7 @@ MonoBehaviour:
   map: {fileID: 1424248520560694328, guid: e943e3836353e214ab2ef70d3f6579c2, type: 3}
   heart: {fileID: 6816674418525633988, guid: e168101168e3a184a86ce364d2a99891, type: 3}
   brain: {fileID: 6816674418525633988, guid: bf077c373c10d0648a387907a3d742cb, type: 3}
+  eye: {fileID: 6816674418525633988, guid: dd87e3ae3f8282745ab108f5319cc9d0, type: 3}
 --- !u!114 &1908093137
 MonoBehaviour:
   m_ObjectHideFlags: 0

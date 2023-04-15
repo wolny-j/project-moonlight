@@ -1253,6 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eyeEnemy: {fileID: 5837036998943562202, guid: 253bd2d65f62bbf449f4dc7a79244505, type: 3}
   zombieEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}
+  snailEnemy: {fileID: 5837036998943562202, guid: 89586b97e981b2348aa486154c872e3b, type: 3}
 --- !u!114 &3475576586905327648
 MonoBehaviour:
   m_ObjectHideFlags: 0

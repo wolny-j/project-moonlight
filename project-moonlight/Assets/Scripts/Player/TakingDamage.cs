@@ -10,6 +10,7 @@ public class TakingDamage : MonoBehaviour
     {
         CheckDamage(collision, "Enemy", PlayerStats.Instance.health);
         CheckDamage(collision, "Spikes", PlayerStats.Instance.health);
+        CheckDamage(collision, "Slime", PlayerStats.Instance.health);
     }
 
     void CheckDamage(Collider2D collision, string tag, int health)
