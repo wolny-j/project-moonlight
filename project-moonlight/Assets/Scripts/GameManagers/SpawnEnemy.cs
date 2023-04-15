@@ -44,44 +44,39 @@ public class SpawnEnemy : MonoBehaviour
         {
             return;
         }
-
-        int enemyType = UnityEngine.Random.Range(1, 4);
-        int enemyCount;
-
-        //Spawn enemy based on random given type
-        switch (enemyType)
+        int enemyCount = UnityEngine.Random.Range(2, 5);
+        for (int i = 0; i < enemyCount; i++)
         {
-            case 1:
-                enemyCount = UnityEngine.Random.Range(1, 6);
-                SpawnEnemiesOfType(eyeEnemy, enemyCount);
-                break;
-            case 2:
-                enemyCount = UnityEngine.Random.Range(1, 3);
-                SpawnEnemiesOfType(zombieEnemy, enemyCount);
-                break;
-            case 3:
-                enemyCount = UnityEngine.Random.Range(1, 3);
-                SpawnEnemiesOfType(snailEnemy, enemyCount);
-                break;
-            default:
-                enemyCount = 1;
-                SpawnEnemiesOfType(eyeEnemy, enemyCount);
-                break;
-        }
+            int enemyType = UnityEngine.Random.Range(1, 5);
+            
 
+            //Spawn enemy based on random given type
+            switch (enemyType)
+            {
+                case 1:
+                    SpawnEnemiesOfType(eyeEnemy);
+                    break;
+                case 2:
+                    SpawnEnemiesOfType(zombieEnemy);
+                    break;
+                case 3:
+                    SpawnEnemiesOfType(snailEnemy);
+                    break;
+                default:
+                    SpawnEnemiesOfType(eyeEnemy);
+                    break;
+            }
+        }
         isEnemySpawned = true;
     }
 
     //Loop for enemyCount and spawn each of them in a random position. Next add it to the list (list is used to check if all enemies are dead in NoEnemiesLeft function).
-    private void SpawnEnemiesOfType(GameObject enemyPrefab, int count)
+    private void SpawnEnemiesOfType(GameObject enemyPrefab)
     {
-        for (int i = 0; i < count; i++)
-        {
             Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f), 0f);
             GameObject enemy = Instantiate(enemyPrefab, transform);
             enemy.transform.localPosition = spawnPosition;
             enemyList.Add(enemy);
-        }
     }
 
 }

@@ -11,6 +11,7 @@ TagManager:
   - Map
   - Spikes
   - Brain
+  - Slime
   layers:
   - Default
   - TransparentFX

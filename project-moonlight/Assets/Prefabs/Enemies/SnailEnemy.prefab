@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5837036998943562202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6243696, y: -2.0768857, z: 0}
-  m_LocalScale: {x: 0.06, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.08, y: 0.12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: bbbd71a97d662874a989557b684d6bc3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   isAiming: 0
-  eyeSprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
-  eyeSpriteInverted: {fileID: 21300000, guid: 1d96748d4a523ed40b314696c912bd00, type: 3}
+  snailSprite: {fileID: 21300000, guid: bbbd71a97d662874a989557b684d6bc3, type: 3}
+  snailSpriteInverted: {fileID: 21300000, guid: 9aa55c6c4bd41fa4cbadd12539ef4370, type: 3}
   slimePrefab: {fileID: 4506095358816473825, guid: 97be9ebbcfae805419e71f1e5971b1ae, type: 3}
   frequency: 0.4

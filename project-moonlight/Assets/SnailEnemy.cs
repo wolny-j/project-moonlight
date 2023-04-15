@@ -14,8 +14,8 @@ public class SnailEnemy : MonoBehaviour
     private LevelManager levelManager;
     SpriteRenderer spriteRenderer;
 
-    [SerializeField] Sprite eyeSprite;
-    [SerializeField] Sprite eyeSpriteInverted;
+    [SerializeField] Sprite snailSprite;
+    [SerializeField] Sprite snailSpriteInverted;
 
     [SerializeField] GameObject slimePrefab;
     [SerializeField] float frequency = 0.3f;
@@ -48,7 +48,7 @@ public class SnailEnemy : MonoBehaviour
             }
             if (!dropped)
             {
-                dropped = DropItemOnDeath(levelManager.eye, levelManager.eyeDropChance);
+                dropped = DropItemOnDeath(levelManager.shell, levelManager.shellDropChance);
             }
 
             Destroy(gameObject);
@@ -152,12 +152,12 @@ public class SnailEnemy : MonoBehaviour
     {
         if (destination.x > transform.localPosition.x)
         {
-            spriteRenderer.sprite = eyeSpriteInverted;
+            spriteRenderer.sprite = snailSprite;
 
         }
         else
         {
-            spriteRenderer.sprite = eyeSprite;
+            spriteRenderer.sprite = snailSpriteInverted;
         }
     }
 }
