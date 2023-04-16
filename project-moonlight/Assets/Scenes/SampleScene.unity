@@ -11819,6 +11819,11 @@ MonoBehaviour:
   heart: {fileID: 6816674418525633988, guid: e168101168e3a184a86ce364d2a99891, type: 3}
   brain: {fileID: 6816674418525633988, guid: bf077c373c10d0648a387907a3d742cb, type: 3}
   eye: {fileID: 6816674418525633988, guid: dd87e3ae3f8282745ab108f5319cc9d0, type: 3}
+  shell: {fileID: 6816674418525633988, guid: d2884b24c3a460a46bce2383180b8cb9, type: 3}
+  eyeEnemy: {fileID: 5837036998943562202, guid: 253bd2d65f62bbf449f4dc7a79244505, type: 3}
+  zombieEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}
+  snailEnemy: {fileID: 5837036998943562202, guid: 89586b97e981b2348aa486154c872e3b, type: 3}
+  shooterEnemy: {fileID: 5837036998943562202, guid: 5c12f823bd2f3604186b88ca09ac395e, type: 3}
 --- !u!114 &1908093137
 MonoBehaviour:
   m_ObjectHideFlags: 0

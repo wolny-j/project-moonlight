@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    [SerializeField] private GameObject eyeEnemy;
-    [SerializeField] private GameObject zombieEnemy;
-    [SerializeField] private GameObject snailEnemy;
+
 
     private bool isEnemySpawned = false;
     private List<GameObject> enemyList = new List<GameObject>();
 
     public bool isStartintgSegment { get; set; } = false;
     public bool isCompleted { get; set; } = false;
+
+    private void Awake()
+    {
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -47,23 +50,26 @@ public class SpawnEnemy : MonoBehaviour
         int enemyCount = UnityEngine.Random.Range(2, 5);
         for (int i = 0; i < enemyCount; i++)
         {
-            int enemyType = UnityEngine.Random.Range(1, 5);
+            int enemyType = UnityEngine.Random.Range(1, 6);
             
 
             //Spawn enemy based on random given type
             switch (enemyType)
             {
                 case 1:
-                    SpawnEnemiesOfType(eyeEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
                     break;
                 case 2:
-                    SpawnEnemiesOfType(zombieEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.zombieEnemy);
                     break;
                 case 3:
-                    SpawnEnemiesOfType(snailEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.snailEnemy);
+                    break;
+                case 4:
+                    SpawnEnemiesOfType(LevelManager.Instance.shooterEnemy);
                     break;
                 default:
-                    SpawnEnemiesOfType(eyeEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
                     break;
             }
         }

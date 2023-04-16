@@ -12,6 +12,7 @@ TagManager:
   - Spikes
   - Brain
   - Slime
+  - EnemySpell
   layers:
   - Default
   - TransparentFX

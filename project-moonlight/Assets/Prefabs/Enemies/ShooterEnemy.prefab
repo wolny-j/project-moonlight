@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 940901529455370422}
   - component: {fileID: 7783413041065701823}
-  - component: {fileID: 5180931597155948278}
   - component: {fileID: 1911463241552306370}
-  - component: {fileID: 2419850281039516669}
+  - component: {fileID: -500837398375000276}
   m_Layer: 0
-  m_Name: EyeEnemy
+  m_Name: ShooterEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,22 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5180931597155948278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5837036998943562202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be0309b2d9a9ab42b9e557c07bc5e2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.3
-  isAiming: 0
-  eyeSprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
-  eyeSpriteInverted: {fileID: 21300000, guid: 1d96748d4a523ed40b314696c912bd00, type: 3}
 --- !u!61 &1911463241552306370
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6726555, y: 0.47694445}
   m_EdgeRadius: 0
---- !u!114 &2419850281039516669
+--- !u!114 &-500837398375000276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +121,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5837036998943562202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0730bd83473729438b468f5c47c8f72, type: 3}
+  m_Script: {fileID: 11500000, guid: a7f11f706769e704da7cc7983a669c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.2
+  isAiming: 0
+  eyeSprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
+  eyeSpriteInverted: {fileID: 21300000, guid: 1d96748d4a523ed40b314696c912bd00, type: 3}
+  enemySpell: {fileID: 8274891974327807967, guid: af3b3d91177da754b9c0015299a7dca1, type: 3}

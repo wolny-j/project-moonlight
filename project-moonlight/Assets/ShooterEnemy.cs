@@ -1,20 +1,22 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : MonoBehaviour
+public class ShooterEnemy : MonoBehaviour
 {
     public float speed = 0.4f;
     private float health = 10f;
     private Vector3 destination;
     public bool isAiming = false;
-    private const float HEARTH_CHANCE = 92f;
 
+    private float timer = 0;
 
     private LevelManager levelManager;
     SpriteRenderer spriteRenderer;
 
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
+    [SerializeField] GameObject enemySpell;
 
 
     // Start is called before the first frame update
@@ -28,25 +30,10 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (health <= 0)
-        {
-            bool dropped = false;
-            if (!dropped)
-            {
-                dropped = DropHeartOnDeath();
-            }
-            if (!dropped)
-            {
-               dropped = DropMapOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = DropItemOnDeath(levelManager.eye, levelManager.eyeDropChance);
-            }
-            
-            Destroy(gameObject);
-        }
+        timer += Time.deltaTime;
+
+        CheckDeath();
+        Shoot();
 
         if (transform.localPosition == destination)
         {
@@ -82,7 +69,7 @@ public class BasicEnemy : MonoBehaviour
     {
         System.Random random = new System.Random();
         int chance = random.Next(100);
-        if(chance >= HEARTH_CHANCE)
+        if (chance >= levelManager.heartDropChance)
         {
             Instantiate(levelManager.heart, transform.position, Quaternion.identity);
             return true;
@@ -90,7 +77,7 @@ public class BasicEnemy : MonoBehaviour
         else
         {
             return false;
-        }    
+        }
     }
     private bool DropItemOnDeath(GameObject item, int dropChance)
     {
@@ -111,12 +98,12 @@ public class BasicEnemy : MonoBehaviour
     {
         if (!levelManager.isMapSpawned)
         {
-            
+
             System.Random random = new System.Random();
             int chance = random.Next(100);
             if (chance >= levelManager.mapDropChance)
             {
-                
+
                 Instantiate(levelManager.map, transform.position, Quaternion.identity);
                 levelManager.isMapSpawned = true;
                 return true;
@@ -141,8 +128,49 @@ public class BasicEnemy : MonoBehaviour
 
         }
         else
-        { 
+        {
             spriteRenderer.sprite = eyeSprite;
         }
+    }
+
+    private void CheckDeath()
+    {
+        if (health <= 0)
+        {
+            bool dropped = false;
+            if (!dropped)
+            {
+                dropped = DropHeartOnDeath();
+            }
+            if (!dropped)
+            {
+                dropped = DropMapOnDeath();
+            }
+            if (!dropped)
+            {
+                dropped = DropItemOnDeath(levelManager.eye, levelManager.eyeDropChance);
+            }
+
+            Destroy(gameObject);
+        }
+    }
+
+    private void Shoot()
+    {
+        if(timer > 2)
+        {
+            Vector2 spawnPosition = transform.position;
+            InstantiateEnemySpell(spawnPosition, Direction.Left);
+            InstantiateEnemySpell(spawnPosition, Direction.Right);
+            InstantiateEnemySpell(spawnPosition, Direction.Up);
+            InstantiateEnemySpell(spawnPosition, Direction.Down);
+            timer = 0;
+        }
+    }
+
+    private void InstantiateEnemySpell(Vector2 spawnPosition, Direction direction)
+    {
+        EnemySpell spell = Instantiate(enemySpell, spawnPosition, Quaternion.identity).GetComponent<EnemySpell>();
+        spell.direction = direction;
     }
 }
