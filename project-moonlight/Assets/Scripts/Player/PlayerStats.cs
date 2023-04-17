@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats Instance;
 
     public int health { get; set; } = 8;
+    public int power { get; set; } = 2;
     public bool isMapObtained { get; set; } = false;
 
     void Awake()

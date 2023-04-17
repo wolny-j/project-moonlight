@@ -29,7 +29,7 @@ public class SegmentCameraChange : MonoBehaviour
             //If player entered segment for the first time and it is not starting segment execute code SpawnEnemies and GenerateSpikes then change camera
             if (isFirstEnter && !isStartintgSegment)
             {
-                enemySpawner.SpawnEnemies();
+                enemySpawner.SpawnEnemies(true);
                 spikesSpawner.GenerateSpikes();
                 isFirstEnter = false;
             }

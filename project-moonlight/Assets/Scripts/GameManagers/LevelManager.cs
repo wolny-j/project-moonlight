@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public GameObject zombieEnemy;
     [SerializeField] public GameObject snailEnemy;
     [SerializeField] public GameObject shooterEnemy;
+    [SerializeField] public GameObject coreEnemy;
     void Awake()
     {
         Instance = this;

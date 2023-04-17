@@ -19,13 +19,12 @@ public class SnailEnemy : MonoBehaviour
     [SerializeField] GameObject slimePrefab;
     [SerializeField] float frequency = 0.3f;
 
-    BasicEnemy basicEnemy;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        basicEnemy = GetComponent<BasicEnemy>();
+
         levelManager = LevelManager.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetNewDestination();
@@ -51,7 +50,7 @@ public class SnailEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BasicSpell"))
         {
-            health -= 2f;
+            health -= PlayerStats.Instance.power;
             Destroy(collision.gameObject);
         }
     }

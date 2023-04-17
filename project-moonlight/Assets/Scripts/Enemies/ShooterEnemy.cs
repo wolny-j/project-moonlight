@@ -47,7 +47,7 @@ public class ShooterEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BasicSpell"))
         {
-            health -= 2f;
+            health -= PlayerStats.Instance.power;
             Destroy(collision.gameObject);
         }
     }

@@ -40,17 +40,26 @@ public class SpawnEnemy : MonoBehaviour
         return true;
     }
 
-    public void SpawnEnemies()
+    public void SpawnEnemies(bool isInitial)
     {
         //If enemy is already spawned break the function
-        if (isEnemySpawned)
+        if (isEnemySpawned && isInitial)
         {
             return;
         }
-        int enemyCount = UnityEngine.Random.Range(2, 5);
+        int enemyCount;
+        if (isInitial)
+        {
+             enemyCount = UnityEngine.Random.Range(2, 5);
+        }
+        else
+        {
+            enemyCount = UnityEngine.Random.Range(1, 3);
+        }    
+       
         for (int i = 0; i < enemyCount; i++)
         {
-            int enemyType = UnityEngine.Random.Range(1, 6);
+            int enemyType = UnityEngine.Random.Range(1, 7);
             
 
             //Spawn enemy based on random given type
@@ -68,12 +77,19 @@ public class SpawnEnemy : MonoBehaviour
                 case 4:
                     SpawnEnemiesOfType(LevelManager.Instance.shooterEnemy);
                     break;
+                case 5:
+                    if(isInitial)
+                        SpawnEnemiesOfType(LevelManager.Instance.coreEnemy);
+                    else
+                        SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
+                    break;
                 default:
                     SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
                     break;
             }
         }
-        isEnemySpawned = true;
+        if(isInitial)
+            isEnemySpawned = true;
     }
 
     //Loop for enemyCount and spawn each of them in a random position. Next add it to the list (list is used to check if all enemies are dead in NoEnemiesLeft function).

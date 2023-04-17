@@ -11824,6 +11824,7 @@ MonoBehaviour:
   zombieEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}
   snailEnemy: {fileID: 5837036998943562202, guid: 89586b97e981b2348aa486154c872e3b, type: 3}
   shooterEnemy: {fileID: 5837036998943562202, guid: 5c12f823bd2f3604186b88ca09ac395e, type: 3}
+  coreEnemy: {fileID: 5837036998943562202, guid: c5e8f25b6eb48ff4bbe5a724c5f9ebf5, type: 3}
 --- !u!114 &1908093137
 MonoBehaviour:
   m_ObjectHideFlags: 0
