@@ -842,6 +842,7 @@ GameObject:
   - component: {fileID: 2560356028396333352}
   - component: {fileID: -5932656977586665801}
   - component: {fileID: -50653262480145715}
+  - component: {fileID: 916675558178787451}
   m_Layer: 0
   m_Name: Ending Segment 2
   m_TagString: Untagged
@@ -973,9 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efee4c63a3719ab4b8a3e23bcd8875c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeEnemy: {fileID: 5837036998943562202, guid: 253bd2d65f62bbf449f4dc7a79244505, type: 3}
-  zombieEnemy: {fileID: 5837036998943562202, guid: b46460dd659e42148b71baadaa82b1f3, type: 3}
-  snailEnemy: {fileID: 5837036998943562202, guid: 89586b97e981b2348aa486154c872e3b, type: 3}
 --- !u!114 &-50653262480145715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,3 +987,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spikesPrefab: {fileID: 4865968670334071447, guid: 7f2481badd04e9347a90120880d8e661, type: 3}
+--- !u!114 &916675558178787451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900259747049181915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55337628c24e6d34687e60583ae08e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chest: {fileID: 8648266057085015083, guid: a8e7af20b63c7ea41876bfb757533a2d, type: 3}

@@ -37,6 +37,14 @@ public class EnemySpell : MonoBehaviour
                 break;
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Destroy the spell object if it collides with a wall
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
 
 public enum Direction

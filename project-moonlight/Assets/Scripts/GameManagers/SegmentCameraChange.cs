@@ -9,6 +9,7 @@ public class SegmentCameraChange : MonoBehaviour
 
     private SpawnEnemy enemySpawner;
     private SpawnSpikes spikesSpawner;
+    private ChestSpawner chestSpawner;
 
     public bool isStartintgSegment { get; set; } = false;
     public bool isFirstEnter { get; set; } = true;
@@ -20,6 +21,7 @@ public class SegmentCameraChange : MonoBehaviour
         //Attach components from segemnt gameobject to execute SpawnEnemies and Spawn Spikes.
         enemySpawner = GetComponent<SpawnEnemy>();
         spikesSpawner = GetComponent<SpawnSpikes>();
+        chestSpawner = GetComponent<ChestSpawner>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -30,6 +32,7 @@ public class SegmentCameraChange : MonoBehaviour
             if (isFirstEnter && !isStartintgSegment)
             {
                 enemySpawner.SpawnEnemies(true);
+                chestSpawner.SpawnChest();
                 spikesSpawner.GenerateSpikes();
                 isFirstEnter = false;
             }

@@ -23,6 +23,7 @@ public class CollectingItems : MonoBehaviour
         CollectHeart(collision, PlayerStats.Instance.health);
         CollectMap(collision);
         CollectItem(collision, BrainTag);
+        CollectGem(collision);
     }
 
     //Pick up hearth and add 1 HP to the Singleton Class HealthUIManager attached to game manager
@@ -60,5 +61,29 @@ public class CollectingItems : MonoBehaviour
             PlayerStats.Instance.isMapObtained = true;
             Destroy(collision.gameObject);
         }
+    }
+
+    public void CollectGem(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "SpeedGem":
+                PlayerStats.Instance.AddPowerup("SpeedGem");
+                Destroy(collision.gameObject);
+                break;
+            case "PowerGem":
+                PlayerStats.Instance.AddPowerup("PowerGem");
+                Destroy(collision.gameObject);
+                break;
+            case "ShootGem":
+                PlayerStats.Instance.AddPowerup("ShootGem");
+                Destroy(collision.gameObject);
+                break;
+            default:
+                break;
+        }
+
+        
+
     }
 }

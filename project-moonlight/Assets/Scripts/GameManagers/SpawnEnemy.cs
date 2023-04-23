@@ -69,7 +69,10 @@ public class SpawnEnemy : MonoBehaviour
                     SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
                     break;
                 case 2:
-                    SpawnEnemiesOfType(LevelManager.Instance.zombieEnemy);
+                    if (isInitial)
+                        SpawnEnemiesOfType(LevelManager.Instance.zombieEnemy);
+                    else
+                        SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
                     break;
                 case 3:
                     SpawnEnemiesOfType(LevelManager.Instance.snailEnemy);

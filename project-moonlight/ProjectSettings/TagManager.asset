@@ -13,6 +13,9 @@ TagManager:
   - Brain
   - Slime
   - EnemySpell
+  - PowerGem
+  - ShootGem
+  - SpeedGem
   layers:
   - Default
   - TransparentFX

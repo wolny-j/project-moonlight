@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 4f;
     [SerializeField] Rigidbody2D playerRB;
 
+    [SerializeField]private PlayerStats playerStats;
     private Vector2 movement;
+
+    private void Start()
+    {
+        playerStats= PlayerStats.Instance;
+    }
     private void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -17,6 +22,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        playerRB.MovePosition(playerRB.position + movement * moveSpeed * Time.fixedDeltaTime);
+        playerRB.MovePosition(playerRB.position + movement * playerStats.speed * Time.fixedDeltaTime);
     }
 }

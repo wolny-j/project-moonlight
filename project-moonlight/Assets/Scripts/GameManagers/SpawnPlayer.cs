@@ -12,16 +12,15 @@ public class SpawnPlayer : MonoBehaviour
     public bool spawned { get; set; } = false;
     // Start is called before the first frame update
 
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
+
             inventoryPanel.SetActive(false);
             player = Instantiate(playerPrefab, camOB.transform.position, Quaternion.identity);
             player.transform.parent = grid.transform;
             player.transform.localPosition = new Vector3(camOB.transform.localPosition.x, camOB.transform.localPosition.y, 1);
             spawned = true;
-        }
+        
     }
 
 }
