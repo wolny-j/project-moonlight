@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7783413041065701823}
   - component: {fileID: 5180931597155948278}
   - component: {fileID: 1911463241552306370}
+  - component: {fileID: 304505983173492934}
+  - component: {fileID: 7087772797776826119}
   m_Layer: 0
   m_Name: EyeEnemy
   m_TagString: Enemy
@@ -128,3 +130,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6726555, y: 0.47694445}
   m_EdgeRadius: 0
+--- !u!114 &304505983173492934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f48cef8f6b27745b132c722ecb2b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7087772797776826119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4f641f701876545af84c18092d7364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

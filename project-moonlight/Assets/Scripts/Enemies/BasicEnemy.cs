@@ -10,7 +10,9 @@ public class BasicEnemy : MonoBehaviour
 
 
     private LevelManager levelManager;
-    SpriteRenderer spriteRenderer;
+    private EnemyDropItem dropItem;
+    private EnemyWalk enemyWalk;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
@@ -21,7 +23,9 @@ public class BasicEnemy : MonoBehaviour
     {
         levelManager = LevelManager.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        SetNewDestination();
+        dropItem = GetComponent<EnemyDropItem>();
+        enemyWalk = GetComponent<EnemyWalk>();
+        destination = enemyWalk.SetNewDestination();
     }
 
     // Update is called once per frame
@@ -31,10 +35,11 @@ public class BasicEnemy : MonoBehaviour
 
         if (transform.localPosition == destination)
         {
-            SetNewDestination();
+            destination = enemyWalk.SetNewDestination();
         }
 
-        MoveToDestination();
+        UpdateSprite();
+        enemyWalk.MoveToDestination(speed, destination);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,73 +51,7 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    private void SetNewDestination()
-    {
-        destination = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
-    }
-
-    private void MoveToDestination()
-    {
-        UpdateSprite();
-
-        float step = speed * Time.deltaTime;
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, destination, step);
-    }
-
-    private bool DropHeartOnDeath()
-    {
-        System.Random random = new System.Random();
-        int chance = random.Next(100);
-        if(chance >= levelManager.heartDropChance)
-        {
-            Instantiate(levelManager.heart, transform.position, Quaternion.identity);
-            return true;
-        }
-        else
-        {
-            return false;
-        }    
-    }
-    private bool DropItemOnDeath(GameObject item, int dropChance)
-    {
-        System.Random random = new System.Random();
-        int chance = random.Next(100);
-        if (chance >= dropChance)
-        {
-            Instantiate(item, transform.position, Quaternion.identity);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool DropMapOnDeath()
-    {
-        if (!levelManager.isMapSpawned)
-        {
-            
-            System.Random random = new System.Random();
-            int chance = random.Next(100);
-            if (chance >= levelManager.mapDropChance)
-            {
-                
-                Instantiate(levelManager.map, transform.position, Quaternion.identity);
-                levelManager.isMapSpawned = true;
-                return true;
-            }
-            else
-            {
-                levelManager.mapDropChance -= 2;
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
+    
 
     private void UpdateSprite()
     {
@@ -134,15 +73,15 @@ public class BasicEnemy : MonoBehaviour
             bool dropped = false;
             if (!dropped)
             {
-                dropped = DropHeartOnDeath();
+                dropped = dropItem.DropHeartOnDeath();
             }
             if (!dropped)
             {
-                dropped = DropMapOnDeath();
+                dropped = dropItem.DropMapOnDeath();
             }
             if (!dropped)
             {
-                dropped = DropItemOnDeath(levelManager.eye, levelManager.eyeDropChance);
+                dropped = dropItem.DropItemOnDeath(levelManager.eye, levelManager.eyeDropChance);
             }
 
             Destroy(gameObject);

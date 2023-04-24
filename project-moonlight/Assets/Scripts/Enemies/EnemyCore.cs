@@ -11,7 +11,7 @@ public class EnemyCore : MonoBehaviour
     private SpawnEnemy spawnEnemy;
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         spawnEnemy = transform.parent?.GetComponent<SpawnEnemy>();
     }
 

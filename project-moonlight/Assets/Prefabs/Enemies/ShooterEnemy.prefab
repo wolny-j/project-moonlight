@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7783413041065701823}
   - component: {fileID: 1911463241552306370}
   - component: {fileID: -500837398375000276}
+  - component: {fileID: 3067861983745093074}
+  - component: {fileID: 7227751357017794347}
   m_Layer: 0
   m_Name: ShooterEnemy
   m_TagString: Enemy
@@ -129,3 +131,27 @@ MonoBehaviour:
   eyeSprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
   eyeSpriteInverted: {fileID: 21300000, guid: 1d96748d4a523ed40b314696c912bd00, type: 3}
   enemySpell: {fileID: 8274891974327807967, guid: af3b3d91177da754b9c0015299a7dca1, type: 3}
+--- !u!114 &3067861983745093074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f48cef8f6b27745b132c722ecb2b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7227751357017794347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4f641f701876545af84c18092d7364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

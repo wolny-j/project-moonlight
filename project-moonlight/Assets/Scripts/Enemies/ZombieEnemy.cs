@@ -18,6 +18,8 @@ public class ZombieEnemy : MonoBehaviour
 
     private LevelManager levelManager;
     SpriteRenderer spriteRenderer;
+    private EnemyDropItem dropItem;
+    private EnemyWalk enemyWalk;
 
     [SerializeField] Sprite normalSprite;
     [SerializeField] Sprite normalSpriteInverted;
@@ -31,9 +33,11 @@ public class ZombieEnemy : MonoBehaviour
     void Start()
     {
         levelManager = LevelManager.Instance;
+        dropItem= GetComponent<EnemyDropItem>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player(Clone)").transform;
-        SetNewDestination();
+        enemyWalk = GetComponent<EnemyWalk>();
+        destination = enemyWalk.SetNewDestination();
     }
 
     // Update is called once per frame
@@ -45,7 +49,7 @@ public class ZombieEnemy : MonoBehaviour
 
         if (transform.localPosition == destination)
         {
-            SetNewDestination();
+            destination = enemyWalk.SetNewDestination();
         }
 
         float distance = Vector2.Distance(player.position, transform.position);
@@ -60,7 +64,8 @@ public class ZombieEnemy : MonoBehaviour
             StartCoroutine(StunEnemy(target));
         }
 
-        MoveToDestination();
+        UpdateSprite();
+        enemyWalk.MoveToDestination(speed, destination);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -71,20 +76,6 @@ public class ZombieEnemy : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-
-    private void SetNewDestination()
-    {
-        destination = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
-    }
-
-    private void MoveToDestination()
-    {
-        UpdateSprite();
-
-        float step = speed * Time.deltaTime;
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, destination, step);
-    }
-
     private void Aim()
     {
         aim = true;
@@ -103,67 +94,13 @@ public class ZombieEnemy : MonoBehaviour
         aim = false;
         yield return new WaitForSeconds(2);
         speed = temp / RUSH_MULTIPLAYER;
-        SetNewDestination();
+        enemyWalk.SetNewDestination();
         yield return new WaitForSeconds(1);
         isAiming = true;
         Destroy(target);
     }
 
-    private bool DropHeartOnDeath()
-    {
-        System.Random random = new System.Random();
-        int chance = random.Next(100);
-        if (chance >= levelManager.heartDropChance)
-        {
-            Instantiate(levelManager.heart, transform.position, Quaternion.identity);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    private bool DropItemOnDeath(GameObject item, int dropChance)
-    {
-        System.Random random = new System.Random();
-        int chance = random.Next(100);
-        if (chance >= dropChance)
-        {
-            Instantiate(item, transform.position, Quaternion.identity);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private bool DropMapOnDeath()
-    {
-        if (!levelManager.isMapSpawned)
-        {
-
-            System.Random random = new System.Random();
-            int chance = random.Next(100);
-            if (chance >= levelManager.mapDropChance)
-            {
-
-                Instantiate(levelManager.map, transform.position, Quaternion.identity);
-                levelManager.isMapSpawned = true;
-                return true;
-            }
-            else
-            {
-                levelManager.mapDropChance -= 2;
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-
+    
     private void UpdateSprite()
     {
         if (destination.x > transform.localPosition.x)
@@ -199,15 +136,15 @@ public class ZombieEnemy : MonoBehaviour
             bool dropped = false;
             if (!dropped)
             {
-                dropped = DropHeartOnDeath();
+                dropped = dropItem.DropHeartOnDeath();
             }
             if (!dropped)
             {
-                dropped = DropMapOnDeath();
+                dropped = dropItem.DropMapOnDeath();
             }
             if (!dropped)
             {
-                dropped = DropItemOnDeath(levelManager.brain, levelManager.brainDropChance);
+                dropped = dropItem.DropItemOnDeath(levelManager.brain, levelManager.brainDropChance);
             }
 
             Destroy(gameObject);

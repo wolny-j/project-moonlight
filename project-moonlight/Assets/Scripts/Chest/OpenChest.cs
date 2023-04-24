@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class OpenChest : MonoBehaviour
 {
@@ -50,6 +53,13 @@ public class OpenChest : MonoBehaviour
                 item = Instantiate(shootingGem, transform);
                 break;
         }
+        StartCoroutine(AnimateLoot(item));
         item.transform.localPosition = Vector2.zero;
+    }
+
+    IEnumerator AnimateLoot(GameObject item)
+    {  
+        yield return new WaitForSeconds(1.1f);
+        item.GetComponent<PolygonCollider2D>().isTrigger = true;
     }
 }

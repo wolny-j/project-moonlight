@@ -68,22 +68,22 @@ public class CollectingItems : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "SpeedGem":
-                PlayerStats.Instance.AddPowerup("SpeedGem");
-                Destroy(collision.gameObject);
+                CollectPowerup("SpeedGem", collision);
                 break;
             case "PowerGem":
-                PlayerStats.Instance.AddPowerup("PowerGem");
-                Destroy(collision.gameObject);
+                CollectPowerup("PowerGem", collision);
                 break;
             case "ShootGem":
-                PlayerStats.Instance.AddPowerup("ShootGem");
-                Destroy(collision.gameObject);
+                CollectPowerup("ShootGem", collision);
                 break;
             default:
                 break;
         }
+    }
 
-        
-
+    private void CollectPowerup(string key, Collider2D collision)
+    {
+        PlayerStats.Instance.AddPowerup(key);
+        Destroy(collision.gameObject);
     }
 }

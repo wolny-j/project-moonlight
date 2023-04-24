@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7783413041065701823}
   - component: {fileID: 1911463241552306370}
   - component: {fileID: 784531376631771641}
+  - component: {fileID: 6907626239591102966}
+  - component: {fileID: -51626306968456384}
   m_Layer: 0
   m_Name: SnailEnemy
   m_TagString: Enemy
@@ -130,3 +132,27 @@ MonoBehaviour:
   snailSpriteInverted: {fileID: 21300000, guid: 9aa55c6c4bd41fa4cbadd12539ef4370, type: 3}
   slimePrefab: {fileID: 4506095358816473825, guid: 97be9ebbcfae805419e71f1e5971b1ae, type: 3}
   frequency: 0.4
+--- !u!114 &6907626239591102966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f48cef8f6b27745b132c722ecb2b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-51626306968456384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4f641f701876545af84c18092d7364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
