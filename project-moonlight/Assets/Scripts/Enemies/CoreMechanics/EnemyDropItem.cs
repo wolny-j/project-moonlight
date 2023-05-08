@@ -1,24 +1,55 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDropItem : MonoBehaviour
 {
-    LevelManager levelManager;
-
+    private LevelManager levelManager;
+    public bool IsDropingItem { get; set; } = true;
     private void Start()
     {
         levelManager = LevelManager.Instance;
     }
 
+    public void CheckDeath(float health, GameObject item, int chance)
+    {
+        if (health <= 0)
+        {
+            bool dropped = false;
+            if (!dropped)
+            {
+                dropped = DropHeartOnDeath();
+            }
+            if (!dropped)
+            {
+                dropped = DropMapOnDeath();
+            }
+            if (!dropped)
+            {
+                dropped = DropItemOnDeath(item, chance);
+            }
+
+            Destroy(gameObject);
+        }
+    }
+
+
     public bool DropHeartOnDeath()
     {
-        System.Random random = new System.Random();
-        int chance = random.Next(100);
-        if (chance >= levelManager.heartDropChance)
+        if (IsDropingItem)
         {
-            Instantiate(levelManager.heart, transform.position, Quaternion.identity);
-            return true;
+            System.Random random = new System.Random();
+            int chance = random.Next(100);
+            if (chance >= levelManager.heartDropChance)
+            {
+                Instantiate(levelManager.heart, transform.position, Quaternion.identity);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -27,12 +58,19 @@ public class EnemyDropItem : MonoBehaviour
     }
     public bool DropItemOnDeath(GameObject item, int dropChance)
     {
-        System.Random random = new System.Random();
-        int chance = random.Next(100);
-        if (chance >= dropChance)
+        if (IsDropingItem)
         {
-            Instantiate(item, transform.position, Quaternion.identity);
-            return true;
+            System.Random random = new System.Random();
+            int chance = random.Next(100);
+            if (chance >= dropChance)
+            {
+                Instantiate(item, transform.position, Quaternion.identity);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -42,21 +80,27 @@ public class EnemyDropItem : MonoBehaviour
 
     public bool DropMapOnDeath()
     {
-        if (!levelManager.isMapSpawned)
+        if (IsDropingItem)
         {
-
-            System.Random random = new System.Random();
-            int chance = random.Next(100);
-            if (chance >= levelManager.mapDropChance)
+            if (!levelManager.isMapSpawned)
             {
+                System.Random random = new System.Random();
+                int chance = random.Next(100);
+                if (chance >= levelManager.mapDropChance)
+                {
 
-                Instantiate(levelManager.map, transform.position, Quaternion.identity);
-                levelManager.isMapSpawned = true;
-                return true;
+                    Instantiate(levelManager.map, transform.position, Quaternion.identity);
+                    levelManager.isMapSpawned = true;
+                    return true;
+                }
+                else
+                {
+                    levelManager.mapDropChance -= 2;
+                    return false;
+                }
             }
             else
             {
-                levelManager.mapDropChance -= 2;
                 return false;
             }
         }

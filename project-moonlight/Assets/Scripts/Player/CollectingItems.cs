@@ -4,25 +4,19 @@ using UnityEngine;
 
 public class CollectingItems : MonoBehaviour
 {
-    private GameObject map;
+    public GameObject map { get; set; }
 
     private const string HearthTag = "Hearth";
-    private const string BrainTag = "Brain";
+    private const string ItemTag = "Item";
     private const string MapTag = "Map";
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        map = GameObject.Find("Map");
-        map.SetActive(false);
-    }
 
     //OnTriggerEnter with object check each function to pick up item.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CollectHeart(collision, PlayerStats.Instance.health);
         CollectMap(collision);
-        CollectItem(collision, BrainTag);
+        CollectItem(collision, ItemTag);
         CollectGem(collision);
     }
 
@@ -57,8 +51,7 @@ public class CollectingItems : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(MapTag))
         {
-            map.SetActive(true);
-            PlayerStats.Instance.isMapObtained = true;
+            PlayerStats.Instance.UnlockMap();
             Destroy(collision.gameObject);
         }
     }

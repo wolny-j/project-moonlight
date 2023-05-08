@@ -10,22 +10,23 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Text speedText;
     [SerializeField] Text shootText;
 
+    [SerializeField] GameObject map;
+
     private float basePower { get; set; } = 2;
     private float baseSpeed { get; set; } = 0.6f;
     private float baseShootFrequency { get; set; } = 0.5f;
-    public bool isMapObtained { get; set; } = false;
 
     private const float SPEED_MULTIPLAYER = 0.2f;
     private const float POWER_MULTIPLAYER = 0.5f;
     private const float SHOOT_FREQUENCY_MULTIPLAYER = 0.05f;
 
+    public bool IsCompleted { get; set; } = true;
+
     //PLAYER STATTSTICS
     public int health { get; set; } = 8;
-    public float power { get; set; } = 2;
-    public float speed { get; set; } = 0.6f;
-    public float shootFrequency { get; set; } = 0.4f;
-   
-
+    public float power { get; set; }
+    public float speed { get; set; }
+    public float shootFrequency { get; set; }
 
 
     //Dicronary that counts each powerup is collected e.g. ["SpeedGem", 3] means that player collected three speed powerups
@@ -36,19 +37,39 @@ public class PlayerStats : MonoBehaviour
         {"ShootGem", 0}
     };
 
-    void Start()
+    private void Awake()
     {
-        if(Instance != null) 
-        {
-            Debug.LogWarning("More than one instance if Inventory found.");
-            return;
-        }
-
-        Instance= this;
-        HealthUIManager.Instance.AddHealth(health);
+        InitializeStats();
+        InitializeUI();
     }
 
+    void Start()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        //HealthUIManager.Instance.AddHealth(health);
+    }
 
+    private void InitializeUI()
+    {
+        powerText = GameObject.Find("PowerCounter").GetComponent<Text>();
+        shootText = GameObject.Find("FrequencyCounter").GetComponent<Text>();
+        speedText = GameObject.Find("SpeedCounter").GetComponent<Text>();
+    }
+
+    private void InitializeStats()
+    {
+        power = basePower;
+        speed = baseSpeed;
+        shootFrequency = baseShootFrequency;
+    }
 
     public void AddPowerup(string key)
     {
@@ -71,4 +92,8 @@ public class PlayerStats : MonoBehaviour
         shootText.text = shootGems.ToString();
     }
 
+    public void UnlockMap()
+    {
+        map.SetActive(true);
+    }
 }

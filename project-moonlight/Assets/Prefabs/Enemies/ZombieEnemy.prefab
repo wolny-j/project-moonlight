@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8597259109727046106}
   - component: {fileID: 2325169744930928725}
   - component: {fileID: 3913583644967699177}
+  - component: {fileID: -4244671596985399155}
   m_Layer: 0
   m_Name: ZombieEnemy
   m_TagString: Enemy
@@ -156,3 +157,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4f641f701876545af84c18092d7364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4244671596985399155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedf7148e05c1c54d88a8fd0985f53a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: c94abbd0da054044c9c47e21031a2fd1, type: 3}
+  spriteInverted: {fileID: 21300000, guid: a70ed26f89cacac4d96996e817cffcf1, type: 3}
+  RushSprite: {fileID: 21300000, guid: aa58510199b5d684585c4aa8c38f5b9d, type: 3}
+  rushSpriteInverted: {fileID: 21300000, guid: 6e1500b1222cbf64388dec180173b0ce, type: 3}

@@ -7,24 +7,22 @@ public class ZombieEnemy : MonoBehaviour
     public float speed = 0.15f;
     private float health = 10f;
     private Vector3 destination;
+    private LevelManager levelManager;
     private Transform player;
     private GameObject target;
     
     public bool isAiming = true;
-    private bool aim = false;
+     public bool aim { get; set; } = false;
     
     private const float RUSH_MULTIPLAYER = 3.5f;
     private const float RUSH_DISTANCE = 2f;
 
-    private LevelManager levelManager;
-    SpriteRenderer spriteRenderer;
+
     private EnemyDropItem dropItem;
     private EnemyWalk enemyWalk;
+    private ISpriteUpdate spriteUpdate;
 
-    [SerializeField] Sprite normalSprite;
-    [SerializeField] Sprite normalSpriteInverted;
-    [SerializeField] Sprite RushSprite;
-    [SerializeField] Sprite rushSpriteInverted;
+
 
 
     private float timer = 0;
@@ -32,12 +30,12 @@ public class ZombieEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelManager = LevelManager.Instance;
         dropItem= GetComponent<EnemyDropItem>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.Find("Player(Clone)").transform;
         enemyWalk = GetComponent<EnemyWalk>();
         destination = enemyWalk.SetNewDestination();
+        levelManager = LevelManager.Instance;
+        spriteUpdate = GetComponent<ZombieUpdateSprite>();
     }
 
     // Update is called once per frame
@@ -45,7 +43,7 @@ public class ZombieEnemy : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        CheckDeath();
+        dropItem.CheckDeath(health, levelManager.brain, levelManager.brainDropChance);
 
         if (transform.localPosition == destination)
         {
@@ -64,7 +62,7 @@ public class ZombieEnemy : MonoBehaviour
             StartCoroutine(StunEnemy(target));
         }
 
-        UpdateSprite();
+        spriteUpdate.UpdateSprite(destination);
         enemyWalk.MoveToDestination(speed, destination);
     }
 
@@ -98,56 +96,5 @@ public class ZombieEnemy : MonoBehaviour
         yield return new WaitForSeconds(1);
         isAiming = true;
         Destroy(target);
-    }
-
-    
-    private void UpdateSprite()
-    {
-        if (destination.x > transform.localPosition.x)
-        {
-
-            if (aim)
-            {
-                spriteRenderer.sprite = RushSprite;
-            }
-            else
-            {
-                spriteRenderer.sprite = normalSprite;
-            }
-        }
-        else
-        {
-
-            if (aim)
-            {
-                spriteRenderer.sprite = rushSpriteInverted;
-            }
-            else
-            {
-                spriteRenderer.sprite = normalSpriteInverted;
-            }
-        }
-    }
-
-    private void CheckDeath()
-    {
-        if (health <= 0)
-        {
-            bool dropped = false;
-            if (!dropped)
-            {
-                dropped = dropItem.DropHeartOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = dropItem.DropMapOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = dropItem.DropItemOnDeath(levelManager.brain, levelManager.brainDropChance);
-            }
-
-            Destroy(gameObject);
-        }
     }
 }

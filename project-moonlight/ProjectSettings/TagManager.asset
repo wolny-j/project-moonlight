@@ -16,6 +16,8 @@ TagManager:
   - PowerGem
   - ShootGem
   - SpeedGem
+  - Ending
+  - Item
   layers:
   - Default
   - TransparentFX

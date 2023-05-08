@@ -11,8 +11,9 @@ using static UnityEngine.ParticleSystem;
 public class LevelGenerator : MonoBehaviour
 {
     //Lists with gameobjects
-    private List<GameObject> gameObjects = new List<GameObject>();
-    private List<GameObject> mapObjects = new List<GameObject>();
+    private List<GameObject> gameObjects = new();
+    private List<GameObject> mapObjects = new();
+    private List<GameObject> generatedMap = new();
     [SerializeField] private GameObject cam;
     [SerializeField] private List<GameObject> segment4Exits = new List<GameObject>();
     [SerializeField] private List<GameObject> segment3Exits = new List<GameObject>();
@@ -53,21 +54,23 @@ public class LevelGenerator : MonoBehaviour
         CheckNeighbors();
     }
 
-
-
     void InitializeGameObjects()
     {
+        GameObject map = GameObject.Find("Map");
         for (int i = 0; i < rows * cols; i++)
         {
             string squareName = $"Square ({i + 1})";
             GameObject squareGO = GameObject.Find(squareName);
             gameObjects.Add(squareGO);
 
+            
+
             string imageName = $"Image ({i})";
             GameObject imageGO = GameObject.Find(imageName);
             mapObjects.Add(imageGO);
             imageGO.GetComponent<Image>().color = Color.clear;
         }
+        map.SetActive(false);
     }
 
 
@@ -141,7 +144,6 @@ public class LevelGenerator : MonoBehaviour
                     if (first)
                     {
                         SetCameraSpawn(counter);
-                        
                     }
 
                     CheckTop(j, i, ref top);
@@ -157,6 +159,7 @@ public class LevelGenerator : MonoBehaviour
                 counter++;
             }
         }
+        generatedMap[generatedMap.Count - 1].GetComponent<Segment>().isEndingSegment = true;
     }
 
     void InitializeSegments(bool top, bool bottom, bool left, bool right, int counter, bool isFirst)
@@ -229,7 +232,8 @@ public class LevelGenerator : MonoBehaviour
                 break;
         }
        
-        segment.GetComponent<SegmentCameraChange>().isStartintgSegment = isFirst && true;
+        segment.GetComponent<Segment>().isStartintgSegment = isFirst && true;
+        generatedMap.Add(segment);
     }
 
     private Tuple<int, int> GetNeighborPoint(Tuple<int, int> point, int direction, int offset)

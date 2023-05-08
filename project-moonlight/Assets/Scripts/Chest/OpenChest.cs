@@ -14,6 +14,7 @@ public class OpenChest : MonoBehaviour
     [SerializeField] GameObject speedGem;
     [SerializeField] GameObject powerGem;
     [SerializeField] GameObject shootingGem;
+    [SerializeField] GameObject poppySeends;
 
     void Start()
     {
@@ -39,7 +40,7 @@ public class OpenChest : MonoBehaviour
 
     private void SpawnRandomLoot()
     {
-        int rand = Random.Range(1, 4);
+        int rand = Random.Range(1, 5);
         GameObject item = null;
         switch (rand) 
         { 
@@ -52,6 +53,9 @@ public class OpenChest : MonoBehaviour
             case 3:
                 item = Instantiate(shootingGem, transform);
                 break;
+            case 4:
+                item = Instantiate(poppySeends, transform);
+                break;
         }
         StartCoroutine(AnimateLoot(item));
         item.transform.localPosition = Vector2.zero;
@@ -60,6 +64,8 @@ public class OpenChest : MonoBehaviour
     IEnumerator AnimateLoot(GameObject item)
     {  
         yield return new WaitForSeconds(1.1f);
-        item.GetComponent<PolygonCollider2D>().isTrigger = true;
+            item.GetComponent<Collider2D>().isTrigger = true;
+        
+
     }
 }

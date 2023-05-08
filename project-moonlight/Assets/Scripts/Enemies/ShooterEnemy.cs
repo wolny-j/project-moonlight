@@ -11,10 +11,10 @@ public class ShooterEnemy : MonoBehaviour
 
     private float timer = 0;
 
-    private LevelManager levelManager;
-    SpriteRenderer spriteRenderer;
     private EnemyDropItem dropItem;
     private EnemyWalk enemyWalk;
+    private ISpriteUpdate spriteUpdate;
+    private LevelManager levelManager;
 
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
@@ -25,9 +25,9 @@ public class ShooterEnemy : MonoBehaviour
     void Start()
     {
         dropItem = GetComponent<EnemyDropItem>();
-        levelManager = LevelManager.Instance;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         enemyWalk= GetComponent<EnemyWalk>();
+        spriteUpdate = GetComponent<EnemyUpdateSprite>();
+        levelManager = LevelManager.Instance;
         destination = enemyWalk.SetNewDestination();
     }
 
@@ -36,7 +36,7 @@ public class ShooterEnemy : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        CheckDeath();
+        dropItem.CheckDeath(health, levelManager.eye, levelManager.eyeDropChance);
         Shoot();
 
         if (transform.localPosition == destination)
@@ -44,7 +44,7 @@ public class ShooterEnemy : MonoBehaviour
             destination = enemyWalk.SetNewDestination();
         }
 
-        UpdateSprite();
+        spriteUpdate.UpdateSprite(destination);
         enemyWalk.MoveToDestination(speed, destination);
     }
 
@@ -56,40 +56,7 @@ public class ShooterEnemy : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-    
-    private void UpdateSprite()
-    {
-        if (destination.x > transform.localPosition.x)
-        {
-            spriteRenderer.sprite = eyeSpriteInverted;
-        }
-        else
-        {
-            spriteRenderer.sprite = eyeSprite;
-        }
-    }
 
-    private void CheckDeath()
-    {
-        if (health <= 0)
-        {
-            bool dropped = false;
-            if (!dropped)
-            {
-                dropped = dropItem.DropHeartOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = dropItem.DropMapOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = dropItem.DropItemOnDeath(levelManager.eye, levelManager.eyeDropChance);
-            }
-
-            Destroy(gameObject);
-        }
-    }
 
     private void Shoot()
     {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 784531376631771641}
   - component: {fileID: 6907626239591102966}
   - component: {fileID: -51626306968456384}
+  - component: {fileID: -3467864217204044397}
   m_Layer: 0
   m_Name: SnailEnemy
   m_TagString: Enemy
@@ -156,3 +157,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4f641f701876545af84c18092d7364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3467864217204044397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22173a48e8676b94c911976076ae6753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 9aa55c6c4bd41fa4cbadd12539ef4370, type: 3}
+  spriteInverted: {fileID: 21300000, guid: bbbd71a97d662874a989557b684d6bc3, type: 3}

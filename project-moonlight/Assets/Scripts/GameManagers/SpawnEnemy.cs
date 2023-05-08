@@ -5,23 +5,28 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
 
-
+    private PlayerStats playerStats;
     private bool isEnemySpawned = false;
     private List<GameObject> enemyList = new List<GameObject>();
 
     public bool isStartintgSegment { get; set; } = false;
     public bool isCompleted { get; set; } = false;
 
+    private bool isUpdated = false;
+    //REFACTOR to one instance in the whole game attached to SpawnManager and pass transform as parameter
     private void Awake()
     {
+        playerStats = GameObject.Find("PlayerStatsManager").GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (NoEnemiesLeft() && isEnemySpawned == true)
+        if (NoEnemiesLeft() && isEnemySpawned == true && !isUpdated)
         {
             isCompleted = true;
+            playerStats.IsCompleted = true;
+            isUpdated = true;
         }
     }
 
@@ -66,28 +71,28 @@ public class SpawnEnemy : MonoBehaviour
             switch (enemyType)
             {
                 case 1:
-                    SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy, isInitial);
                     break;
                 case 2:
                     if (isInitial)
-                        SpawnEnemiesOfType(LevelManager.Instance.zombieEnemy);
+                        SpawnEnemiesOfType(LevelManager.Instance.zombieEnemy, isInitial);
                     else
-                        SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
+                        SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy, isInitial);
                     break;
                 case 3:
-                    SpawnEnemiesOfType(LevelManager.Instance.snailEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.snailEnemy, isInitial);
                     break;
                 case 4:
-                    SpawnEnemiesOfType(LevelManager.Instance.shooterEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.shooterEnemy, isInitial);
                     break;
                 case 5:
                     if(isInitial)
-                        SpawnEnemiesOfType(LevelManager.Instance.coreEnemy);
+                        SpawnEnemiesOfType(LevelManager.Instance.coreEnemy, isInitial);
                     else
-                        SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
+                        SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy, isInitial);
                     break;
                 default:
-                    SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy);
+                    SpawnEnemiesOfType(LevelManager.Instance.eyeEnemy, isInitial);
                     break;
             }
         }
@@ -96,12 +101,16 @@ public class SpawnEnemy : MonoBehaviour
     }
 
     //Loop for enemyCount and spawn each of them in a random position. Next add it to the list (list is used to check if all enemies are dead in NoEnemiesLeft function).
-    private void SpawnEnemiesOfType(GameObject enemyPrefab)
+    private void SpawnEnemiesOfType(GameObject enemyPrefab, bool isInitial)
     {
-            Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f), 0f);
-            GameObject enemy = Instantiate(enemyPrefab, transform);
-            enemy.transform.localPosition = spawnPosition;
-            enemyList.Add(enemy);
+        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f), 0f);
+        GameObject enemy = Instantiate(enemyPrefab, transform);
+        enemy.transform.localPosition = spawnPosition;
+        enemyList.Add(enemy);
+        if (!isInitial)
+        {
+            enemy.GetComponent<EnemyDropItem>().IsDropingItem = false;
+        }
     }
 
 }

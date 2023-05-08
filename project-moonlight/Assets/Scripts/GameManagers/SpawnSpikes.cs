@@ -6,7 +6,7 @@ public class SpawnSpikes : MonoBehaviour
 {
     [SerializeField] GameObject spikesPrefab;
 
-
+    //REFACTOR to one instance in the whole game attached to SpawnManager and pass transform as parameter
     //Spawn spikes randomly on the segment
     public void GenerateSpikes()
     {

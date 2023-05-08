@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Heart
   m_EditorClassIdentifier: 
   name: Heart
-  sprite: {fileID: 21300000, guid: a53869664b63b6845bb4f0063198b606, type: 3}
+  sprite: {fileID: 21300000, guid: a386d00cd928b194b849c9ae5f55fbe3, type: 3}
+  isUsable: 0

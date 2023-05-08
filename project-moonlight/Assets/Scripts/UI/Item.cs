@@ -8,5 +8,6 @@ public class Item : ScriptableObject
 {
     new public string name;
     public Sprite sprite;
+    public bool isUsable;
 
 }

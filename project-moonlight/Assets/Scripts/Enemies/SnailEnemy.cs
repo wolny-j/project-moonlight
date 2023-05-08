@@ -10,14 +10,10 @@ public class SnailEnemy : MonoBehaviour
     public bool isAiming = false;
     private float timer = 0;
 
-    private LevelManager levelManager;
-    SpriteRenderer spriteRenderer;
     private EnemyDropItem dropItem;
     private EnemyWalk enemyWalk;
-
-    [SerializeField] Sprite snailSprite;
-    [SerializeField] Sprite snailSpriteInverted;
-
+    private ISpriteUpdate spriteUpdate;
+    private LevelManager levelManager;
     [SerializeField] GameObject slimePrefab;
     [SerializeField] float frequency = 0.3f;
 
@@ -27,9 +23,9 @@ public class SnailEnemy : MonoBehaviour
     void Start()
     {
         dropItem= GetComponent<EnemyDropItem>();
-        levelManager = LevelManager.Instance;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         enemyWalk= GetComponent<EnemyWalk>();
+        spriteUpdate = GetComponent<EnemyUpdateSprite>();
+        levelManager = LevelManager.Instance;
         destination = enemyWalk.SetNewDestination();
     }
 
@@ -39,14 +35,14 @@ public class SnailEnemy : MonoBehaviour
         timer += Time.deltaTime;
         DropSlime(frequency);
 
-        CheckDeath();
+        dropItem.CheckDeath(health, levelManager.shell, levelManager.shellDropChance);
 
         if (transform.localPosition == destination)
         {
             destination = enemyWalk.SetNewDestination();
         }
 
-        UpdateSprite();
+        spriteUpdate.UpdateSprite(destination);
         enemyWalk.MoveToDestination(speed, destination);
     }
 
@@ -68,40 +64,4 @@ public class SnailEnemy : MonoBehaviour
         }
     }
 
-  
-
-    private void UpdateSprite()
-    {
-        if (destination.x > transform.localPosition.x)
-        {
-            spriteRenderer.sprite = snailSprite;
-
-        }
-        else
-        {
-            spriteRenderer.sprite = snailSpriteInverted;
-        }
-    }
-
-    private void CheckDeath()
-    {
-        if (health <= 0)
-        {
-            bool dropped = false;
-            if (!dropped)
-            {
-                dropped = dropItem.DropHeartOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = dropItem.DropMapOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = dropItem.DropItemOnDeath(levelManager.shell, levelManager.shellDropChance);
-            }
-
-            Destroy(gameObject);
-        }
-    }
 }

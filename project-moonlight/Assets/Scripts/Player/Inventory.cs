@@ -13,13 +13,21 @@ public class Inventory : MonoBehaviour
     public event OnItemChanged onItemChangedCallback;
     private int space = 12;
 
-    [SerializeField] GameObject inventoryPanel;
+    private GameObject inventoryPanel;
     private bool isOpened = false;
 
     void Awake()
     {
-        Inventory.Instance = this; 
-
+        if(Instance == null)
+        {
+            Inventory.Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        
+        inventoryPanel = GameObject.Find("Inventory");
     }
     private void Update()
     {

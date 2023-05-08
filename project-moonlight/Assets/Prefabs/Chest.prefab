@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8648266057085015083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.109504, y: -8.3354225, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.09, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -122,6 +122,7 @@ MonoBehaviour:
   speedGem: {fileID: 2295111074299955857, guid: 6b9627d482ca30043adfd184d8dabdc1, type: 3}
   powerGem: {fileID: 2295111074299955857, guid: d5a542a6f816d364094506ce73b50216, type: 3}
   shootingGem: {fileID: 2295111074299955857, guid: 6d7b77404e05b694f86588c5c39cd095, type: 3}
+  poppySeends: {fileID: 6816674418525633988, guid: 3f850316ba01d194c8d848fc6acda81d, type: 3}
 --- !u!61 &8095187351619216177
 BoxCollider2D:
   m_ObjectHideFlags: 0

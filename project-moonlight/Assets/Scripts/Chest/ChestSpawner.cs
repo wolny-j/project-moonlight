@@ -11,6 +11,7 @@ public class ChestSpawner : MonoBehaviour
     Vector3 position3 = new Vector3(-0.336f, 0.316f, 0f);
     Vector3 position4 = new Vector3(0.34f, -0.34f, 0f);
 
+    //REFACTOR to one instance in the whole game attached to SpawnManager and pass transform as parameter
     public void SpawnChest()
     {
         int chance = UnityEngine.Random.Range(0, 100);
