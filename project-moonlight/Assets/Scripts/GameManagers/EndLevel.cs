@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class EndLevel : MonoBehaviour
 {
-    bool animPlayed = false;
+    [SerializeField]bool animPlayed = false;
     private Animator animator;
 
     private void Update()
     {
-        if(gameObject.GetComponentInParent<SpawnEnemy>().isCompleted && !animPlayed)
+        if (!animPlayed && gameObject.GetComponentInParent<SpawnEnemy>().isCompleted)
         {
             animator = GetComponent<Animator>();
             animator.SetTrigger("OpenTrapdoor");
@@ -22,7 +22,8 @@ public class EndLevel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && animPlayed)
         {
-            SceneManager.LoadScene(0);
+            SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
+            SceneManager.LoadScene(1);
         }
     }
 }

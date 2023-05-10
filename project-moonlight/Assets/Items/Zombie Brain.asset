@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e7b027eefd21a469d65cd0bcd24bc2, type: 3}
   m_Name: Zombie Brain
   m_EditorClassIdentifier: 
-  name: '"Zombie brain"'
+  name: Brain
   sprite: {fileID: 21300000, guid: 1dbc16a0952da274a89d26edbe8d9894, type: 3}
+  isUsable: 0
+  growingSprites: []

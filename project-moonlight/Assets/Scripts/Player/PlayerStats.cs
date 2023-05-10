@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance;
@@ -30,7 +31,7 @@ public class PlayerStats : MonoBehaviour
 
 
     //Dicronary that counts each powerup is collected e.g. ["SpeedGem", 3] means that player collected three speed powerups
-    private readonly Dictionary<string, int> powerups = new Dictionary<string, int>()
+    public Dictionary<string, int> powerups = new Dictionary<string, int>()
     {
         {"SpeedGem", 0},
         {"PowerGem", 0},
@@ -41,6 +42,7 @@ public class PlayerStats : MonoBehaviour
     {
         InitializeStats();
         InitializeUI();
+        
     }
 
     void Start()
@@ -48,12 +50,12 @@ public class PlayerStats : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
+        Load();
         //HealthUIManager.Instance.AddHealth(health);
     }
 
@@ -95,5 +97,21 @@ public class PlayerStats : MonoBehaviour
     public void UnlockMap()
     {
         map.SetActive(true);
+    }
+
+    public void Load()
+    {
+        PlayerSaveData data = SaveSystem.LoadPlayer();
+        LoadInventory.Instance.Load(data);
+
+        powerups = data.powerups;
+        health = data.health;
+        speed = data.speed;
+        power = data.power;
+        shootFrequency = data.shootFrequency;
+
+        UpdatePowerups();
+        HealthUIManager.Instance.SubtractHealth(health);
+
     }
 }

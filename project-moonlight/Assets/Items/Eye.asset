@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Eye
   sprite: {fileID: 21300000, guid: bb3ffd38a6d26dd4cafa4cd495e29afb, type: 3}
-  isUsable: 1
+  isUsable: 0

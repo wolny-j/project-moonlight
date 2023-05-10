@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            SceneManager.LoadScene(1);
+        }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
     }

@@ -29,4 +29,10 @@ public class LevelManager : MonoBehaviour
         Instance = this;
     }
 
+    void OnApplicationQuit()
+    {
+        PlayerSaveData saveData = new();
+        SaveSystem.SavePlayer(saveData);
+    }
+
 }
