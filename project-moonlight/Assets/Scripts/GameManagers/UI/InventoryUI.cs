@@ -9,16 +9,23 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI Instance;
 
     [SerializeField] Transform inventoryGrid;
+    private void Awake()
+    {
+       
+    }
     void Start()
     {
-        Instance= this;
+        Instance = this;
         inventory = Inventory.Instance;
-        inventory.onItemChangedCallback += UpdateUI;
         slots = inventoryGrid.GetComponentsInChildren<InventorySlot>();
+        inventory.onItemChangedCallback += UpdateUI;
+        InventoryUI.Instance.UpdateUI();
+        this.gameObject.SetActive(false);
     }
 
     public void UpdateUI()
     {
+        Debug.Log("DOne");
         for(int i = 0; i < slots.Length; i++)
         {
             if (i < inventory.items.Count)

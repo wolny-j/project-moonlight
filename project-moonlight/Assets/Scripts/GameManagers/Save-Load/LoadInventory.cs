@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Inventory;
 
 public class LoadInventory : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class LoadInventory : MonoBehaviour
     [SerializeField] private Item eye;
     [SerializeField] private Item shell;
     [SerializeField] private Item seed;
+    [SerializeField] private Item poppy;
 
     private void Awake()
     {
@@ -38,6 +40,9 @@ public class LoadInventory : MonoBehaviour
                     break;
                 case "Poppy Seed":
                     Inventory.Instance.AddItem(seed);
+                    break;
+                case "Poppy":
+                    Inventory.Instance.AddItem(poppy);
                     break;
             }
         }

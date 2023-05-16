@@ -43,9 +43,9 @@ public class Inventory : MonoBehaviour
             isOpened = false;
         }
     }
-        public bool AddItem(Item item)
+    public bool AddItem(Item item)
     {
-        if(items.Count < space)
+        if (items.Count < space)
         {
             items.Add(item);
             onItemChangedCallback?.Invoke();

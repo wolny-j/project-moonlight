@@ -6,37 +6,46 @@ public class FieldSegment : MonoBehaviour
 {
     // Fields
     private SpriteRenderer spriteRenderer;
-    private Item seed;
+    public Item seed = null;
+    public HomeFieldSaveData data;
+    [SerializeField] int fieldIndex;
+    [SerializeField] Sprite normalFieldSprite;
+
     private int growingIndex = 0;
     private bool isGrowing = false;
-    private bool isFirstStage = false;
 
     public static FieldSegment currentHighlightedSquare;
     public static FieldSegment nextHighlightedSquare;
 
-    private static readonly Color32 normalColor = new(87, 2, 2, 255);
-    private static readonly Color32 highlightedColor = new(145, 43, 13, 255);
 
-    // Properties
-    public bool IsGrowing => isGrowing;
 
     // Methods
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
 
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare == this)
+        if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare.growingIndex == 3 && currentHighlightedSquare == this)
         {
-            if (!isFirstStage)
+            switch (seed.name)
             {
-                isFirstStage = true;
-                spriteRenderer.transform.localScale *= 2f;
+                case "Poppy Seed":
+                    HarvestManager.Instance.HarvestPoppy();
+                    seed = null;
+                    data = null;
+                    FieldManager.Instance.Add(data);
+                    SaveSystem.SaveHarvestField();
+                    spriteRenderer.sprite = normalFieldSprite;
+                    growingIndex = 0;
+                    isGrowing= false;
+                    HighlightField.Dim(spriteRenderer);
+                    spriteRenderer.transform.localScale /= 2f;
+                    break;
             }
-            spriteRenderer.sprite = seed.growingSprites[growingIndex++];
         }
     }
 
@@ -45,9 +54,10 @@ public class FieldSegment : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        if (currentHighlightedSquare == null && !isGrowing)
+        if (currentHighlightedSquare == null)
         {
-            HighlightField.Highlight(spriteRenderer);
+            if(!isGrowing)
+                HighlightField.Highlight(spriteRenderer);
             currentHighlightedSquare = this;
         }
         else
@@ -67,7 +77,8 @@ public class FieldSegment : MonoBehaviour
             if (nextHighlightedSquare != null)
             {
                 currentHighlightedSquare = nextHighlightedSquare;
-                HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
+                if(!isGrowing)
+                    HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
                 nextHighlightedSquare = null;
             }
             else
@@ -89,6 +100,26 @@ public class FieldSegment : MonoBehaviour
         seed = item;
         spriteRenderer.sprite = item.sprite;
         HighlightField.White(spriteRenderer);
-        currentHighlightedSquare.isGrowing = true;
+        isGrowing = true;
+        //currentHighlightedSquare.isGrowing = true;
     }
+    public void Grow()
+    {
+        if (growingIndex == 0)
+            spriteRenderer.transform.localScale *= 2f;
+
+        spriteRenderer.sprite = seed.growingSprites[growingIndex++];
+
+    }
+    private void OnDisable()
+    {
+        if(seed != null)
+        {
+            data = new(growingIndex, isGrowing, seed.name, fieldIndex);
+            FieldManager.Instance.Add(data);
+            SaveSystem.SaveHarvestField();
+        }
+        
+    }
+
 }

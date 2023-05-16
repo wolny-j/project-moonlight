@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.P))
         {
+            SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
             SceneManager.LoadScene(1);
         }
         movement.x = Input.GetAxisRaw("Horizontal");

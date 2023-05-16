@@ -11,7 +11,7 @@ public class PlayerSaveData
     public float speed;
     public float shootFrequency;
 
-    public List<string> items = new List<string>();
+    public List<string> items = new();
 
     public Dictionary<string, int> powerups = new Dictionary<string, int>()
     {
@@ -32,7 +32,6 @@ public class PlayerSaveData
 
         foreach (Item item in inventory.items)
         {
-
             items.Add(item.name);
         }
 
@@ -47,7 +46,4 @@ public class PlayerSaveData
         speed = 0.6f;
         shootFrequency = 0.5f;
     }
-
-
-
 }

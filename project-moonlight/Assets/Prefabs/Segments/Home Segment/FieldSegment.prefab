@@ -124,3 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12970a0cb2dc9f46894ef085bdc2301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: {fileID: 0}
+  data:
+    growingIndex: 0
+    isGrowing: 0
+    name: 
+    fieldIndex: 0
+  fieldIndex: 0
+  normalFieldSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
