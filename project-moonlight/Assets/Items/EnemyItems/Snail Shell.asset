@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Snail Shell
   m_EditorClassIdentifier: 
   name: Shell
-  sprite: {fileID: 21300000, guid: 8d53000ddd86a61469632704073c814a, type: 3}
+  sprite: {fileID: 21300000, guid: 1de8eb6065287b8469aee0271f680a0b, type: 3}
   isUsable: 0
   growingSprites: []

@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerSaveData
+public class PlayerStatsDTO
 {
     public int health;
+    public int healthContainers;
     public float power;
     public float speed;
     public float shootFrequency;
+    public float level;
+    public int inventorySpace;
 
     public List<string> items = new();
 
@@ -22,13 +25,16 @@ public class PlayerSaveData
 
     
 
-    public PlayerSaveData(PlayerStats stats, Inventory inventory)
+    public PlayerStatsDTO(PlayerStats stats, Inventory inventory)
     {
         health= stats.health;
+        healthContainers = stats.healthContainers;
 
         power= stats.power;
         speed= stats.speed;
         shootFrequency= stats.shootFrequency;
+        level = stats.level;
+        inventorySpace = inventory.space;
 
         foreach (Item item in inventory.items)
         {
@@ -38,12 +44,15 @@ public class PlayerSaveData
         powerups = stats.powerups;
     }
 
-    public PlayerSaveData()
+    public PlayerStatsDTO()
     {
-        health = 8;
+        health = 4;
+        healthContainers = 4;
+        inventorySpace = 4;
 
         power = 2f;
         speed = 0.6f;
         shootFrequency = 0.5f;
+        level = 1;
     }
 }

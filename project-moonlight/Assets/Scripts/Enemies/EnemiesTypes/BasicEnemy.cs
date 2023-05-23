@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
-    public float speed = 0.4f;
+    [SerializeField]private float speed = 0.4f;
     private float health = 10f;
     private Vector3 destination;
     public bool isAiming = false;
@@ -17,6 +17,13 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
 
+    enum Type
+    {
+        Eye,
+        Spider
+    }
+
+    [SerializeField] Type enemyType;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +38,10 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dropItem.CheckDeath(health, levelManager.eye, levelManager.eyeDropChance);
+        if(enemyType == Type.Eye)
+            dropItem.CheckDeath(health, levelManager.eye, levelManager.eyeDropChance);
+        else if(enemyType == Type.Spider)
+            dropItem.CheckDeath(health, levelManager.web, levelManager.webDropChance);
 
         if (transform.localPosition == destination)
         {

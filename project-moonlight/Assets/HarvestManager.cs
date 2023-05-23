@@ -6,6 +6,7 @@ public class HarvestManager : MonoBehaviour
 {
     public static HarvestManager Instance;
     [SerializeField] Item poppy;
+    [SerializeField] Item dandelion;
     void Awake()
     {
         if (Instance == null)
@@ -17,8 +18,21 @@ public class HarvestManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void HarvestPoppy()
+    public bool HarvestPoppy()
     {
-        Inventory.Instance.AddItem(poppy);
+        bool result = Inventory.Instance.AddItem(poppy);
+        return result;
+    }
+    public bool HarvestDandelion()
+    {
+        bool result = Inventory.Instance.AddItem(dandelion);
+        return result;
+        
+    }
+    void OnApplicationQuit()
+    {
+        Debug.Log("Saving");
+        PlayerStatsDTO saveData = new();
+        SaveSystem.SavePlayer(saveData);
     }
 }

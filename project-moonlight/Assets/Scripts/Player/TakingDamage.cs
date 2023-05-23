@@ -22,7 +22,8 @@ public class TakingDamage : MonoBehaviour
             health--;
             PlayerStats.Instance.health = health;
             HealthUIManager.Instance.SubtractHealth(health);
-            StartCoroutine(ShortImmortality());
+
+            StartCoroutine(BlinkImmortalityAnimation());
             if(tag == "EnemySpell")
             {
                 Destroy(collision.gameObject);
@@ -30,10 +31,33 @@ public class TakingDamage : MonoBehaviour
         }
     }
 
-    IEnumerator ShortImmortality()
+
+    IEnumerator BlinkImmortalityAnimation()
     {
         immortality = true;
-        yield return new WaitForSeconds(1.5f);
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        var invisibleColor = new Color32(0, 0, 0, 0);
+        var currentColor = spriteRenderer.color;
+
+        ChangeColor(spriteRenderer, invisibleColor);
+
+        for(int i = 0; i < 4; i++)
+        {
+            yield return new WaitForSeconds(.1f );
+            ChangeColor(spriteRenderer, currentColor);
+
+            yield return new WaitForSeconds(.1f);
+            ChangeColor(spriteRenderer, invisibleColor);
+        }
+        
+        yield return new WaitForSeconds(.2f);
+        ChangeColor(spriteRenderer, currentColor);
+        yield return new WaitForSeconds(.3f);
         immortality = false;
+    }
+
+    private void ChangeColor(SpriteRenderer spriteRenderer, Color32 color)
+    {
+        spriteRenderer.color = color;
     }
 }

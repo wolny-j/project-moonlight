@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: bbbd71a97d662874a989557b684d6bc3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 000bd70478ba2ad4d971d3b651d69588, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,8 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.1
   isAiming: 0
-  snailSprite: {fileID: 21300000, guid: bbbd71a97d662874a989557b684d6bc3, type: 3}
-  snailSpriteInverted: {fileID: 21300000, guid: 9aa55c6c4bd41fa4cbadd12539ef4370, type: 3}
   slimePrefab: {fileID: 4506095358816473825, guid: 97be9ebbcfae805419e71f1e5971b1ae, type: 3}
   frequency: 0.4
 --- !u!114 &6907626239591102966
@@ -169,5 +167,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22173a48e8676b94c911976076ae6753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 9aa55c6c4bd41fa4cbadd12539ef4370, type: 3}
-  spriteInverted: {fileID: 21300000, guid: bbbd71a97d662874a989557b684d6bc3, type: 3}
+  sprite: {fileID: 21300000, guid: bd705a16d089d5b4b833ea730d0d3b3d, type: 3}
+  spriteInverted: {fileID: 21300000, guid: 000bd70478ba2ad4d971d3b651d69588, type: 3}

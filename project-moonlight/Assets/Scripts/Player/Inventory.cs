@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     public List<Item> items;
     public delegate void OnItemChanged();
     public event OnItemChanged onItemChangedCallback;
-    private int space = 12;
+    public int space { get; set; } = 4;
 
     private GameObject inventoryPanel;
     private bool isOpened = false;
@@ -62,7 +62,28 @@ public class Inventory : MonoBehaviour
 
     }
 
-    
+    public void SearchAndRemove(Item deleteItem)
+    {
+        foreach (Item item in items) 
+        {
+            if(item.name == deleteItem.name)
+            {
+                RemoveItem(item);
+                break;
+            }
+        }
+    }
+
+    public List<Item> GetItems()
+    {
+        return items;
+    }
+
+    public void UpgradeInventory()
+    {
+        space++;
+        InventoryUI.Instance.UpgradeInventory();
+    }
 
 }
 

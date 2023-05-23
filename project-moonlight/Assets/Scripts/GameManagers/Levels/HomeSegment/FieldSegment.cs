@@ -7,7 +7,7 @@ public class FieldSegment : MonoBehaviour
     // Fields
     private SpriteRenderer spriteRenderer;
     public Item seed = null;
-    public HomeFieldSaveData data;
+    public HomeFieldDTO data;
     [SerializeField] int fieldIndex;
     [SerializeField] Sprite normalFieldSprite;
 
@@ -31,19 +31,38 @@ public class FieldSegment : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare.growingIndex == 3 && currentHighlightedSquare == this)
         {
+            bool result = false;
             switch (seed.name)
             {
                 case "Poppy Seed":
-                    HarvestManager.Instance.HarvestPoppy();
-                    seed = null;
-                    data = null;
-                    FieldManager.Instance.Add(data);
-                    SaveSystem.SaveHarvestField();
-                    spriteRenderer.sprite = normalFieldSprite;
-                    growingIndex = 0;
-                    isGrowing= false;
-                    HighlightField.Dim(spriteRenderer);
-                    spriteRenderer.transform.localScale /= 2f;
+                    result = HarvestManager.Instance.HarvestPoppy();
+                    if (result)
+                    {
+                        seed = null;
+                        data = null;
+                        FieldManager.Instance.Add(data);
+                        SaveSystem.SaveHarvestField();
+                        spriteRenderer.sprite = normalFieldSprite;
+                        growingIndex = 0;
+                        isGrowing = false;
+                        HighlightField.Dim(spriteRenderer);
+                        spriteRenderer.transform.localScale /= 2f;
+                    }
+                    break;
+                case "Dandelion Seed":
+                    result = HarvestManager.Instance.HarvestDandelion();
+                    if (result)
+                    {
+                        seed = null;
+                        data = null;
+                        FieldManager.Instance.Add(data);
+                        SaveSystem.SaveHarvestField();
+                        spriteRenderer.sprite = normalFieldSprite;
+                        growingIndex = 0;
+                        isGrowing = false;
+                        HighlightField.Dim(spriteRenderer);
+                        spriteRenderer.transform.localScale /= 2f;
+                    }
                     break;
             }
         }

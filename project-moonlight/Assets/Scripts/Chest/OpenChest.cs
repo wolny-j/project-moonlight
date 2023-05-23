@@ -15,6 +15,7 @@ public class OpenChest : MonoBehaviour
     [SerializeField] GameObject powerGem;
     [SerializeField] GameObject shootingGem;
     [SerializeField] GameObject poppySeends;
+    [SerializeField] GameObject dandelionSeends;
 
     void Start()
     {
@@ -34,7 +35,7 @@ public class OpenChest : MonoBehaviour
 
     private void SpawnRandomLoot()
     {
-        int rand = Random.Range(1, 5);
+        int rand = Random.Range(1, 9);
         GameObject item = null;
         switch (rand) 
         { 
@@ -49,6 +50,18 @@ public class OpenChest : MonoBehaviour
                 break;
             case 4:
                 item = Instantiate(poppySeends, transform);
+                break;
+            case 5:
+                item = Instantiate(dandelionSeends, transform);
+                break;
+            case 6:
+                item = Instantiate(speedGem, transform);
+                break;
+            case 7:
+                item = Instantiate(powerGem, transform);
+                break;
+            case 8:
+                item = Instantiate(shootingGem, transform);
                 break;
         }
         StartCoroutine(AnimateLoot(item));

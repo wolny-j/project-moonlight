@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Poppy
   m_EditorClassIdentifier: 
   name: Poppy
-  sprite: {fileID: 21300000, guid: c14785e209336b940b0709637f412bfb, type: 3}
+  sprite: {fileID: 21300000, guid: 15ab035a73b4b754bbc2bf5c35ea425e, type: 3}
   isUsable: 0
   growingSprites: []

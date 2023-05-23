@@ -23,11 +23,11 @@ public class CollectingItems : MonoBehaviour
     //Pick up hearth and add 1 HP to the Singleton Class HealthUIManager attached to game manager
     public void CollectHeart(Collider2D collision, int health)
     {
-        if (collision.gameObject.CompareTag(HearthTag) && health < 8)
+        if (collision.gameObject.CompareTag(HearthTag) && health < PlayerStats.Instance.healthContainers)
         {
             health++;
             PlayerStats.Instance.health = health;
-            HealthUIManager.Instance.AddHealth(health);
+            HealthUIManager.Instance.AddHealth();
             Destroy(collision.gameObject);
         }
     }

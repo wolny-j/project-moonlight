@@ -8,6 +8,7 @@ public class LoadField : MonoBehaviour
 {
     [SerializeField] List<GameObject> fields = new List<GameObject>();
     [SerializeField] Item poppySeed;
+    [SerializeField] Item dandelionSeed;
     public static LoadField Instance;
 
     private void Awake()
@@ -27,19 +28,27 @@ public class LoadField : MonoBehaviour
         Load(data);
     }
 
-    public void Load(FieldsListSaveData data)
+    public void Load(FieldsListDTO data)
     {
         if (data != null)
         {
-            foreach (HomeFieldSaveData field in data.GetFields())
+            foreach (HomeFieldDTO field in data.GetFields())
             {
                 if (field != null)
                 {
+                    FieldSegment fieldTemp;
                     switch (field.name)
                     {
                         case "Poppy Seed":
-                            FieldSegment fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
+                            fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
                             fieldTemp.GetSeed(poppySeed);
+                            Debug.Log(field.growingIndex);
+                            for (int i = 0; i <= field.growingIndex; i++)
+                                fieldTemp.Grow();
+                            break;
+                        case "Dandelion Seed":
+                            fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
+                            fieldTemp.GetSeed(dandelionSeed);
                             Debug.Log(field.growingIndex);
                             for (int i = 0; i <= field.growingIndex; i++)
                                 fieldTemp.Grow();

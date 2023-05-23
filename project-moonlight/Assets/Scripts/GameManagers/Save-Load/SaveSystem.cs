@@ -10,11 +10,11 @@ public static class SaveSystem
 
     public static void BuildSaveObject(PlayerStats stats, Inventory inventory)
     {
-        var data = new PlayerSaveData(stats, inventory);
+        var data = new PlayerStatsDTO(stats, inventory);
         SavePlayer(data);
     }
 
-    public static void SavePlayer(PlayerSaveData data)
+    public static void SavePlayer(PlayerStatsDTO data)
     {
         var formatter = new BinaryFormatter();
         using var fileStream = File.Create(savePlayerPath);
@@ -30,13 +30,13 @@ public static class SaveSystem
         Debug.Log($"Saved in {saveFieldPath}");
     }
 
-    public static PlayerSaveData LoadPlayer()
+    public static PlayerStatsDTO LoadPlayer()
     {
         if (File.Exists(savePlayerPath))
         {
             var formatter = new BinaryFormatter();
             using var fileStream = File.Open(savePlayerPath, FileMode.Open);
-            var data = formatter.Deserialize(fileStream) as PlayerSaveData;
+            var data = formatter.Deserialize(fileStream) as PlayerStatsDTO;
             return data;
         }
         else
@@ -46,7 +46,7 @@ public static class SaveSystem
         }
     }
 
-    public static FieldsListSaveData LoadField()
+    public static FieldsListDTO LoadField()
     {
         if (File.Exists(savePlayerPath))
         {
@@ -55,7 +55,7 @@ public static class SaveSystem
 
             try
             {
-                var data = formatter.Deserialize(fileStream) as FieldsListSaveData;
+                var data = formatter.Deserialize(fileStream) as FieldsListDTO;
                 return data;
             }
             catch(Exception ex)

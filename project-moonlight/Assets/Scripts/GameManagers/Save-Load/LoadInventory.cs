@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static Inventory;
 
@@ -8,8 +9,15 @@ public class LoadInventory : MonoBehaviour
     [SerializeField] private Item zombieBrain;
     [SerializeField] private Item eye;
     [SerializeField] private Item shell;
-    [SerializeField] private Item seed;
+    [SerializeField] private Item poppySeed;
+    [SerializeField] private Item dandelionSeed;
     [SerializeField] private Item poppy;
+    [SerializeField] private Item dandelion;
+    [SerializeField] private Item web;
+    [SerializeField] private Item healthPotion;
+    [SerializeField] private Item stringItem;
+
+    private Dictionary<string, Item> itemMap;
 
     private void Awake()
     {
@@ -21,29 +29,37 @@ public class LoadInventory : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        InitializeItemMap();
     }
 
-    public void Load(PlayerSaveData data)
+    private void InitializeItemMap()
     {
+        itemMap = new Dictionary<string, Item>
+        {
+            { "Brain", zombieBrain },
+            { "Eye", eye },
+            { "Shell", shell },
+            { "Poppy Seed", poppySeed },
+            { "Dandelion Seed", dandelionSeed },
+            { "Poppy", poppy },
+            { "Dandelion", dandelion },
+            { "Web", web },
+            { "Health Potion", healthPotion },
+            { "String", stringItem }
+        };
+    }
+
+    public void Load(PlayerStatsDTO data)
+    {
+        Inventory.Instance.space = data.inventorySpace;
+        InventoryUI.Instance.InitializeInventory();
+
         foreach (string item in data.items)
         {
-            switch (item)
+            if (itemMap.ContainsKey(item))
             {
-                case "Brain":
-                    Inventory.Instance.AddItem(zombieBrain);
-                    break;
-                case "Eye":
-                    Inventory.Instance.AddItem(eye);
-                    break;
-                case "Shell":
-                    Inventory.Instance.AddItem(shell);
-                    break;
-                case "Poppy Seed":
-                    Inventory.Instance.AddItem(seed);
-                    break;
-                case "Poppy":
-                    Inventory.Instance.AddItem(poppy);
-                    break;
+                Inventory.Instance.AddItem(itemMap[item]);
             }
         }
     }

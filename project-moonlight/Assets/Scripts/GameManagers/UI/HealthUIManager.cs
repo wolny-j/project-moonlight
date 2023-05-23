@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthUIManager : MonoBehaviour
 {
@@ -16,10 +17,11 @@ public class HealthUIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 18; i++)
             {
                 hearts.Add(GameObject.Find($"Hearth ({i})"));
             }
+            
         }
         else if (Instance != this)
         {
@@ -29,13 +31,21 @@ public class HealthUIManager : MonoBehaviour
         
     }
 
-    public void SubtractHealth(int health)
+   
+
+    public void InitializeHearth(int healthContainers)
     {
-        for (int i = 7; i > health - 1; i--)
+        for (int i = PlayerStats.Instance.maxHealth - 1; i >= 0; i--)
         {
             if (i >= 0 && i < hearts.Count)
             {
-                hearts[i].SetActive(false);
+                if (i >= PlayerStats.Instance.health && i >= healthContainers)
+                    hearts[i].SetActive(false);
+                else if (i >= PlayerStats.Instance.health && i < healthContainers)
+                {
+                    hearts[i].SetActive(true);
+                    hearts[i].GetComponent<Image>().color = Color.black;
+                }
             }
             else
             {
@@ -44,18 +54,48 @@ public class HealthUIManager : MonoBehaviour
         }
     }
 
-    public void AddHealth(int health)
+    public void SubtractHealth(int health)
     {
-        for (int i = 0; i < health; i++)
+        //hearts[PlayerStats.Instance.health -1].GetComponent<Image>().color = Color.black;
+        for (int i = PlayerStats.Instance.healthContainers; i > health - 1; i--)
         {
             if (i >= 0 && i < hearts.Count)
             {
-                hearts[i].SetActive(true);
+                hearts[i].GetComponent<Image>().color = Color.black;
             }
             else
             {
                 Debug.LogWarning("Index out of range: " + i);
             }
         }
+    }
+
+
+
+    public void AddHealth()
+    {
+
+        hearts[PlayerStats.Instance.health - 1].GetComponent<Image>().color = Color.white;
+
+
+
+        /*for (int i = 0; i < health; i++)
+        {
+            if (i >= 0 && i < health)
+            {
+                hearts[i].GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            else
+            {
+                Debug.LogWarning("Index out of range: " + i);
+            }
+        }*/
+    }
+
+    public void AddHealthContainer()
+    {
+        PlayerStats.Instance.healthContainers++;
+        hearts[PlayerStats.Instance.healthContainers - 1].SetActive(true);
+        hearts[PlayerStats.Instance.healthContainers - 1].GetComponent<Image>().color = Color.black;
     }
 }

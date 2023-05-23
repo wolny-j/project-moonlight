@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FieldManager : MonoBehaviour
 {
-    private FieldsListSaveData saveData = new FieldsListSaveData();
+    private FieldsListDTO saveData = new FieldsListDTO();
 
     public static FieldManager Instance;
 
@@ -21,18 +21,18 @@ public class FieldManager : MonoBehaviour
     }
 
 
-    public void Add(HomeFieldSaveData field)
+    public void Add(HomeFieldDTO field)
     {
         if(saveData == null)
-            saveData = new FieldsListSaveData();
+            saveData = new FieldsListDTO();
         else
             saveData.Add(field);
     }
 
-    public FieldsListSaveData GetFields()
+    public FieldsListDTO GetFields()
     {
         if (saveData == null)
-            return new FieldsListSaveData();
+            return new FieldsListDTO();
         return saveData;
     }
 

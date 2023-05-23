@@ -24,10 +24,13 @@ public class PlayerStats : MonoBehaviour
     public bool IsCompleted { get; set; } = true;
 
     //PLAYER STATTSTICS
-    public int health { get; set; } = 8;
-    public float power { get; set; }
+    public int health = 4;
+    public int healthContainers = 4;
+    public int maxHealth { get; set; } = 18;
+    public float power;
     public float speed { get; set; }
     public float shootFrequency { get; set; }
+    public float level = 1;
 
 
     //Dicronary that counts each powerup is collected e.g. ["SpeedGem", 3] means that player collected three speed powerups
@@ -101,17 +104,18 @@ public class PlayerStats : MonoBehaviour
 
     public void Load()
     {
-        PlayerSaveData data = SaveSystem.LoadPlayer();
+        PlayerStatsDTO data = SaveSystem.LoadPlayer();
         LoadInventory.Instance.Load(data);
-
+        level = data.level;
         powerups = data.powerups;
         health = data.health;
+        healthContainers = data.healthContainers;
         speed = data.speed;
         power = data.power;
         shootFrequency = data.shootFrequency;
 
         UpdatePowerups();
-        HealthUIManager.Instance.SubtractHealth(health);
+        HealthUIManager.Instance.InitializeHearth(healthContainers);
 
     }
 }

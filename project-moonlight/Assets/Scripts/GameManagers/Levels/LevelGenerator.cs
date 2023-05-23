@@ -38,13 +38,15 @@ public class LevelGenerator : MonoBehaviour
     string[,] grid;
 
     //Const values 
-    private const int ALGHORITHM_ITERATIONS = 10;
+    private int algorithmIterations = 10;
     private const int OFFSET = 1;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        CheckLevel();
+
         InitializeGameObjects();
 
         InitializeGrid();
@@ -52,6 +54,24 @@ public class LevelGenerator : MonoBehaviour
         GenerateMap();
 
         CheckNeighbors();
+
+    }
+
+    void CheckLevel()
+    {
+        if (PlayerStats.Instance.level <= 2)
+        {
+            algorithmIterations = 2;
+        }
+        else if (PlayerStats.Instance.level < 5)
+        {
+            algorithmIterations = (int)PlayerStats.Instance.level * 2;
+        }
+        else
+        {
+            algorithmIterations = 10;
+        }
+
     }
 
     void InitializeGameObjects()
@@ -63,7 +83,6 @@ public class LevelGenerator : MonoBehaviour
             GameObject squareGO = GameObject.Find(squareName);
             gameObjects.Add(squareGO);
 
-            
 
             string imageName = $"Image ({i})";
             GameObject imageGO = GameObject.Find(imageName);
@@ -92,7 +111,7 @@ public class LevelGenerator : MonoBehaviour
 
     void GenerateMap()
     {
-        for (int iteration = 0; iteration < ALGHORITHM_ITERATIONS; iteration++)
+        for (int iteration = 0; iteration < algorithmIterations; iteration++)
         {
             // Generate a random number of 'x' values between 1 and 3
             System.Random random = new System.Random();
@@ -118,11 +137,32 @@ public class LevelGenerator : MonoBehaviour
                     continue;
                 }
 
-                grid[point.Item1, point.Item2] = "x";
+               grid[point.Item1, point.Item2] = "x";
 
             }
 
             points.Enqueue(point);
+        }
+        CheckStartingPoint();
+    }
+
+    //Method checks if any other x was generated, if not itt automatically adds one to let the level be playable (used to ommit edge case where no segment on map was spawned)
+    private void CheckStartingPoint()
+    {
+        bool top = false;
+        bool bottom = false;
+        bool left = false;
+        bool right = false;
+        CheckTop(centerRow, centerCol, ref top);
+        CheckRight(centerRow, centerCol, ref right);
+        CheckBottom(centerRow, centerCol, ref bottom);
+        CheckLeft(centerRow, centerCol, ref left);
+
+        if (!top && !bottom && !left && !right)
+        {
+            grid[centerRow + 1, centerCol] = "x";
+            
+            grid[centerRow + 1, centerCol + 1] = "x";
         }
     }
 
@@ -151,8 +191,9 @@ public class LevelGenerator : MonoBehaviour
                     CheckBottom(j, i, ref bottom);
                     CheckLeft(j, i, ref left);
 
+                    
 
-                    mapObjects[counter].GetComponent<Image>().color = new Color(255, 255, 255, 0.7f);
+                    mapObjects[counter].GetComponent<Image>().color = new Color(0, 0, 0, 0.7f);
                     InitializeSegments(top, bottom, left, right, counter, first);
                     first = first && false;
                 }

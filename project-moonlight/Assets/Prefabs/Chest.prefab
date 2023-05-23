@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e32a765894016934999e5b602383eb1b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d8391aa4e094244fb625cd91ab8aa6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   powerGem: {fileID: 2295111074299955857, guid: d5a542a6f816d364094506ce73b50216, type: 3}
   shootingGem: {fileID: 2295111074299955857, guid: 6d7b77404e05b694f86588c5c39cd095, type: 3}
   poppySeends: {fileID: 6816674418525633988, guid: 3f850316ba01d194c8d848fc6acda81d, type: 3}
+  dandelionSeends: {fileID: 6816674418525633988, guid: 9cf3a52067b45494ab129d6dd5597478, type: 3}
 --- !u!61 &8095187351619216177
 BoxCollider2D:
   m_ObjectHideFlags: 0

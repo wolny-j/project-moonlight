@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c94abbd0da054044c9c47e21031a2fd1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a67f29b86a7e69945b7ed44f2e632212, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,10 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.15
   isAiming: 1
-  normalSprite: {fileID: 21300000, guid: c94abbd0da054044c9c47e21031a2fd1, type: 3}
-  normalSpriteInverted: {fileID: 21300000, guid: a70ed26f89cacac4d96996e817cffcf1, type: 3}
-  RushSprite: {fileID: 21300000, guid: aa58510199b5d684585c4aa8c38f5b9d, type: 3}
-  rushSpriteInverted: {fileID: 21300000, guid: 6e1500b1222cbf64388dec180173b0ce, type: 3}
 --- !u!114 &2325169744930928725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedf7148e05c1c54d88a8fd0985f53a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: c94abbd0da054044c9c47e21031a2fd1, type: 3}
-  spriteInverted: {fileID: 21300000, guid: a70ed26f89cacac4d96996e817cffcf1, type: 3}
-  RushSprite: {fileID: 21300000, guid: aa58510199b5d684585c4aa8c38f5b9d, type: 3}
-  rushSpriteInverted: {fileID: 21300000, guid: 6e1500b1222cbf64388dec180173b0ce, type: 3}
+  sprite: {fileID: 21300000, guid: a67f29b86a7e69945b7ed44f2e632212, type: 3}
+  spriteInverted: {fileID: 21300000, guid: cb8ccb864000edd4c8d743b4bd7dbbe9, type: 3}
+  RushSprite: {fileID: 21300000, guid: 1d2120cc8dc5a7547a5ec9b1964b066a, type: 3}
+  rushSpriteInverted: {fileID: 21300000, guid: a6df74145d6881745a35eef8f89ad035, type: 3}

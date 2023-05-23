@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4706cbff07b7464d9b3346d90b153d7, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   isAiming: 0
-  eyeSprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
-  eyeSpriteInverted: {fileID: 21300000, guid: 1d96748d4a523ed40b314696c912bd00, type: 3}
+  eyeSprite: {fileID: 21300000, guid: c4706cbff07b7464d9b3346d90b153d7, type: 3}
+  eyeSpriteInverted: {fileID: 21300000, guid: c9af0d0352573414292ff0e431ed1e76, type: 3}
   enemySpell: {fileID: 8274891974327807967, guid: af3b3d91177da754b9c0015299a7dca1, type: 3}
 --- !u!114 &3067861983745093074
 MonoBehaviour:
@@ -168,5 +168,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22173a48e8676b94c911976076ae6753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 76ec1a307a69f764f873cf9dd12605c4, type: 3}
-  spriteInverted: {fileID: 21300000, guid: 1d96748d4a523ed40b314696c912bd00, type: 3}
+  sprite: {fileID: 21300000, guid: c4706cbff07b7464d9b3346d90b153d7, type: 3}
+  spriteInverted: {fileID: 21300000, guid: c9af0d0352573414292ff0e431ed1e76, type: 3}

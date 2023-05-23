@@ -22,6 +22,7 @@ public class EndLevel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && animPlayed)
         {
+            PlayerStats.Instance.level++;
             SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
             SceneManager.LoadScene(1);
         }

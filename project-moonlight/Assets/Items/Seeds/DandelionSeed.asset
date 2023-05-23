@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99e7b027eefd21a469d65cd0bcd24bc2, type: 3}
-  m_Name: PoppySeed
+  m_Name: DandelionSeed
   m_EditorClassIdentifier: 
-  name: Poppy Seed
-  sprite: {fileID: 21300000, guid: 8770f5246a3b6544ab462400d574aa52, type: 3}
+  name: Dandelion Seed
+  sprite: {fileID: 21300000, guid: 2da5296a51b8cb3439eb27adaa2ec444, type: 3}
   isUsable: 1
+  tag: 1
   growingSprites:
-  - {fileID: 21300000, guid: 0cefa4d43fa59194981b10b7978dff13, type: 3}
-  - {fileID: 21300000, guid: 6581a3347a6e27c459839e676d4fd276, type: 3}
-  - {fileID: 21300000, guid: c14785e209336b940b0709637f412bfb, type: 3}
+  - {fileID: 21300000, guid: eb12ce514b6c12042a0877cbb49a1f6b, type: 3}
+  - {fileID: 21300000, guid: 389d15fc861377b469f095cf0ccc622a, type: 3}
+  - {fileID: 21300000, guid: 1a7492c7b07d8fc4489c21c1d02ac629, type: 3}
