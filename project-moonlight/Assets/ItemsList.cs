@@ -14,6 +14,8 @@ public class ItemsList : MonoBehaviour
     [SerializeField] public Item stringItem;
     [SerializeField] public Item shell;
     [SerializeField] public Item web;
+    [SerializeField] public Item bamboo;
+    [SerializeField] public Item gunpowder;
 
     void Awake()
     {

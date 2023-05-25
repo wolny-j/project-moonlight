@@ -9,6 +9,7 @@ public class LoadField : MonoBehaviour
     [SerializeField] List<GameObject> fields = new List<GameObject>();
     [SerializeField] Item poppySeed;
     [SerializeField] Item dandelionSeed;
+    [SerializeField] Item bambooSeed;
     public static LoadField Instance;
 
     private void Awake()
@@ -49,6 +50,13 @@ public class LoadField : MonoBehaviour
                         case "Dandelion Seed":
                             fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
                             fieldTemp.GetSeed(dandelionSeed);
+                            Debug.Log(field.growingIndex);
+                            for (int i = 0; i <= field.growingIndex; i++)
+                                fieldTemp.Grow();
+                            break;
+                        case "Bamboo Seed":
+                            fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
+                            fieldTemp.GetSeed(bambooSeed);
                             Debug.Log(field.growingIndex);
                             for (int i = 0; i <= field.growingIndex; i++)
                                 fieldTemp.Grow();

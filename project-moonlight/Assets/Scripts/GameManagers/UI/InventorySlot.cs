@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +11,27 @@ public class InventorySlot : MonoBehaviour
     [SerializeField]Image icon;
     [SerializeField]Button removeButton;
     [SerializeField]Button useButton;
+    [SerializeField]Button addToChestButton;
+    [SerializeField]Button removeFromChestButton;
+
+
+    public void CheckState()
+    {
+        if (item != null && SceneManager.GetActiveScene().name == "HomeScene")
+        {
+            if (transform.parent.transform.parent.name == "Inventory")
+            {
+                addToChestButton.interactable = true;
+                removeFromChestButton.gameObject.SetActive(false);
+            }
+            else if (transform.parent.transform.parent.name == "ChestInventory")
+            {
+                removeFromChestButton.gameObject.SetActive(true);
+                removeFromChestButton.interactable = true;
+            }
+        }
+    }
+
     public void AddItem(Item newItem)
     {
         item = newItem;
@@ -30,11 +52,22 @@ public class InventorySlot : MonoBehaviour
         icon.enabled= false;
         removeButton.interactable = false;
         useButton.interactable = false;
+        removeFromChestButton.interactable = false;
+        addToChestButton.interactable = false;
+
     }
 
     public void RemoveButton()
     {
-        Inventory.Instance.RemoveItem(item);
+        if (transform.parent.transform.parent.name == "Inventory")
+        {
+            Inventory.Instance.RemoveItem(item);
+        }
+        else if (transform.parent.transform.parent.name == "ChestInventory")
+        {
+            ChestInventory.Instance.RemoveItem(item);
+        }
+        
         UpdateCrafting();
     }
 
@@ -69,5 +102,23 @@ public class InventorySlot : MonoBehaviour
             }
         }
         
+    }
+
+    public void AddToChest()
+    {
+        if (ChestInventory.Instance.items.Count < ChestInventory.Instance.space)
+        {
+            ChestInventory.Instance.AddItem(item);
+            Inventory.Instance.RemoveItem(item);
+        }
+    }
+
+    public void RemoveFromChest()
+    {
+        if (Inventory.Instance.items.Count < Inventory.Instance.space)
+        {
+            Inventory.Instance.AddItem(item);
+            ChestInventory.Instance.RemoveItem(item);
+        }
     }
 }

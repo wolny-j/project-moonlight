@@ -10,6 +10,7 @@ public class ExitHome : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
+            SaveSystem.BuildSaveChest(ChestInventory.Instance);
             SceneManager.LoadScene(0);
         }
     }

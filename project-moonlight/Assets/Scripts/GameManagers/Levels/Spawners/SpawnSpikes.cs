@@ -8,7 +8,7 @@ public class SpawnSpikes : MonoBehaviour
 
     //REFACTOR to one instance in the whole game attached to SpawnManager and pass transform as parameter
     //Spawn spikes randomly on the segment
-    public void GenerateSpikes()
+    public void GenerateSpikes(Transform segmentTransform)
     {
         const float initialX = -0.35f;
         const float initialY = 0.3f;
@@ -37,7 +37,7 @@ public class SpawnSpikes : MonoBehaviour
                 if (chance >= spikeChanceThreshold)
                 {
                     Vector3 spawnPoint = new Vector3(x, y, 1);
-                    GameObject spikes = Instantiate(spikesPrefab, transform);
+                    GameObject spikes = Instantiate(spikesPrefab, segmentTransform);
                     spikes.transform.localPosition = spawnPoint;
                 }
             }

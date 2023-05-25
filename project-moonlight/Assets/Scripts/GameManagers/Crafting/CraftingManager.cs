@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -15,6 +12,8 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] Button healthPotionButton;
     [SerializeField] Button stringButton;
     [SerializeField] Button inventoryUpgradeButton;
+    [SerializeField] Button chestUpgradeButton;
+    [SerializeField] Button pickaxeButton;
 
 
     private Dictionary<string, int> itemCounters = new Dictionary<string, int>();
@@ -84,6 +83,25 @@ public class CraftingManager : MonoBehaviour
         UpdateButtons();
     }
 
+    public void UpgradeChest()
+    {
+        Inventory.Instance.SearchAndRemove(ItemsList.Instance.bamboo);
+        Inventory.Instance.SearchAndRemove(ItemsList.Instance.stringItem);
+        ChestInventory.Instance.UpgradeInventory();
+        CheckInventory();
+        UpdateButtons();
+    }
+
+    public void CraftPickaxe()
+    {
+        Inventory.Instance.SearchAndRemove(ItemsList.Instance.bamboo);
+        Inventory.Instance.SearchAndRemove(ItemsList.Instance.stringItem);
+        Inventory.Instance.SearchAndRemove(ItemsList.Instance.shell);
+        PlayerStats.Instance.AddPickaxe();
+        CheckInventory();
+        UpdateButtons();
+    }
+
     public void CheckInventory()
     {
         var items = Inventory.Instance.GetItems();
@@ -120,6 +138,8 @@ public class CraftingManager : MonoBehaviour
         healthPotionButton.interactable = GetItemCount("Eye") > 0 && GetItemCount("Dandelion") > 0;
         stringButton.interactable = GetItemCount("Web") >= 2;
         inventoryUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Shell") > 0;
+        chestUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0;
+        pickaxeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0 && GetItemCount("Shell") > 0;
     }
 
 }

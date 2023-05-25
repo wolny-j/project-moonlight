@@ -11,11 +11,14 @@ public class LoadInventory : MonoBehaviour
     [SerializeField] private Item shell;
     [SerializeField] private Item poppySeed;
     [SerializeField] private Item dandelionSeed;
+    [SerializeField] private Item bambooSeed;
     [SerializeField] private Item poppy;
     [SerializeField] private Item dandelion;
+    [SerializeField] private Item bamboo;
     [SerializeField] private Item web;
     [SerializeField] private Item healthPotion;
     [SerializeField] private Item stringItem;
+    [SerializeField] private Item gunpowder;
 
     private Dictionary<string, Item> itemMap;
 
@@ -46,11 +49,28 @@ public class LoadInventory : MonoBehaviour
             { "Dandelion", dandelion },
             { "Web", web },
             { "Health Potion", healthPotion },
-            { "String", stringItem }
+            { "String", stringItem },
+            { "Bamboo", bamboo },
+            { "Bamboo Seed", bambooSeed },
+            { "Gunpowder", gunpowder}
         };
     }
 
-    public void Load(PlayerStatsDTO data)
+    public void ChestLoad(ChestDTO data)
+    {
+        ChestInventory.Instance.space = data.space;
+        ChestInventoryUI.Instance.InitializeInventory();
+
+        foreach (string item in data.items)
+        {
+            if (itemMap.ContainsKey(item))
+            {
+                ChestInventory.Instance.AddItem(itemMap[item]);
+            }
+        }
+    }
+
+    public void InventoryLoad(PlayerStatsDTO data)
     {
         Inventory.Instance.space = data.inventorySpace;
         InventoryUI.Instance.InitializeInventory();

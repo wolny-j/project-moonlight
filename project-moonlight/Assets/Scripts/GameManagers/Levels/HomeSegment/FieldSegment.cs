@@ -29,7 +29,7 @@ public class FieldSegment : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare.growingIndex == 3 && currentHighlightedSquare == this)
+        if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare.growingIndex >= 3 && currentHighlightedSquare == this)
         {
             bool result = false;
             switch (seed.name)
@@ -38,34 +38,38 @@ public class FieldSegment : MonoBehaviour
                     result = HarvestManager.Instance.HarvestPoppy();
                     if (result)
                     {
-                        seed = null;
-                        data = null;
-                        FieldManager.Instance.Add(data);
-                        SaveSystem.SaveHarvestField();
-                        spriteRenderer.sprite = normalFieldSprite;
-                        growingIndex = 0;
-                        isGrowing = false;
-                        HighlightField.Dim(spriteRenderer);
-                        spriteRenderer.transform.localScale /= 2f;
+                        ResetField();
                     }
                     break;
                 case "Dandelion Seed":
                     result = HarvestManager.Instance.HarvestDandelion();
                     if (result)
                     {
-                        seed = null;
-                        data = null;
-                        FieldManager.Instance.Add(data);
-                        SaveSystem.SaveHarvestField();
-                        spriteRenderer.sprite = normalFieldSprite;
-                        growingIndex = 0;
-                        isGrowing = false;
-                        HighlightField.Dim(spriteRenderer);
-                        spriteRenderer.transform.localScale /= 2f;
+                        ResetField();
+                    }
+                    break;
+                case "Bamboo Seed":
+                    result = HarvestManager.Instance.HarvestBamboo();
+                    if (result)
+                    {
+                        ResetField();
                     }
                     break;
             }
         }
+    }
+
+    private void ResetField()
+    {
+        seed = null;
+        data = null;
+        FieldManager.Instance.Add(data);
+        SaveSystem.SaveHarvestField();
+        spriteRenderer.sprite = normalFieldSprite;
+        growingIndex = 0;
+        isGrowing = false;
+        HighlightField.Dim(spriteRenderer);
+        spriteRenderer.transform.localScale /= 2f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -125,9 +129,18 @@ public class FieldSegment : MonoBehaviour
     public void Grow()
     {
         if (growingIndex == 0)
+        {
+            spriteRenderer.sprite = seed.growingSprites[growingIndex++];
             spriteRenderer.transform.localScale *= 2f;
+        }
+        else if (growingIndex < 3)
+            spriteRenderer.sprite = seed.growingSprites[growingIndex++];
+        else
+            growingIndex++;
 
-        spriteRenderer.sprite = seed.growingSprites[growingIndex++];
+        if(growingIndex == 5)
+            ResetField();
+
 
     }
     private void OnDisable()

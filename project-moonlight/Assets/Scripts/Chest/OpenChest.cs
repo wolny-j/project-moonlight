@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
+
 
 public class OpenChest : MonoBehaviour
 {
@@ -14,8 +10,9 @@ public class OpenChest : MonoBehaviour
     [SerializeField] GameObject speedGem;
     [SerializeField] GameObject powerGem;
     [SerializeField] GameObject shootingGem;
-    [SerializeField] GameObject poppySeends;
-    [SerializeField] GameObject dandelionSeends;
+    [SerializeField] GameObject poppySeed;
+    [SerializeField] GameObject dandelionSeed;
+    [SerializeField] GameObject bambooSeed;
 
     void Start()
     {
@@ -35,7 +32,7 @@ public class OpenChest : MonoBehaviour
 
     private void SpawnRandomLoot()
     {
-        int rand = Random.Range(1, 9);
+        int rand = Random.Range(1, 10);
         GameObject item = null;
         switch (rand) 
         { 
@@ -49,19 +46,22 @@ public class OpenChest : MonoBehaviour
                 item = Instantiate(shootingGem, transform);
                 break;
             case 4:
-                item = Instantiate(poppySeends, transform);
+                item = Instantiate(poppySeed, transform);
                 break;
             case 5:
-                item = Instantiate(dandelionSeends, transform);
+                item = Instantiate(dandelionSeed, transform);
                 break;
             case 6:
-                item = Instantiate(speedGem, transform);
+                item = Instantiate(bambooSeed, transform);
                 break;
             case 7:
-                item = Instantiate(powerGem, transform);
+                item = Instantiate(dandelionSeed, transform);
                 break;
             case 8:
-                item = Instantiate(shootingGem, transform);
+                item = Instantiate(poppySeed, transform);
+                break;
+            case 9:
+                item = Instantiate(bambooSeed, transform);
                 break;
         }
         StartCoroutine(AnimateLoot(item));

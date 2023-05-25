@@ -8,11 +8,11 @@ public class LevelManager : MonoBehaviour
 
     public bool isMapSpawned { get; set; } = false;
     public int mapDropChance { get; set; } = 92;
-    public int brainDropChance { get; set; } = 85;
-    public int eyeDropChance { get; set; } = 90;
-    public int shellDropChance { get; set; } = 92;
-    public int heartDropChance { get; set; } = 92;
-    public int webDropChance { get; set; } = 78;
+    public int brainDropChance { get; set; } = 77;
+    public int eyeDropChance { get; set; } = 88;
+    public int shellDropChance { get; set; } = 75;
+    public int heartDropChance { get; set; } = 88;
+    public int webDropChance { get; set; } = 65;
 
     [SerializeField] public GameObject map;
     [SerializeField] public GameObject heart;
@@ -36,6 +36,8 @@ public class LevelManager : MonoBehaviour
     {
         PlayerStatsDTO saveData = new();
         SaveSystem.SavePlayer(saveData);
+        ChestDTO chestData = new();
+        SaveSystem.SaveChest(chestData);
     }
 
 }

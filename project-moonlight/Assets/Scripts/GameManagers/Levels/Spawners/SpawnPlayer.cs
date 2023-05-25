@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnPlayer : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject grid;
     [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private GameObject chestInventoryPanel;
     public GameObject player { get; set; }
     public bool spawned { get; set; } = false;
 
@@ -19,6 +21,8 @@ public class SpawnPlayer : MonoBehaviour
         if(isNormalLevel)
         {
             inventoryPanel.SetActive(false);
+            if(SceneManager.GetActiveScene().name == "HomeScene")
+                chestInventoryPanel.SetActive(false);
             player = Instantiate(playerPrefab, camOB.transform.position, Quaternion.identity);
             player.transform.parent = grid.transform;
             player.transform.localPosition = new Vector3(camOB.transform.localPosition.x, camOB.transform.localPosition.y, 1);

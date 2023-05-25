@@ -122,8 +122,9 @@ MonoBehaviour:
   speedGem: {fileID: 2295111074299955857, guid: 6b9627d482ca30043adfd184d8dabdc1, type: 3}
   powerGem: {fileID: 2295111074299955857, guid: d5a542a6f816d364094506ce73b50216, type: 3}
   shootingGem: {fileID: 2295111074299955857, guid: 6d7b77404e05b694f86588c5c39cd095, type: 3}
-  poppySeends: {fileID: 6816674418525633988, guid: 3f850316ba01d194c8d848fc6acda81d, type: 3}
-  dandelionSeends: {fileID: 6816674418525633988, guid: 9cf3a52067b45494ab129d6dd5597478, type: 3}
+  poppySeed: {fileID: 6816674418525633988, guid: 3f850316ba01d194c8d848fc6acda81d, type: 3}
+  dandelionSeed: {fileID: 6816674418525633988, guid: 9cf3a52067b45494ab129d6dd5597478, type: 3}
+  bambooSeed: {fileID: 6816674418525633988, guid: 2c563c140b4e4a0488bc447ce56593ff, type: 3}
 --- !u!61 &8095187351619216177
 BoxCollider2D:
   m_ObjectHideFlags: 0

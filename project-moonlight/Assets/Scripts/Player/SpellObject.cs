@@ -69,5 +69,9 @@ public class SpellObject : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (other.CompareTag("Rock"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

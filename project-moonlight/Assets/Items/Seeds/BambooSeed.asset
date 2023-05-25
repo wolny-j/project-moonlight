@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e7b027eefd21a469d65cd0bcd24bc2, type: 3}
+  m_Name: BambooSeed
+  m_EditorClassIdentifier: 
+  name: Bamboo Seed
+  sprite: {fileID: 21300000, guid: 3fc66d3456f7a2444be89bfb360b1e93, type: 3}
+  isUsable: 1
+  tag: 1
+  growingSprites:
+  - {fileID: 21300000, guid: f34c97ef836b46c4796ef4a0524fcdda, type: 3}
+  - {fileID: 21300000, guid: d1ba0a6d05df37d40b74cf0cddaa9c76, type: 3}
+  - {fileID: 21300000, guid: a25a0138593d70448aec513d391552a5, type: 3}

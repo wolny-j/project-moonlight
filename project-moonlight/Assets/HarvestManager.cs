@@ -7,6 +7,7 @@ public class HarvestManager : MonoBehaviour
     public static HarvestManager Instance;
     [SerializeField] Item poppy;
     [SerializeField] Item dandelion;
+    [SerializeField] Item bamboo;
     void Awake()
     {
         if (Instance == null)
@@ -29,10 +30,17 @@ public class HarvestManager : MonoBehaviour
         return result;
         
     }
+    public bool HarvestBamboo()
+    {
+        bool result = Inventory.Instance.AddItem(bamboo);
+        return result;
+
+    }
     void OnApplicationQuit()
     {
-        Debug.Log("Saving");
         PlayerStatsDTO saveData = new();
+        ChestDTO chestData = new();
+        SaveSystem.SaveChest(chestData);
         SaveSystem.SavePlayer(saveData);
     }
 }

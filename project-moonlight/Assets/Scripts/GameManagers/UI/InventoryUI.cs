@@ -25,8 +25,8 @@ public class InventoryUI : MonoBehaviour
         inventory = Inventory.Instance;
         slots = inventoryGrid.GetComponentsInChildren<InventorySlot>();
         inventory.onItemChangedCallback += UpdateUI;
-        InventoryUI.Instance.UpdateUI();
-        InitializeInventory();
+        Instance.UpdateUI();
+        //InitializeInventory();
         this.gameObject.SetActive(false);
     }
 
@@ -37,10 +37,12 @@ public class InventoryUI : MonoBehaviour
             if (i < inventory.items.Count)
             {
                 slots[i].AddItem(inventory.items[i]);
+                slots[i].CheckState();
             }
             else
             {
                 slots[i].ClearItem();
+                slots[i].CheckState();
             }
         }
     }

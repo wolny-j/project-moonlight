@@ -18,6 +18,7 @@ TagManager:
   - SpeedGem
   - Ending
   - Item
+  - Rock
   layers:
   - Default
   - TransparentFX

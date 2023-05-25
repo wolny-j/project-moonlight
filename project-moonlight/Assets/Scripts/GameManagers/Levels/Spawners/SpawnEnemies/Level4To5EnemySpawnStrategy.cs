@@ -21,7 +21,7 @@ public class Level4To5EnemySpawnStrategy : IEnemySpawnStrategy
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.snailEnemy, isInitial, localTransform, ref enemyList);
                 break;
             case 4:
-                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.zombieEnemy, isInitial, localTransform, ref enemyList);
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
                 break;
             default:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.eyeEnemy, isInitial, localTransform, ref enemyList);

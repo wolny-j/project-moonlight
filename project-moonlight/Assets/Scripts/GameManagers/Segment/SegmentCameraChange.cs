@@ -9,6 +9,7 @@ public class SegmentCameraChange : MonoBehaviour
 
     private SpawnEnemy enemySpawner;
     private SpawnSpikes spikesSpawner;
+    private SpawnRocks rocksSpawner;
     private ChestSpawner chestSpawner;
     private SpawnEnding endingSpawner;
 
@@ -21,7 +22,8 @@ public class SegmentCameraChange : MonoBehaviour
 
         //Attach components from segemnt gameobject to execute SpawnEnemies and Spawn Spikes.
         enemySpawner = GetComponent<SpawnEnemy>();
-        spikesSpawner = GetComponent<SpawnSpikes>();
+        spikesSpawner = GameObject.Find("GameManager").GetComponent<SpawnSpikes>();
+        rocksSpawner = GameObject.Find("GameManager").GetComponent<SpawnRocks>();
         chestSpawner = GetComponent<ChestSpawner>();
         endingSpawner = GetComponent<SpawnEnding>();
 
@@ -47,7 +49,8 @@ public class SegmentCameraChange : MonoBehaviour
                     playerStats.IsCompleted = false;
                     enemySpawner.SpawnEnemies(true);
                     chestSpawner.SpawnChest();
-                    spikesSpawner.GenerateSpikes();
+                    spikesSpawner.GenerateSpikes(transform);
+                    rocksSpawner.GenerateRocks(transform);
                     segment.isFirstEnter = false;
 
                     if (segment.isEndingSegment)
@@ -80,7 +83,8 @@ public class SegmentCameraChange : MonoBehaviour
                     playerStats.IsCompleted = false;
                     enemySpawner.SpawnEnemies(true);
                     chestSpawner.SpawnChest();
-                    spikesSpawner.GenerateSpikes();
+                    spikesSpawner.GenerateSpikes(transform);
+                    rocksSpawner.GenerateRocks(transform);
                     segment.isFirstEnter = false;
                 }
                 GetComponent<BoxCollider2D>().isTrigger = true;

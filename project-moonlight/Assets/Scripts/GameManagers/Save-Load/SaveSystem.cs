@@ -7,6 +7,7 @@ public static class SaveSystem
 {
     private static readonly string savePlayerPath = Application.persistentDataPath + "/player_temp.save";
     private static readonly string saveFieldPath = Application.persistentDataPath + "/field_temp.save";
+    private static readonly string saveChestPath = Application.persistentDataPath + "/chest_temp.save";
 
     public static void BuildSaveObject(PlayerStats stats, Inventory inventory)
     {
@@ -14,10 +15,23 @@ public static class SaveSystem
         SavePlayer(data);
     }
 
+    public static void BuildSaveChest(ChestInventory chestInventory)
+    {
+        var data = new ChestDTO(chestInventory);
+        SaveChest(data);
+    }
+
     public static void SavePlayer(PlayerStatsDTO data)
     {
         var formatter = new BinaryFormatter();
         using var fileStream = File.Create(savePlayerPath);
+        formatter.Serialize(fileStream, data);
+        Debug.Log($"Saved in {savePlayerPath}");
+    }
+    public static void SaveChest(ChestDTO data)
+    {
+        var formatter = new BinaryFormatter();
+        using var fileStream = File.Create(saveChestPath);
         formatter.Serialize(fileStream, data);
         Debug.Log($"Saved in {savePlayerPath}");
     }
@@ -37,6 +51,21 @@ public static class SaveSystem
             var formatter = new BinaryFormatter();
             using var fileStream = File.Open(savePlayerPath, FileMode.Open);
             var data = formatter.Deserialize(fileStream) as PlayerStatsDTO;
+            return data;
+        }
+        else
+        {
+            Debug.Log("File doesn't exist");
+            return null;
+        }
+    }
+    public static ChestDTO LoadChest()
+    {
+        if (File.Exists(savePlayerPath))
+        {
+            var formatter = new BinaryFormatter();
+            using var fileStream = File.Open(saveChestPath, FileMode.Open);
+            var data = formatter.Deserialize(fileStream) as ChestDTO;
             return data;
         }
         else

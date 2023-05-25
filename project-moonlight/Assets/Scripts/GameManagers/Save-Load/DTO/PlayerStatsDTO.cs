@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,6 +14,8 @@ public class PlayerStatsDTO
     public float shootFrequency;
     public float level;
     public int inventorySpace;
+    public bool hasPickaxe;
+    public int pickaxeDurability;
 
     public List<string> items = new();
 
@@ -36,6 +39,9 @@ public class PlayerStatsDTO
         level = stats.level;
         inventorySpace = inventory.space;
 
+        hasPickaxe = stats.pickaxe1.hasPickaxe;
+        pickaxeDurability = stats.pickaxe1.durability;
+
         foreach (Item item in inventory.items)
         {
             items.Add(item.name);
@@ -54,5 +60,8 @@ public class PlayerStatsDTO
         speed = 0.6f;
         shootFrequency = 0.5f;
         level = 1;
+
+        hasPickaxe = false;
+        pickaxeDurability = 0;
     }
 }
