@@ -19,7 +19,7 @@ public class ShooterEnemy : MonoBehaviour
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
     [SerializeField] GameObject enemySpell;
-
+    [SerializeField] AudioSource takeDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +53,15 @@ public class ShooterEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("BasicSpell"))
         {
             health -= PlayerStats.Instance.power;
+            spriteUpdate.BlinkAnimation();
+            takeDamage.Play();
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Explosion"))
+        {
+            spriteUpdate.BlinkAnimation();
+            takeDamage.Play();
+            health -= PlayerStats.Instance.power * 3;
         }
     }
 

@@ -14,6 +14,8 @@ public class ChestInventory : MonoBehaviour
     private GameObject inventoryPanel;
     private bool isOpened = false;
 
+    [SerializeField] Animator animator;
+
     void Awake()
     {
         if (Instance == null)
@@ -31,13 +33,13 @@ public class ChestInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I) && !isOpened)
         {
-            inventoryPanel.SetActive(true);
+            animator.Play("ChestEnter");
             onItemChangedCallback?.Invoke();
             isOpened = true;
         }
         else if (Input.GetKeyDown(KeyCode.I) && isOpened)
         {
-            inventoryPanel.SetActive(false);
+            animator.Play("ChestClose");
             isOpened = false;
         }
     }

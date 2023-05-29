@@ -12,16 +12,16 @@ public class Level2To3EnemySpawnStrategy : IEnemySpawnStrategy
         switch (enemyType)
         {
             case 1:
-                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.eyeEnemy, isInitial, localTransform, ref enemyList);
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
                 break;
             case 2:
-                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.eyeEnemy, isInitial, localTransform, ref enemyList);
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
                 break;
             case 3:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.snailEnemy, isInitial, localTransform, ref enemyList);
                 break;
             default:
-                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.eyeEnemy, isInitial, localTransform, ref enemyList);
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
                 break;
         }
     }

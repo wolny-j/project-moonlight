@@ -22,7 +22,8 @@ public class ZombieEnemy : MonoBehaviour
     private EnemyWalk enemyWalk;
     private ISpriteUpdate spriteUpdate;
 
-
+    [SerializeField] AudioSource takeDamage;
+    [SerializeField] AudioSource aimSound;
 
 
     private float timer = 0;
@@ -71,12 +72,21 @@ public class ZombieEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("BasicSpell"))
         {
             health -= PlayerStats.Instance.power;
+            spriteUpdate.BlinkAnimation();
+            takeDamage.Play();
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Explosion"))
+        {
+            spriteUpdate.BlinkAnimation();
+            takeDamage.Play();
+            health -= PlayerStats.Instance.power * 3;
         }
     }
     private void Aim()
     {
         aim = true;
+        aimSound.Play();
         target = new GameObject();
         target.transform.position = new Vector3(player.position.x, player.position.y, 0);
         target.transform.SetParent(transform.parent);

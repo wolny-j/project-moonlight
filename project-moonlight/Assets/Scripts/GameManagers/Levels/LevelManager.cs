@@ -9,10 +9,10 @@ public class LevelManager : MonoBehaviour
     public bool isMapSpawned { get; set; } = false;
     public int mapDropChance { get; set; } = 92;
     public int brainDropChance { get; set; } = 77;
-    public int eyeDropChance { get; set; } = 88;
+    public int eyeDropChance { get; set; } = 80;
     public int shellDropChance { get; set; } = 75;
     public int heartDropChance { get; set; } = 88;
-    public int webDropChance { get; set; } = 65;
+    public int webDropChance { get; set; } = 85;
 
     [SerializeField] public GameObject map;
     [SerializeField] public GameObject heart;

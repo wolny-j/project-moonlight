@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-internal interface ISpriteUpdate
+public interface ISpriteUpdate
 {
     void UpdateSprite(Vector3 destination);
+    public void BlinkAnimation();
 }

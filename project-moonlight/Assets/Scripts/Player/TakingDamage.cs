@@ -6,6 +6,8 @@ public class TakingDamage : MonoBehaviour
 {
     private bool immortality = false;
 
+    [SerializeField] AudioSource takeDamageSource;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CheckDamage(collision, "Enemy", PlayerStats.Instance.health);
@@ -23,11 +25,13 @@ public class TakingDamage : MonoBehaviour
             PlayerStats.Instance.health = health;
             HealthUIManager.Instance.SubtractHealth(health);
 
+            takeDamageSource.Play();
             StartCoroutine(BlinkImmortalityAnimation());
             if(tag == "EnemySpell")
             {
                 Destroy(collision.gameObject);
             }
+
         }
     }
 

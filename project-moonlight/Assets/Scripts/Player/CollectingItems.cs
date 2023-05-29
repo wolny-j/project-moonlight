@@ -10,6 +10,9 @@ public class CollectingItems : MonoBehaviour
     private const string ItemTag = "Item";
     private const string MapTag = "Map";
 
+    [SerializeField] AudioSource pickUpItem;
+    [SerializeField] AudioSource pickUpHearth;
+
 
     //OnTriggerEnter with object check each function to pick up item.
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,6 +31,7 @@ public class CollectingItems : MonoBehaviour
             health++;
             PlayerStats.Instance.health = health;
             HealthUIManager.Instance.AddHealth();
+            pickUpHearth.Play();
             Destroy(collision.gameObject);
         }
     }
@@ -41,6 +45,7 @@ public class CollectingItems : MonoBehaviour
             bool result = Inventory.Instance.AddItem(item.GetItem());
             if (result)
             {
+                pickUpItem.Play();
                 Destroy(collision.gameObject);
             }
         }
@@ -52,6 +57,7 @@ public class CollectingItems : MonoBehaviour
         if (collision.gameObject.CompareTag(MapTag))
         {
             PlayerStats.Instance.UnlockMap();
+            pickUpItem.Play();
             Destroy(collision.gameObject);
         }
     }
@@ -72,11 +78,13 @@ public class CollectingItems : MonoBehaviour
             default:
                 break;
         }
+        
     }
 
     private void CollectPowerup(string key, Collider2D collision)
     {
         PlayerStats.Instance.AddPowerup(key);
+        pickUpItem.Play();
         Destroy(collision.gameObject);
     }
 }

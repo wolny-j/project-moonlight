@@ -8,7 +8,6 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField] private GameObject camOB;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject grid;
-    [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject chestInventoryPanel;
     public GameObject player { get; set; }
     public bool spawned { get; set; } = false;
@@ -20,7 +19,6 @@ public class SpawnPlayer : MonoBehaviour
     {
         if(isNormalLevel)
         {
-            inventoryPanel.SetActive(false);
             if(SceneManager.GetActiveScene().name == "HomeScene")
                 chestInventoryPanel.SetActive(false);
             player = Instantiate(playerPrefab, camOB.transform.position, Quaternion.identity);
@@ -30,7 +28,6 @@ public class SpawnPlayer : MonoBehaviour
         }
         else
         {
-            
             player = Instantiate(playerPrefab, new Vector3(0, 0, 1), Quaternion.identity);
         }
         

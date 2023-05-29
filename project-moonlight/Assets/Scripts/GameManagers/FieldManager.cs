@@ -36,6 +36,11 @@ public class FieldManager : MonoBehaviour
         return saveData;
     }
 
+    public void RestetFields()
+    {
+        saveData = null;
+    }
+
     private void OnApplicationQuit()
     {
         saveData = null;

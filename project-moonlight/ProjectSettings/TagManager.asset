@@ -19,6 +19,7 @@ TagManager:
   - Ending
   - Item
   - Rock
+  - Explosion
   layers:
   - Default
   - TransparentFX

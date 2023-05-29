@@ -87,7 +87,12 @@ public class InventorySlot : MonoBehaviour
             if (FieldSegment.currentHighlightedSquare != null)
             {
                 FieldSegment.currentHighlightedSquare.GetSeed(item);
+                //FieldSegment.currentHighlightedSquare = null;
                 Inventory.Instance.RemoveItem(item);
+                if (!item.isUsable && item != null)
+                {
+                    useButton.interactable = false;
+                }
             }
         }
         else if(item.tag == Item.Tag.Potion)
@@ -99,6 +104,10 @@ public class InventorySlot : MonoBehaviour
                     HealthUIManager.Instance.AddHealth();
                     Inventory.Instance.RemoveItem(item);
                     break;
+            }
+            if (!item.isUsable && item != null)
+            {
+                useButton.interactable = false;
             }
         }
         

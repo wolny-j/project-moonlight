@@ -24,7 +24,7 @@ public class EndLevel : MonoBehaviour
         {
             PlayerStats.Instance.level++;
             SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }

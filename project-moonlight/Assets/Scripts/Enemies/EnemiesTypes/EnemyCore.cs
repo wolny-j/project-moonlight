@@ -6,12 +6,16 @@ public class EnemyCore : MonoBehaviour
 {
     private float health = 20;
     private float counter = 0;
-    private const float SPAWN_FREQUENCY = 4f;
+    private const float SPAWN_FREQUENCY = 6f;
 
     private SpawnEnemy spawnEnemy;
+
+    private ISpriteUpdate spriteUpdate;
+    [SerializeField] AudioSource takeDamage;
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        spriteUpdate = GetComponent<EnemyUpdateSprite>();
         spawnEnemy = transform.parent?.GetComponent<SpawnEnemy>();
     }
 
@@ -36,7 +40,15 @@ public class EnemyCore : MonoBehaviour
         if (collision.CompareTag("BasicSpell"))
         {
             health -= PlayerStats.Instance.power;
+            spriteUpdate.BlinkAnimation();
+            takeDamage.Play();
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Explosion"))
+        {
+            takeDamage.Play();
+            spriteUpdate.BlinkAnimation();
+            health -= PlayerStats.Instance.power * 3;
         }
     }
 }

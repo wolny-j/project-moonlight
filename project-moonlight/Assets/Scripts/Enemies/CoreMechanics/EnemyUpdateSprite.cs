@@ -26,4 +26,26 @@ public class EnemyUpdateSprite : MonoBehaviour, ISpriteUpdate
             spriteRenderer.sprite = sprite;
         }
     }
+
+    public void BlinkAnimation ()
+    {
+        StartCoroutine(BlinkAnimationCorutine());
+    }
+
+    IEnumerator BlinkAnimationCorutine()
+    {
+        var invisibleColor = new Color32(255, 58, 0, 180);
+        var currentColor = spriteRenderer.color;
+
+        ChangeColor(spriteRenderer, invisibleColor);
+
+
+        yield return new WaitForSeconds(.1f);
+        ChangeColor(spriteRenderer, currentColor);
+    }
+
+    private void ChangeColor(SpriteRenderer spriteRenderer, Color32 color)
+    {
+        spriteRenderer.color = color;
+    }
 }

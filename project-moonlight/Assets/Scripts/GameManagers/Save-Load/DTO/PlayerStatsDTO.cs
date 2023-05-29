@@ -16,6 +16,7 @@ public class PlayerStatsDTO
     public int inventorySpace;
     public bool hasPickaxe;
     public int pickaxeDurability;
+    public int dynamiteCounter;
 
     public List<string> items = new();
 
@@ -48,13 +49,14 @@ public class PlayerStatsDTO
         }
 
         powerups = stats.powerups;
+        dynamiteCounter = stats.dynamiteCounter;
     }
 
     public PlayerStatsDTO()
     {
         health = 4;
         healthContainers = 4;
-        inventorySpace = 4;
+        inventorySpace = 3;
 
         power = 2f;
         speed = 0.6f;
@@ -63,5 +65,6 @@ public class PlayerStatsDTO
 
         hasPickaxe = false;
         pickaxeDurability = 0;
+        dynamiteCounter = 0;
     }
 }

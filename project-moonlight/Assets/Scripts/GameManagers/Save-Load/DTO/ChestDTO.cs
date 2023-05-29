@@ -21,7 +21,7 @@ public class ChestDTO
 
     public ChestDTO()
     {
-        space = 3;
+        space = 2;
     }
 }
 

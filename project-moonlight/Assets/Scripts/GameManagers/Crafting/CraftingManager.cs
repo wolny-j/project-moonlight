@@ -14,6 +14,9 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] Button inventoryUpgradeButton;
     [SerializeField] Button chestUpgradeButton;
     [SerializeField] Button pickaxeButton;
+    [SerializeField] Button dynamiteButton;
+
+    [SerializeField] Animator animator;
 
 
     private Dictionary<string, int> itemCounters = new Dictionary<string, int>();
@@ -39,12 +42,12 @@ public class CraftingManager : MonoBehaviour
             isOpened= true;
             CheckInventory();
             UpdateButtons();
-            craftingPanel.SetActive(true);
+            animator.Play("CraftingEnter");
         }
         else if(Input.GetKeyDown(KeyCode.C) && isOpened)
         {
             isOpened= false;
-            craftingPanel.SetActive(false);
+            animator.Play("CraftingClose");
         }
     }
 
@@ -102,6 +105,16 @@ public class CraftingManager : MonoBehaviour
         UpdateButtons();
     }
 
+    public void CraftDynamite()
+    {
+        Inventory.Instance.SearchAndRemove(ItemsList.Instance.poppy);
+        Inventory.Instance.SearchAndRemove(ItemsList.Instance.gunpowder);
+        PlayerStats.Instance.dynamiteCounter++;
+        UseDynamite.Instance.UpdateCounterUI();
+        CheckInventory();
+        UpdateButtons();
+    }
+
     public void CheckInventory()
     {
         var items = Inventory.Instance.GetItems();
@@ -139,6 +152,7 @@ public class CraftingManager : MonoBehaviour
         stringButton.interactable = GetItemCount("Web") >= 2;
         inventoryUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Shell") > 0;
         chestUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0;
+        dynamiteButton.interactable = GetItemCount("Poppy") > 0 && GetItemCount("Gunpowder") > 0;
         pickaxeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0 && GetItemCount("Shell") > 0;
     }
 

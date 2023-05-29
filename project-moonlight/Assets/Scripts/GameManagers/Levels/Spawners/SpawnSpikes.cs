@@ -10,13 +10,13 @@ public class SpawnSpikes : MonoBehaviour
     //Spawn spikes randomly on the segment
     public void GenerateSpikes(Transform segmentTransform)
     {
-        const float initialX = -0.35f;
-        const float initialY = 0.3f;
+        const float initialX = -0.43f;
+        const float initialY = 0.4f;
 
         const int spikeChanceThreshold = 95;
 
-        const int spikeSpawnRows = 7;
-        const int spikeSpawnColumns = 15;
+        const int spikeSpawnRows = 9;
+        const int spikeSpawnColumns = 18;
 
         const float spikeSpawnColumnOffset = 0.05f;
         const float spikeSpawnRowOffset = -0.1f;

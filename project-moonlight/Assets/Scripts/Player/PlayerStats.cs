@@ -36,6 +36,8 @@ public class PlayerStats : MonoBehaviour
     public float shootFrequency { get; set; }
     public float level = 1;
 
+    public int dynamiteCounter = 0;
+
     public struct pickaxe
     {
        public bool hasPickaxe;
@@ -132,6 +134,8 @@ public class PlayerStats : MonoBehaviour
         shootFrequency = data.shootFrequency;
         pickaxe1.hasPickaxe = data.hasPickaxe;
         pickaxe1.durability = data.pickaxeDurability;
+        dynamiteCounter = data.dynamiteCounter;
+        UseDynamite.Instance.UpdateCounterUI();
         if (pickaxe1.hasPickaxe)
         {
             pickaxeUI.SetActive(true);
@@ -171,4 +175,6 @@ public class PlayerStats : MonoBehaviour
             pickaxeDurabilityFillRect.color = Color.red;
         }
     }
+
+
 }

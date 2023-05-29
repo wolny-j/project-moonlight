@@ -16,6 +16,7 @@ public class BasicEnemy : MonoBehaviour
 
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
+    [SerializeField] AudioSource takeDamage;
 
     enum Type
     {
@@ -54,13 +55,21 @@ public class BasicEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Explosion"))
+        {
+            spriteUpdate.BlinkAnimation();
+            takeDamage.Play();
+            health -= PlayerStats.Instance.power * 3;
+        }
         if (collision.gameObject.CompareTag("BasicSpell"))
         {
             health -= PlayerStats.Instance.power;
+            spriteUpdate.BlinkAnimation();
+            takeDamage.Play();
             Destroy(collision.gameObject);
         }
     }
 
 
-  
+
 }

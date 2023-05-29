@@ -27,7 +27,6 @@ public class ChestInventoryUI : MonoBehaviour
         inventory.onItemChangedCallback += UpdateUI;
         Instance.UpdateUI();
         //InitializeInventory();
-        this.gameObject.SetActive(false);
     }
 
     public void UpdateUI()

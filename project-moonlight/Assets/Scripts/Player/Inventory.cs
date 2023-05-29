@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -15,6 +12,9 @@ public class Inventory : MonoBehaviour
 
     private GameObject inventoryPanel;
     private bool isOpened = false;
+
+    [SerializeField] Animator animator;
+
 
     void Awake()
     {
@@ -33,13 +33,13 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab) && !isOpened)
         {
-            inventoryPanel.SetActive(true);
+            animator.Play("InventoryEnter");
             onItemChangedCallback?.Invoke();
             isOpened = true;
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && isOpened)
         {
-            inventoryPanel.SetActive(false);
+            animator.Play("InventoryClose");
             isOpened = false;
         }
     }

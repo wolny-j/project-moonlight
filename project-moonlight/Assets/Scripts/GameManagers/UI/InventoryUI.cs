@@ -27,7 +27,6 @@ public class InventoryUI : MonoBehaviour
         inventory.onItemChangedCallback += UpdateUI;
         Instance.UpdateUI();
         //InitializeInventory();
-        this.gameObject.SetActive(false);
     }
 
     public void UpdateUI()
@@ -49,7 +48,11 @@ public class InventoryUI : MonoBehaviour
 
     public void InitializeInventory()
     {
-        for(int i = slots.Length -1; i >= inventory.space; i--)
+        inventory = Inventory.Instance;
+        slots = inventoryGrid.GetComponentsInChildren<InventorySlot>();
+        inventory.onItemChangedCallback += UpdateUI;
+        Instance.UpdateUI();
+        for (int i = slots.Length -1; i >= inventory.space; i--)
         {
             slots[i].gameObject.SetActive(false);
         }

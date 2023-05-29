@@ -31,6 +31,7 @@ public class FieldSegment : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare.growingIndex >= 3 && currentHighlightedSquare == this)
         {
+            
             bool result = false;
             switch (seed.name)
             {
@@ -79,13 +80,18 @@ public class FieldSegment : MonoBehaviour
 
         if (currentHighlightedSquare == null)
         {
-            if(!isGrowing)
-                HighlightField.Highlight(spriteRenderer);
             currentHighlightedSquare = this;
+            HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
+            
         }
         else
         {
             nextHighlightedSquare = this;
+        }
+
+        if(currentHighlightedSquare.growingIndex == 3)
+        {
+            GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(true);
         }
     }
 
@@ -100,8 +106,8 @@ public class FieldSegment : MonoBehaviour
             if (nextHighlightedSquare != null)
             {
                 currentHighlightedSquare = nextHighlightedSquare;
-                if(!isGrowing)
-                    HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
+
+                HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
                 nextHighlightedSquare = null;
             }
             else
@@ -112,10 +118,21 @@ public class FieldSegment : MonoBehaviour
         }
         else if (currentHighlightedSquare == this && isGrowing)
         {
-            currentHighlightedSquare = null;
-            nextHighlightedSquare = null;
-            HighlightField.White(spriteRenderer);
+            
+                HighlightField.White(currentHighlightedSquare.spriteRenderer);
+            if (nextHighlightedSquare != null)
+            {
+                currentHighlightedSquare = nextHighlightedSquare;
+                nextHighlightedSquare = null;
+                HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
+            }
+            else
+            {
+                currentHighlightedSquare = null;
+                nextHighlightedSquare = null;
+            }
         }
+        GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(false);
     }
 
     public void GetSeed(Item item)

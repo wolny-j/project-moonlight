@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3865432638131192845}
   - component: {fileID: 6582237873711856142}
-  - component: {fileID: 6847744199758705032}
-  - component: {fileID: 3357108786123627697}
   - component: {fileID: 400940423994211639}
+  - component: {fileID: 112719715948840987}
+  - component: {fileID: 8866714131216676172}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Rock
@@ -87,8 +87,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6847744199758705032
-BoxCollider2D:
+--- !u!114 &400940423994211639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865968670334071447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb1017251ea43b419adfe34cd5e007e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunpowder: {fileID: 6816674418525633988, guid: 748c0edb7617f99458773ce0c04a4b24, type: 3}
+  speedGem: {fileID: 2295111074299955857, guid: 6b9627d482ca30043adfd184d8dabdc1, type: 3}
+  powerGem: {fileID: 2295111074299955857, guid: d5a542a6f816d364094506ce73b50216, type: 3}
+  shootFrequencyGem: {fileID: 2295111074299955857, guid: 6d7b77404e05b694f86588c5c39cd095, type: 3}
+--- !u!60 &112719715948840987
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,7 +116,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025299177, y: -0.21725541}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,11 +126,27 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0010583, y: 0.8255222}
-  m_EdgeRadius: 0
---- !u!61 &3357108786123627697
-BoxCollider2D:
+  m_Points:
+    m_Paths:
+    - - {x: 0.45, y: -0.07}
+      - {x: 0.39, y: 0.04}
+      - {x: 0.31, y: 0.11}
+      - {x: 0.22, y: 0.14999999}
+      - {x: 0.14, y: 0.22}
+      - {x: -0.31, y: 0.22}
+      - {x: -0.64, y: -0.12}
+      - {x: -0.64, y: -0.21}
+      - {x: -0.59999996, y: -0.21}
+      - {x: -0.59999996, y: -0.42}
+      - {x: -0.56, y: -0.48}
+      - {x: -0.5, y: -0.5}
+      - {x: -0.48999998, y: -0.64}
+      - {x: 0.55, y: -0.64}
+      - {x: 0.59999996, y: -0.58}
+      - {x: 0.59999996, y: -0.29999998}
+      - {x: 0.56, y: -0.24}
+--- !u!60 &8866714131216676172
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -136,19 +168,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
-  m_EdgeRadius: 0
---- !u!114 &400940423994211639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865968670334071447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eb1017251ea43b419adfe34cd5e007e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunpowder: {fileID: 6816674418525633988, guid: 748c0edb7617f99458773ce0c04a4b24, type: 3}
+  m_Points:
+    m_Paths:
+    - - {x: 0.45, y: -0.07}
+      - {x: 0.39, y: 0.04}
+      - {x: 0.31, y: 0.11}
+      - {x: 0.22, y: 0.14999999}
+      - {x: 0.14, y: 0.22}
+      - {x: -0.31, y: 0.22}
+      - {x: -0.64, y: -0.12}
+      - {x: -0.64, y: -0.21}
+      - {x: -0.59999996, y: -0.21}
+      - {x: -0.59999996, y: -0.42}
+      - {x: -0.56, y: -0.48}
+      - {x: -0.5, y: -0.5}
+      - {x: -0.48999998, y: -0.64}
+      - {x: 0.55, y: -0.64}
+      - {x: 0.59999996, y: -0.58}
+      - {x: 0.59999996, y: -0.29999998}
+      - {x: 0.56, y: -0.24}

@@ -12,13 +12,13 @@ public class SpawnRocks : MonoBehaviour
     {
         if (PlayerStats.Instance.level <= 3) return;
 
-        const float initialX = -0.35f;
-        const float initialY = 0.3f;
+        const float initialX = -0.43f;
+        const float initialY = 0.4f;
 
         const int rocksChanceThreshold = 97;
 
-        const int rocksSpawnRows = 7;
-        const int rocksSpawnColumns = 15;
+        const int rocksSpawnRows = 9;
+        const int rocksSpawnColumns = 18;
 
         const float rocksSpawnColumnOffset = 0.05f;
         const float rocksSpawnRowOffset = -0.1f;

@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D playerRB;
 
     [SerializeField]private PlayerStats playerStats;
+    [SerializeField] public GameObject harvestIcon;
     private Vector2 movement;
 
     private void Start()
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.P))
         {
             SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

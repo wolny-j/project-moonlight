@@ -11,7 +11,7 @@ public class ExitHome : MonoBehaviour
         {
             SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
             SaveSystem.BuildSaveChest(ChestInventory.Instance);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }

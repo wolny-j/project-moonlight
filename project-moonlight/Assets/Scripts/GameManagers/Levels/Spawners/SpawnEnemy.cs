@@ -62,7 +62,7 @@ public class SpawnEnemy : MonoBehaviour
         }
         else
         {
-            enemyCount = UnityEngine.Random.Range(1, 3);
+            enemyCount = UnityEngine.Random.Range(1, 2);
         }    
        
         for (int i = 0; i < enemyCount; i++)

@@ -18,7 +18,7 @@ public class Level6AndAboveEnemySpawnStrategy : IEnemySpawnStrategy
                 if (isInitial)
                     SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.zombieEnemy, isInitial, localTransform, ref enemyList);
                 else
-                    SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.eyeEnemy, isInitial, localTransform, ref enemyList);
+                    SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
                 break;
             case 3:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.snailEnemy, isInitial, localTransform, ref enemyList);
@@ -30,10 +30,10 @@ public class Level6AndAboveEnemySpawnStrategy : IEnemySpawnStrategy
                 if (isInitial)
                     SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.coreEnemy, isInitial, localTransform, ref enemyList);
                 else
-                    SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.eyeEnemy, isInitial, localTransform, ref enemyList);
+                    SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
                 break;
             default:
-                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.eyeEnemy, isInitial, localTransform, ref enemyList);
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
                 break;
         }
     }
