@@ -59,8 +59,16 @@ public class CraftingManager : MonoBehaviour
     
     public void CraftHelthContainer()
     {
-        Inventory.Instance.SearchAndRemove(ItemsList.Instance.brain);
-        Inventory.Instance.SearchAndRemove(ItemsList.Instance.poppy);
+        if(PlayerStats.Instance.healthContainers > 4)
+        {
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.brain);
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.poppy);
+        }
+        else
+        {
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.brain);
+        }
+        
         HealthUIManager.Instance.AddHealthContainer();
         CheckInventory();
         UpdateButtons();
@@ -87,8 +95,16 @@ public class CraftingManager : MonoBehaviour
 
     public void UpgradeInventory() 
     {
-        Inventory.Instance.SearchAndRemove(ItemsList.Instance.shell);
-        Inventory.Instance.SearchAndRemove(ItemsList.Instance.stringItem);
+        if(Inventory.Instance.space > 3)
+        {
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.shell);
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.stringItem);
+        }
+        else
+        {
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.stringItem);
+        }
+        
         Inventory.Instance.UpgradeInventory();
         CheckInventory();
         UpdateButtons();
