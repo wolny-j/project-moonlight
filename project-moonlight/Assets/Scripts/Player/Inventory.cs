@@ -13,6 +13,9 @@ public class Inventory : MonoBehaviour
     private GameObject inventoryPanel;
     private bool isOpened = false;
 
+    private bool isHelpOpened = false;
+    [SerializeField]private GameObject helpPanel;
+
     [SerializeField] Animator animator;
 
 
@@ -41,6 +44,17 @@ public class Inventory : MonoBehaviour
         {
             animator.Play("InventoryClose");
             isOpened = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I) && !isHelpOpened)
+        {
+            helpPanel.SetActive(true);
+            isHelpOpened = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.I) && isHelpOpened)
+        {
+            helpPanel.SetActive(false);
+            isHelpOpened = false;
         }
     }
     public bool AddItem(Item item)

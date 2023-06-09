@@ -16,6 +16,7 @@ public class ItemsList : MonoBehaviour
     [SerializeField] public Item web;
     [SerializeField] public Item bamboo;
     [SerializeField] public Item gunpowder;
+    [SerializeField] public Item cloverSeed;
     void Awake()
     {
         if (Instance == null)

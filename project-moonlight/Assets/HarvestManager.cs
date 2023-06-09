@@ -36,6 +36,12 @@ public class HarvestManager : MonoBehaviour
         return result;
 
     }
+    public bool HarvestClover()
+    {
+        PlayerStats.Instance.luck++;
+        return true;
+
+    }
     void OnApplicationQuit()
     {
         PlayerStatsDTO saveData = new();

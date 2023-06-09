@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour
     public float speed { get; set; }
     public float shootFrequency { get; set; }
     public float level = 1;
+    public float luck = 1;
 
     public int dynamiteCounter = 0;
 
@@ -125,7 +126,9 @@ public class PlayerStats : MonoBehaviour
             ChestDTO chestData = SaveSystem.LoadChest();
             LoadInventory.Instance.ChestLoad(chestData);
         }
+        
         level = data.level;
+        luck = data.luck;
         powerups = data.powerups;
         health = data.health;
         healthContainers = data.healthContainers;

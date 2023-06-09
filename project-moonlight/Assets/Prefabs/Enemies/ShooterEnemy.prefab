@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   isAiming: 0
+  isBoomerangEnemy: 0
   eyeSprite: {fileID: 21300000, guid: c4706cbff07b7464d9b3346d90b153d7, type: 3}
   eyeSpriteInverted: {fileID: 21300000, guid: c9af0d0352573414292ff0e431ed1e76, type: 3}
   enemySpell: {fileID: 8274891974327807967, guid: af3b3d91177da754b9c0015299a7dca1, type: 3}
@@ -146,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f48cef8f6b27745b132c722ecb2b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeDamage: {fileID: 8642767730943099142}
 --- !u!114 &7227751357017794347
 MonoBehaviour:
   m_ObjectHideFlags: 0

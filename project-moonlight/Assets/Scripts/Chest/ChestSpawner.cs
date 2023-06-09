@@ -16,7 +16,7 @@ public class ChestSpawner : MonoBehaviour
     {
         int chance = UnityEngine.Random.Range(0, 100);
 
-        if(chance > 62)
+        if(chance + PlayerStats.Instance.luck > 62)
         {
             int position = UnityEngine.Random.Range(1, 5);
             Vector3 spawnPoint = new Vector3();

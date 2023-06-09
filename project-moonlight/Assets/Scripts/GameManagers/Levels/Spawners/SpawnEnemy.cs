@@ -82,9 +82,14 @@ public class SpawnEnemy : MonoBehaviour
                 enemySpawnStrategy = new Level4To5EnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
             }
+            else if(PlayerStats.Instance.level <= 7)
+            {
+                enemySpawnStrategy = new Level6To7EnemySpawnStrategy();
+                enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
+            }
             else
             {
-                enemySpawnStrategy = new Level6AndAboveEnemySpawnStrategy();
+                enemySpawnStrategy = new Level8AndAboveEnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
             }
             //Spawn enemy based on random given type

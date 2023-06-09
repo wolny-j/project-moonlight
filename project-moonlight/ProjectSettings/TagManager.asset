@@ -20,6 +20,7 @@ TagManager:
   - Item
   - Rock
   - Explosion
+  - Music
   layers:
   - Default
   - TransparentFX

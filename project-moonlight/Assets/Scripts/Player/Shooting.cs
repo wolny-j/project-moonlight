@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Shooting : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Shooting : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > playerStats.shootFrequency)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "MainScene")
             {
                 Shoot();
                 timer = 0;

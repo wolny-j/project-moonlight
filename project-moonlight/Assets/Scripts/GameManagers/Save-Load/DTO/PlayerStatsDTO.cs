@@ -13,6 +13,7 @@ public class PlayerStatsDTO
     public float speed;
     public float shootFrequency;
     public float level;
+    public float luck;
     public int inventorySpace;
     public bool hasPickaxe;
     public int pickaxeDurability;
@@ -38,6 +39,7 @@ public class PlayerStatsDTO
         speed= stats.speed;
         shootFrequency= stats.shootFrequency;
         level = stats.level;
+        luck = stats.luck;
         inventorySpace = inventory.space;
 
         hasPickaxe = stats.pickaxe1.hasPickaxe;
@@ -62,6 +64,7 @@ public class PlayerStatsDTO
         speed = 0.6f;
         shootFrequency = 0.5f;
         level = 1;
+        luck = 0;
 
         hasPickaxe = false;
         pickaxeDurability = 0;

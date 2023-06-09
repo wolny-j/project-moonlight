@@ -359,7 +359,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 25f829a71ba137f4698ed0d3840edd78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -404,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 7256229243687104529}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7819734084005961193}
@@ -455,9 +455,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.17926931, b: 1, a: 1}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: b2e50b5a045ad6044b646f0d3aed04d3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -501,18 +501,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.022087261}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.2, y: 1.2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5729798, y: 1.0441744}
   m_EdgeRadius: 0
 --- !u!114 &4253531044250039140
 MonoBehaviour:
@@ -529,6 +529,12 @@ MonoBehaviour:
   playerRB: {fileID: -192023680936457439}
   playerStats: {fileID: 0}
   harvestIcon: {fileID: 7179217540514016158}
+  sprite: {fileID: 21300000, guid: f9c4a3f496c3a5c4b8cf70bbb0459843, type: 3}
+  spriteInverted: {fileID: 21300000, guid: b2e50b5a045ad6044b646f0d3aed04d3, type: 3}
+  idle1: {fileID: 21300000, guid: fe68295f982219c489cc78391b5412ec, type: 3}
+  idle2: {fileID: 21300000, guid: 4ba3141b62c14b94198fa4c4fdf30210, type: 3}
+  invertedIdle1: {fileID: 21300000, guid: 221b401924cd04d4c9e5033bf6f7c6f2, type: 3}
+  invertedIdle2: {fileID: 21300000, guid: 6b474d3be20eb5547a8cfcec0e5aedf6, type: 3}
 --- !u!114 &6840293765847757333
 MonoBehaviour:
   m_ObjectHideFlags: 0

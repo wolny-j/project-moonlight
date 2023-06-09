@@ -27,12 +27,24 @@ public class FieldSegment : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        int chance = UnityEngine.Random.Range(0, 100);
+
+        if (!isGrowing && chance > 97)
+        {
+            Debug.Log("Grow");
+            GetSeed(ItemsList.Instance.cloverSeed);
+            Grow();
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare.growingIndex >= 3 && currentHighlightedSquare == this)
         {
-            
-            bool result = false;
+
+            bool result;
             switch (seed.name)
             {
                 case "Poppy Seed":
@@ -51,6 +63,13 @@ public class FieldSegment : MonoBehaviour
                     break;
                 case "Bamboo Seed":
                     result = HarvestManager.Instance.HarvestBamboo();
+                    if (result)
+                    {
+                        ResetField();
+                    }
+                    break;
+                case "Clover Seed":
+                    result = HarvestManager.Instance.HarvestClover();
                     if (result)
                     {
                         ResetField();
@@ -77,22 +96,22 @@ public class FieldSegment : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
             return;
+        
 
         if (currentHighlightedSquare == null)
         {
             currentHighlightedSquare = this;
             HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
-            
         }
         else
-        {
+        { 
             nextHighlightedSquare = this;
         }
-
-        if(currentHighlightedSquare.growingIndex == 3)
+        if (currentHighlightedSquare.growingIndex == 3 && currentHighlightedSquare == this)
         {
             GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(true);
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)

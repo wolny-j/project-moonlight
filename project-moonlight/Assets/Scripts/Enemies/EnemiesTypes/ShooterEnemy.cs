@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShooterEnemy : MonoBehaviour
@@ -8,6 +9,7 @@ public class ShooterEnemy : MonoBehaviour
     private float health = 10f;
     private Vector3 destination;
     public bool isAiming = false;
+    public bool isBoomerangEnemy = false;
 
     private float timer = 0;
 
@@ -15,6 +17,7 @@ public class ShooterEnemy : MonoBehaviour
     private EnemyWalk enemyWalk;
     private ISpriteUpdate spriteUpdate;
     private LevelManager levelManager;
+    private float shootFrequency;
 
     [SerializeField] Sprite eyeSprite;
     [SerializeField] Sprite eyeSpriteInverted;
@@ -29,6 +32,14 @@ public class ShooterEnemy : MonoBehaviour
         spriteUpdate = GetComponent<EnemyUpdateSprite>();
         levelManager = LevelManager.Instance;
         destination = enemyWalk.SetNewDestination();
+        if(isBoomerangEnemy)
+        {
+            shootFrequency = 1;
+        }
+        else
+        {
+            shootFrequency = 2;
+        }
     }
 
     // Update is called once per frame
@@ -68,14 +79,49 @@ public class ShooterEnemy : MonoBehaviour
 
     private void Shoot()
     {
-        if(timer > 2)
+        if(timer > shootFrequency)
         {
             Vector2 spawnPosition = transform.position;
-            InstantiateEnemySpell(spawnPosition, Direction.Left);
-            InstantiateEnemySpell(spawnPosition, Direction.Right);
-            InstantiateEnemySpell(spawnPosition, Direction.Up);
-            InstantiateEnemySpell(spawnPosition, Direction.Down);
+            if (isBoomerangEnemy)
+            {
+                ShootBoomerang(spawnPosition);
+            }
+            else
+            {
+                ShootSpell(spawnPosition);
+            }
+
+
             timer = 0;
+            
+        }
+    }
+
+    private void ShootSpell(Vector2 spawnPosition)
+    {
+        InstantiateEnemySpell(spawnPosition, Direction.Left);
+        InstantiateEnemySpell(spawnPosition, Direction.Right);
+        InstantiateEnemySpell(spawnPosition, Direction.Up);
+        InstantiateEnemySpell(spawnPosition, Direction.Down);
+    }
+
+    private void ShootBoomerang(Vector2 spawnPosition)
+    {
+        int rand = Random.Range(1, 5);
+        switch (rand)
+        {
+            case 1:
+                InstantiateEnemySpell(spawnPosition, Direction.Left);
+                break;
+            case 2:
+                InstantiateEnemySpell(spawnPosition, Direction.Right);
+                break;
+            case 3:
+                InstantiateEnemySpell(spawnPosition, Direction.Up);
+                break;
+            case 4:
+                InstantiateEnemySpell(spawnPosition, Direction.Down);
+                break;
         }
     }
 
@@ -83,5 +129,9 @@ public class ShooterEnemy : MonoBehaviour
     {
         EnemySpell spell = Instantiate(enemySpell, spawnPosition, Quaternion.identity).GetComponent<EnemySpell>();
         spell.direction = direction;
+        if (isBoomerangEnemy)
+        {
+            spell.isBoomerang = true;
+        }
     }
 }

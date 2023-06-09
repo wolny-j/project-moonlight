@@ -29,7 +29,6 @@ public class EnemyDropItem : MonoBehaviour
             {
                 dropped = DropItemOnDeath(item, chance);
             }
-
             Destroy(gameObject);
         }
     }
@@ -62,7 +61,7 @@ public class EnemyDropItem : MonoBehaviour
         {
             System.Random random = new System.Random();
             int chance = random.Next(100);
-            if (chance >= dropChance)
+            if (chance + PlayerStats.Instance.luck >= dropChance)
             {
                 Instantiate(item, transform.position, Quaternion.identity);
                 return true;
@@ -109,4 +108,5 @@ public class EnemyDropItem : MonoBehaviour
             return false;
         }
     }
+
 }

@@ -31,13 +31,13 @@ public class ChestInventory : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !isOpened)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpened)
         {
             animator.Play("ChestEnter");
             onItemChangedCallback?.Invoke();
             isOpened = true;
         }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpened)
+        else if (Input.GetKeyDown(KeyCode.Tab) && isOpened)
         {
             animator.Play("ChestClose");
             isOpened = false;

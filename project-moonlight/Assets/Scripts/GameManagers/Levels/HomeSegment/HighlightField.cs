@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class HighlightField
 {
-    private static Color32 normalColor = new(87, 2, 2, 255);
+    private static Color32 normalColor = new(67, 3, 3, 255);
     private static Color32 higlightedColor = new(145, 43, 13, 255);
 
     public static void Highlight(SpriteRenderer sprite)
