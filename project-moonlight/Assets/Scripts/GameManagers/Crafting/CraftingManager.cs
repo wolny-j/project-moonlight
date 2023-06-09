@@ -16,6 +16,11 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] Button pickaxeButton;
     [SerializeField] Button dynamiteButton;
 
+    [SerializeField] GameObject backpackRecipit1;
+    [SerializeField] GameObject backpackRecipit2;
+    [SerializeField] GameObject healthContainerRecipit1;
+    [SerializeField] GameObject healthContainerRecipit2;
+
     [SerializeField] Animator animator;
 
 
@@ -59,6 +64,7 @@ public class CraftingManager : MonoBehaviour
         HealthUIManager.Instance.AddHealthContainer();
         CheckInventory();
         UpdateButtons();
+        UpdateRecipits();
     }
     public void CraftHelthPotion()
     {
@@ -67,6 +73,7 @@ public class CraftingManager : MonoBehaviour
         Inventory.Instance.AddItem(ItemsList.Instance.healthPotion);
         CheckInventory();
         UpdateButtons();
+        UpdateRecipits();
     }
     public void CraftString()
     {
@@ -75,6 +82,7 @@ public class CraftingManager : MonoBehaviour
         Inventory.Instance.AddItem(ItemsList.Instance.stringItem);
         CheckInventory();
         UpdateButtons();
+        UpdateRecipits();
     }
 
     public void UpgradeInventory() 
@@ -84,6 +92,7 @@ public class CraftingManager : MonoBehaviour
         Inventory.Instance.UpgradeInventory();
         CheckInventory();
         UpdateButtons();
+        UpdateRecipits();
     }
 
     public void UpgradeChest()
@@ -93,6 +102,7 @@ public class CraftingManager : MonoBehaviour
         ChestInventory.Instance.UpgradeInventory();
         CheckInventory();
         UpdateButtons();
+        UpdateRecipits();
     }
 
     public void CraftPickaxe()
@@ -103,6 +113,7 @@ public class CraftingManager : MonoBehaviour
         PlayerStats.Instance.AddPickaxe();
         CheckInventory();
         UpdateButtons();
+        UpdateRecipits();
     }
 
     public void CraftDynamite()
@@ -113,6 +124,7 @@ public class CraftingManager : MonoBehaviour
         UseDynamite.Instance.UpdateCounterUI();
         CheckInventory();
         UpdateButtons();
+        UpdateRecipits();
     }
 
     public void CheckInventory()
@@ -147,13 +159,36 @@ public class CraftingManager : MonoBehaviour
 
     public void UpdateButtons()
     {
-        healthContainerButton.interactable = GetItemCount("Brain") > 0 && GetItemCount("Poppy") > 0;
+        if (PlayerStats.Instance.healthContainers > 4)
+            healthContainerButton.interactable = GetItemCount("Brain") > 0 && GetItemCount("Poppy") > 0;
+        else
+            healthContainerButton.interactable = GetItemCount("Brain") > 0;
+        if (Inventory.Instance.space > 3)
+            inventoryUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Shell") > 0;
+        else
+            inventoryUpgradeButton.interactable = GetItemCount("String") > 0;
+
         healthPotionButton.interactable = GetItemCount("Eye") > 0 && GetItemCount("Dandelion") > 0;
         stringButton.interactable = GetItemCount("Web") >= 2;
-        inventoryUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Shell") > 0;
+        
         chestUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0;
         dynamiteButton.interactable = GetItemCount("Poppy") > 0 && GetItemCount("Gunpowder") > 0;
         pickaxeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0 && GetItemCount("Shell") > 0;
+    }
+
+    public void UpdateRecipits()
+    {
+        if(Inventory.Instance.space > 3)
+        {
+            backpackRecipit1.SetActive(false);
+            backpackRecipit2.SetActive(true);
+        }
+
+        if(PlayerStats.Instance.healthContainers > 4)
+        {
+            healthContainerRecipit1.SetActive(false);
+            healthContainerRecipit2.SetActive(true);
+        }
     }
 
 }
