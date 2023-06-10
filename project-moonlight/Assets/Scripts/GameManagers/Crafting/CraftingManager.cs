@@ -47,6 +47,7 @@ public class CraftingManager : MonoBehaviour
             isOpened= true;
             CheckInventory();
             UpdateButtons();
+            UpdateRecipits();
             animator.Play("CraftingEnter");
         }
         else if(Input.GetKeyDown(KeyCode.C) && isOpened)
@@ -190,6 +191,8 @@ public class CraftingManager : MonoBehaviour
         chestUpgradeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0;
         dynamiteButton.interactable = GetItemCount("Poppy") > 0 && GetItemCount("Gunpowder") > 0;
         pickaxeButton.interactable = GetItemCount("String") > 0 && GetItemCount("Bamboo") > 0 && GetItemCount("Shell") > 0;
+
+        
     }
 
     public void UpdateRecipits()

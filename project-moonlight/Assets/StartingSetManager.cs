@@ -8,36 +8,43 @@ public class StartingSetManager : MonoBehaviour
     [SerializeField] List<GameObject> panels;
     [SerializeField] GameObject gemsSetPanel;
     [SerializeField] GameObject panel;
+
+    private void Start()
+    {
+        if (PlayerStats.Instance.level != 1)
+        {
+            panel.SetActive(false);
+        }
+    }
     public void AdventureSet()
     {
         Inventory.Instance.AddItem(ItemsList.Instance.stringItem);
         Inventory.Instance.AddItem(ItemsList.Instance.shell);
-        CloseAllSets();
+        CloseAllSets(true);
     }
 
     public void HarvesterSet()
     {
         PlayerStats.Instance.luck = 3;
         Inventory.Instance.AddItem(ItemsList.Instance.dandelion);
-        CloseAllSets();
+        CloseAllSets(true);
     }
     public void SurvivorSet()
     {
         Inventory.Instance.AddItem(ItemsList.Instance.brain);
         Inventory.Instance.AddItem(ItemsList.Instance.eye);
         Inventory.Instance.AddItem(ItemsList.Instance.poppy);
-        CloseAllSets();
+        CloseAllSets(true);
     }
 
-    private void CloseAllSets()
+    private void CloseAllSets(bool activateGemsPanel)
     {
         foreach(GameObject panel in panels)
         {
             panel.SetActive(false);
         }
-        gemsSetPanel.SetActive(true);
+        gemsSetPanel.SetActive(activateGemsPanel);
     }
-
 
 
     public void AddRedGem()
