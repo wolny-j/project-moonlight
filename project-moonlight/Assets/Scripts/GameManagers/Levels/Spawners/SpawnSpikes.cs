@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnSpikes : MonoBehaviour
 {
     [SerializeField] GameObject spikesPrefab;
+    [SerializeField] GameObject rockPrefab;
 
     //REFACTOR to one instance in the whole game attached to SpawnManager and pass transform as parameter
     //Spawn spikes randomly on the segment
@@ -37,8 +38,17 @@ public class SpawnSpikes : MonoBehaviour
                 if (chance >= spikeChanceThreshold)
                 {
                     Vector3 spawnPoint = new Vector3(x, y, 1);
-                    GameObject spikes = Instantiate(spikesPrefab, segmentTransform);
-                    spikes.transform.localPosition = spawnPoint;
+                    int typeChance = Random.Range(0, 10);
+                    if (typeChance >= 4)
+                    {
+                        GameObject spikes = Instantiate(spikesPrefab, segmentTransform);
+                        spikes.transform.localPosition = new Vector3(spawnPoint.x, spawnPoint.y - 0.02f, 1);
+                    }
+                    else
+                    {
+                        GameObject rock = Instantiate(rockPrefab, segmentTransform);
+                        rock.transform.localPosition = spawnPoint;
+                    }
                 }
             }
         }

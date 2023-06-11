@@ -137,7 +137,7 @@ public class CraftingManager : MonoBehaviour
     {
         Inventory.Instance.SearchAndRemove(ItemsList.Instance.poppy);
         Inventory.Instance.SearchAndRemove(ItemsList.Instance.gunpowder);
-        PlayerStats.Instance.dynamiteCounter += 4;
+        PlayerStats.Instance.dynamiteCounter += 3;
         UseDynamite.Instance.UpdateCounterUI();
         CheckInventory();
         UpdateButtons();
@@ -161,6 +161,7 @@ public class CraftingManager : MonoBehaviour
             }
         }
     }
+
     private int GetItemCount(string itemName)
     {
         return itemCounters.ContainsKey(itemName) ? itemCounters[itemName] : 0;

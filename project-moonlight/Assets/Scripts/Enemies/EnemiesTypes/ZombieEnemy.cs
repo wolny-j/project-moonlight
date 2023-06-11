@@ -80,7 +80,7 @@ public class ZombieEnemy : MonoBehaviour
         {
             spriteUpdate.BlinkAnimation();
             takeDamage.Play();
-            health -= PlayerStats.Instance.power * 3;
+            health -= PlayerStats.Instance.power * 4;
         }
     }
     private void Aim()

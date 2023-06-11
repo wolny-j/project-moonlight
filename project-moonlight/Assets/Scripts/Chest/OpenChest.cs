@@ -70,7 +70,7 @@ public class OpenChest : MonoBehaviour
 
     IEnumerator AnimateLoot(GameObject item)
     {  
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(0.3f);
             item.GetComponent<Collider2D>().isTrigger = true;
         
 

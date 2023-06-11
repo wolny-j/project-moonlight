@@ -12,7 +12,7 @@ public class HarvestManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            HarvestManager.Instance = this;
+            Instance = this;
         }
         else if (Instance != this)
         {

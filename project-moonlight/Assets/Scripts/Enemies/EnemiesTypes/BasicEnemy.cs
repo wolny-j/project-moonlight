@@ -59,7 +59,7 @@ public class BasicEnemy : MonoBehaviour
         {
             spriteUpdate.BlinkAnimation();
             takeDamage.Play();
-            health -= PlayerStats.Instance.power * 3;
+            health -= PlayerStats.Instance.power * 4;
         }
         if (collision.gameObject.CompareTag("BasicSpell"))
         {

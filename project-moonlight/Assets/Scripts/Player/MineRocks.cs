@@ -14,7 +14,7 @@ public class MineRocks : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && rockTouched && PlayerStats.Instance.pickaxe1.hasPickaxe)
         {
             PlayerStats.Instance.UpdatePickaxe();
-            Destroy(rock);
+            rock.GetComponent<RockDropItem>().DestroyRock();
         }
     }
 

@@ -88,7 +88,13 @@ public class InventorySlot : MonoBehaviour
             {
                 FieldSegment.currentHighlightedSquare.GetSeed(item);
                 //FieldSegment.currentHighlightedSquare = null;
-                Inventory.Instance.RemoveItem(item);
+                
+
+                if (transform.parent.parent.name == "Inventory")
+                    Inventory.Instance.RemoveItem(item);
+                else if (transform.parent.parent.name == "ChestInventory")
+                    ChestInventory.Instance.RemoveItem(item);
+
                 if (!item.isUsable && item != null)
                 {
                     useButton.interactable = false;
@@ -100,10 +106,14 @@ public class InventorySlot : MonoBehaviour
             switch (item.name) 
             {
                 case "Health Potion":
+
                     PlayerStats.Instance.health++;
                     HealthUIManager.Instance.AddHealth();
+
                     Inventory.Instance.RemoveItem(item);
+
                     break;
+
             }
             if (!item.isUsable && item != null)
             {

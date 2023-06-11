@@ -50,7 +50,7 @@ public class SegmentCameraChange : MonoBehaviour
                     enemySpawner.SpawnEnemies(true);
                     chestSpawner.SpawnChest();
                     spikesSpawner.GenerateSpikes(transform);
-                    rocksSpawner.GenerateRocks(transform);
+                    //rocksSpawner.GenerateRocks(transform);
                     segment.isFirstEnter = false;
 
                     if (segment.isEndingSegment)

@@ -27,6 +27,8 @@ public class StartingSetManager : MonoBehaviour
     {
         PlayerStats.Instance.luck = 3;
         Inventory.Instance.AddItem(ItemsList.Instance.dandelion);
+        Inventory.Instance.AddItem(ItemsList.Instance.poppy);
+        Inventory.Instance.AddItem(ItemsList.Instance.bamboo);
         CloseAllSets(true);
     }
     public void SurvivorSet()

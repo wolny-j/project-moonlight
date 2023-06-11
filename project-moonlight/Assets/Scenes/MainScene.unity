@@ -11256,7 +11256,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pre alpha - 0.5.2
+  m_Text: Pre alpha - 0.5.3
 --- !u!222 &1731515874
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12739,7 +12739,6 @@ GameObject:
   - component: {fileID: 1908093142}
   - component: {fileID: 1908093143}
   - component: {fileID: 1908093144}
-  - component: {fileID: 1908093145}
   - component: {fileID: 1908093146}
   m_Layer: 0
   m_Name: GameManager
@@ -12901,19 +12900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spikesPrefab: {fileID: 4865968670334071447, guid: 7f2481badd04e9347a90120880d8e661, type: 3}
---- !u!114 &1908093145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908093132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a336f527f80abe942b37c8396bfe20b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spikesPrefab: {fileID: 4865968670334071447, guid: f9d789c5928bec54798f28ec3e7be548, type: 3}
+  rockPrefab: {fileID: 4865968670334071447, guid: f9d789c5928bec54798f28ec3e7be548, type: 3}
 --- !u!114 &1908093146
 MonoBehaviour:
   m_ObjectHideFlags: 0

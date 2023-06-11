@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6582237873711856142}
   - component: {fileID: 400940423994211639}
   - component: {fileID: 112719715948840987}
-  - component: {fileID: 8866714131216676172}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Rock
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4865968670334071447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.89, y: 0.89, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.08, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb1017251ea43b419adfe34cd5e007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunpowder: {fileID: 6816674418525633988, guid: 748c0edb7617f99458773ce0c04a4b24, type: 3}
-  speedGem: {fileID: 2295111074299955857, guid: 6b9627d482ca30043adfd184d8dabdc1, type: 3}
-  powerGem: {fileID: 2295111074299955857, guid: d5a542a6f816d364094506ce73b50216, type: 3}
-  shootFrequencyGem: {fileID: 2295111074299955857, guid: 6d7b77404e05b694f86588c5c39cd095, type: 3}
+  gunpowderPrefab: {fileID: 6816674418525633988, guid: 748c0edb7617f99458773ce0c04a4b24, type: 3}
+  speedGemPrefab: {fileID: 2295111074299955857, guid: 6b9627d482ca30043adfd184d8dabdc1, type: 3}
+  powerGemPrefab: {fileID: 2295111074299955857, guid: d5a542a6f816d364094506ce73b50216, type: 3}
+  shootFrequencyGemPrefab: {fileID: 2295111074299955857, guid: 6d7b77404e05b694f86588c5c39cd095, type: 3}
+  destroy1: {fileID: 21300000, guid: 88b8c1fcd65dec4429349d81d91c767f, type: 3}
+  destroy2: {fileID: 21300000, guid: 41482c6085c8427479f2dbc6290b86f3, type: 3}
 --- !u!60 &112719715948840987
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -114,48 +115,6 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.45, y: -0.07}
-      - {x: 0.39, y: 0.04}
-      - {x: 0.31, y: 0.11}
-      - {x: 0.22, y: 0.14999999}
-      - {x: 0.14, y: 0.22}
-      - {x: -0.31, y: 0.22}
-      - {x: -0.64, y: -0.12}
-      - {x: -0.64, y: -0.21}
-      - {x: -0.59999996, y: -0.21}
-      - {x: -0.59999996, y: -0.42}
-      - {x: -0.56, y: -0.48}
-      - {x: -0.5, y: -0.5}
-      - {x: -0.48999998, y: -0.64}
-      - {x: 0.55, y: -0.64}
-      - {x: 0.59999996, y: -0.58}
-      - {x: 0.59999996, y: -0.29999998}
-      - {x: 0.56, y: -0.24}
---- !u!60 &8866714131216676172
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865968670334071447}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
