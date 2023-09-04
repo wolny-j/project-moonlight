@@ -359,7 +359,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 25f829a71ba137f4698ed0d3840edd78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 4853280298023544036}
   - component: {fileID: 369897564472651642}
   - component: {fileID: 2008148043623107316}
+  - component: {fileID: 8885556756809113766}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -455,7 +456,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: b2e50b5a045ad6044b646f0d3aed04d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -535,6 +536,8 @@ MonoBehaviour:
   idle2: {fileID: 21300000, guid: 4ba3141b62c14b94198fa4c4fdf30210, type: 3}
   invertedIdle1: {fileID: 21300000, guid: 221b401924cd04d4c9e5033bf6f7c6f2, type: 3}
   invertedIdle2: {fileID: 21300000, guid: 6b474d3be20eb5547a8cfcec0e5aedf6, type: 3}
+  frequency: 0.3
+  slimePrefab: {fileID: 4506095358816473825, guid: 3178073a966ceb84895169a19f9ab66d, type: 3}
 --- !u!114 &6840293765847757333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,6 +588,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5797f407fae61994eb293204b099f228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8885556756809113766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7256229243687104529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3594cac9d2cc14469df48fe6635ad3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8098822147254088704

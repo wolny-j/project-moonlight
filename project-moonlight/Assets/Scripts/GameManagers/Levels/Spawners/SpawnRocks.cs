@@ -33,6 +33,7 @@ public class SpawnRocks : MonoBehaviour
                 //Move spikes spawn x position by 'spikesSpawnColumnOffset' each iteration
                 float y = initialY + j * rocksSpawnRowOffset;
 
+              
                 int chance = UnityEngine.Random.Range(0, 100);
 
                 //Spawn spikes prefab if chance is equal or higher than spikeChanceTreshold

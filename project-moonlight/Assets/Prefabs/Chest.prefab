@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 2d8391aa4e094244fb625cd91ab8aa6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   poppySeed: {fileID: 6816674418525633988, guid: 3f850316ba01d194c8d848fc6acda81d, type: 3}
   dandelionSeed: {fileID: 6816674418525633988, guid: 9cf3a52067b45494ab129d6dd5597478, type: 3}
   bambooSeed: {fileID: 6816674418525633988, guid: 2c563c140b4e4a0488bc447ce56593ff, type: 3}
+  goldBar: {fileID: 6816674418525633988, guid: 4350c6e045b27cf429a37b507cb7041c, type: 3}
 --- !u!61 &8095187351619216177
 BoxCollider2D:
   m_ObjectHideFlags: 0

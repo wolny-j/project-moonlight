@@ -43,7 +43,8 @@ public class FieldManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        saveData = null;
-        SaveSystem.SaveHarvestField();
+        /*saveData = null;
+        SaveSystem.SaveHarvestField();*/
+        SaveSystem.DeleteFields();
     }
 }

@@ -12,6 +12,10 @@ public class EnemyCore : MonoBehaviour
 
     private ISpriteUpdate spriteUpdate;
     [SerializeField] AudioSource takeDamage;
+
+    private bool hit = false;
+    private float hitCounter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +26,8 @@ public class EnemyCore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0)
+        UpdateHit();
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
@@ -37,18 +42,44 @@ public class EnemyCore : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("BasicSpell"))
+        if (collision.gameObject.CompareTag("BasicSpell"))
         {
-            health -= PlayerStats.Instance.power;
-            spriteUpdate.BlinkAnimation();
-            takeDamage.Play();
-            Destroy(collision.gameObject);
+            if (!hit)
+            {
+                health -= PlayerStats.Instance.power;
+
+                spriteUpdate.BlinkAnimation();
+                takeDamage.Play();
+                Destroy(collision.gameObject);
+                hit = true;
+            }
+        }
+        if (collision.gameObject.CompareTag("PlayerSlime"))
+        {
+            if (!hit)
+            {
+                spriteUpdate.BlinkAnimation();
+                takeDamage.Play();
+                health -= PlayerStats.Instance.power / 4;
+                hit = true;
+            }
         }
         if (collision.gameObject.CompareTag("Explosion"))
         {
             takeDamage.Play();
             spriteUpdate.BlinkAnimation();
-            health -= PlayerStats.Instance.power * 3;
+            health -= PlayerStats.Instance.power * 4;
+        }
+    }
+
+    private void UpdateHit()
+    {
+        if (hit)
+            hitCounter += Time.deltaTime;
+        if (hitCounter > 0.1f)
+        {
+            hit = false;
+            hitCounter = 0;
         }
     }
 }

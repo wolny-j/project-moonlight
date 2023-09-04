@@ -84,7 +84,7 @@ public class InventorySlot : MonoBehaviour
     {
         if(item.tag == Item.Tag.Seed)
         {
-            if (FieldSegment.currentHighlightedSquare != null)
+            if (FieldSegment.currentHighlightedSquare != null && !FieldSegment.currentHighlightedSquare.isGrowing)
             {
                 FieldSegment.currentHighlightedSquare.GetSeed(item);
                 //FieldSegment.currentHighlightedSquare = null;
@@ -118,6 +118,26 @@ public class InventorySlot : MonoBehaviour
             if (!item.isUsable && item != null)
             {
                 useButton.interactable = false;
+            }
+        }
+        else if(item.tag == Item.Tag.GoldBar)
+        {
+            if (SceneManager.GetActiveScene().name == "HomeScene")
+            {
+                CraftingManager.Instance.isGoldBarUsed = true;
+                Debug.Log("Pre");
+                CraftingManager.Instance.healthContainerButton.interactable = true;
+                CraftingManager.Instance.inventoryUpgradeButton.interactable = true;
+                CraftingManager.Instance.chestUpgradeButton.interactable = true;
+                CraftingManager.Instance.healthPotionButton.interactable = true;
+                CraftingManager.Instance.stringButton.interactable = true;
+                CraftingManager.Instance.dynamiteButton.interactable = true;
+                CraftingManager.Instance.pickaxeButton.interactable = true;
+                CraftingManager.Instance.shootSizeButton.interactable = true;
+                CraftingManager.Instance.shootSpeedButton.interactable = true;
+                Inventory.Instance.RemoveItem(item);
+                
+                Debug.Log("Done");
             }
         }
         

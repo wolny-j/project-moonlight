@@ -100,12 +100,12 @@ public static class SaveSystem
         }
     }
 
-    public static void DeleteFromPath(string path)
+    public static void DeleteFields()
     {
         try
         {
-            File.Delete(path);
-            Debug.Log($"File {path} deleted");
+            File.Delete(saveFieldPath);
+            Debug.Log($"File {saveFieldPath} deleted");
         }
         catch (IOException e)
         {

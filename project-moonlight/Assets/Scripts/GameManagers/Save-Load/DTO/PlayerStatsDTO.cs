@@ -18,6 +18,11 @@ public class PlayerStatsDTO
     public bool hasPickaxe;
     public int pickaxeDurability;
     public int dynamiteCounter;
+    public float shootSpeed;
+    public float shootSize;
+    public bool bouncingSpellPowerUp;
+    public bool toxicTracePowerUp;
+
 
     public List<string> items = new();
 
@@ -52,6 +57,12 @@ public class PlayerStatsDTO
 
         powerups = stats.powerups;
         dynamiteCounter = stats.dynamiteCounter;
+
+        shootSize= stats.shootSize;
+        shootSpeed = stats.shootSpeed;
+
+        bouncingSpellPowerUp = stats.bouncingSpellPowerUp;
+        toxicTracePowerUp = stats.toxicTracePowerUp;
     }
 
     public PlayerStatsDTO()
@@ -69,5 +80,11 @@ public class PlayerStatsDTO
         hasPickaxe = false;
         pickaxeDurability = 0;
         dynamiteCounter = 0;
+
+        shootSpeed = 1;
+        shootSize = 1;
+
+        bouncingSpellPowerUp = false;
+        toxicTracePowerUp = false;
     }
 }

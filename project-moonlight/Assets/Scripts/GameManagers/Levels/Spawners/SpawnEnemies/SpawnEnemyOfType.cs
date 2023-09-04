@@ -29,4 +29,29 @@ public class SpawnEnemyOfType : MonoBehaviour
             enemy.GetComponent<EnemyDropItem>().IsDropingItem = false;
         }
     }
+
+    public void SpawnSpiderNextStage(GameObject enemyPrefab, bool isInitial, Transform localTransform, ref List<GameObject> enemyList, Transform spiderTransform)
+    {
+        Vector3 spawnPosition = spiderTransform.localPosition;
+        GameObject enemy = Instantiate(enemyPrefab, localTransform);
+        enemy.transform.localPosition = spawnPosition;
+        enemyList.Add(enemy);
+        if (!isInitial)
+        {
+            enemy.GetComponent<EnemyDropItem>().IsDropingItem = false;
+        }
+    }
+
+    public void SpwanJumpingSlime(GameObject enemyPrefab, Transform localTransform)
+    {
+        Vector3 spawnPosition = new Vector3(0.3f, 0, 1f);
+        GameObject enemy = Instantiate(enemyPrefab, localTransform);
+        enemy.transform.localPosition = spawnPosition;
+
+        spawnPosition = new Vector3(-0.3f, 0, 1f);
+        GameObject enemy2 = Instantiate(enemyPrefab, localTransform);
+        enemy2.transform.localPosition = spawnPosition;
+    }
+
+
 }

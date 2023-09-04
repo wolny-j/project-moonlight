@@ -44,28 +44,24 @@ public class LoadField : MonoBehaviour
                         case "Poppy Seed":
                             fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
                             fieldTemp.GetSeed(poppySeed);
-                            Debug.Log(field.growingIndex);
                             for (int i = 0; i <= field.growingIndex; i++)
                                 fieldTemp.Grow();
                             break;
                         case "Dandelion Seed":
                             fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
                             fieldTemp.GetSeed(dandelionSeed);
-                            Debug.Log(field.growingIndex);
                             for (int i = 0; i <= field.growingIndex; i++)
                                 fieldTemp.Grow();
                             break;
                         case "Bamboo Seed":
                             fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
                             fieldTemp.GetSeed(bambooSeed);
-                            Debug.Log(field.growingIndex);
                             for (int i = 0; i <= field.growingIndex; i++)
                                 fieldTemp.Grow();
                             break;
                         case "Clover Seed":
                             fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
                             fieldTemp.GetSeed(cloverSeed);
-                            Debug.Log(field.growingIndex);
                             for (int i = 0; i <= field.growingIndex; i++)
                                 fieldTemp.Grow();
                             break;

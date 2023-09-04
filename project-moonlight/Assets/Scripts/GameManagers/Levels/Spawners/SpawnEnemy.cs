@@ -8,7 +8,7 @@ public class SpawnEnemy : MonoBehaviour
 
     private PlayerStats playerStats;
     private bool isEnemySpawned = false;
-    private List<GameObject> enemyList = new List<GameObject>();
+    [SerializeField] List<GameObject> enemyList = new List<GameObject>();
 
     public bool isStartintgSegment { get; set; } = false;
     public bool isCompleted { get; set; } = false;
@@ -72,25 +72,43 @@ public class SpawnEnemy : MonoBehaviour
                 enemySpawnStrategy = new Level1EnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
             }
-            else if (PlayerStats.Instance.level <= 3)
+            else if (PlayerStats.Instance.level == 2)
             {
                 enemySpawnStrategy = new Level2To3EnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
+            }
+            else if (PlayerStats.Instance.level == 3)
+            {
+                enemySpawnStrategy = new Level2To3EnemySpawnStrategy();
+                enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
+
+                int chance = Random.Range(1, 10);
+                if (chance > 3 && i == 0 && isInitial)
+                    SpawnSlimes();
             }
             else if(PlayerStats.Instance.level <= 5)
             {
                 enemySpawnStrategy = new Level4To5EnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
+                int chance = Random.Range(1, 10);
+                if (chance > 6 && i == 0 && isInitial)
+                    SpawnSlimes();
             }
             else if(PlayerStats.Instance.level <= 7)
             {
                 enemySpawnStrategy = new Level6To7EnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
+                int chance = Random.Range(1, 10);
+                if (chance > 6 && i == 0)
+                    SpawnSlimes();
             }
             else
             {
                 enemySpawnStrategy = new Level8AndAboveEnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
+                int chance = Random.Range(1, 10);
+                if (chance > 6 && i == 0 && isInitial)
+                    SpawnSlimes();
             }
             //Spawn enemy based on random given type
             
@@ -99,6 +117,31 @@ public class SpawnEnemy : MonoBehaviour
             isEnemySpawned = true;
     }
 
-    
+    public void SpawnNextBossStage(GameObject boss, Transform spiderPosition)
+    {
+        SpawnEnemyOfType.Instance.SpawnSpiderNextStage(boss, false, transform, ref enemyList, spiderPosition);
+    }
+
+    public void SpawnSpiderBoss()
+    {
+        SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderBoss, false, transform, ref enemyList);
+        isEnemySpawned = true;
+    }
+
+    public void SpawnWaveShootherBoss()
+    {
+        SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.waveShooterBoss, false, transform, ref enemyList);
+        isEnemySpawned = true;
+    }
+    public void SpawnWizzardBoss()
+    {
+        SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.wizzardBoss, false, transform, ref enemyList);
+        isEnemySpawned = true;
+    }
+
+    public void SpawnSlimes()
+    {
+        SpawnEnemyOfType.Instance.SpwanJumpingSlime(LevelManager.Instance.jumpingSlimeEnemy, transform);
+    }
 
 }

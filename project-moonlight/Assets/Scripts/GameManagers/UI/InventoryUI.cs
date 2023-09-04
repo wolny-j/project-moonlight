@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI Instance;
 
     [SerializeField] Transform inventoryGrid;
+
+    [SerializeField] Text cloverCounter;
     private void Awake()
     {
         if (Instance == null)
@@ -44,7 +47,14 @@ public class InventoryUI : MonoBehaviour
                 slots[i].CheckState();
             }
         }
+        
     }
+
+    public void UpdtaeClover()
+    {
+        cloverCounter.text = PlayerStats.Instance.luck.ToString();
+    }
+
 
     public void InitializeInventory()
     {

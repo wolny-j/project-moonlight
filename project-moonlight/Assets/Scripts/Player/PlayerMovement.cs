@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Sprite invertedIdle1;
     [SerializeField] Sprite invertedIdle2;
 
+    [SerializeField] float frequency = 0.5f;
+    private float timer = 0;
+    [SerializeField] GameObject slimePrefab;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,6 +35,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+
+        if(PlayerStats.Instance.toxicTracePowerUp)
+        {
+            timer += Time.deltaTime;
+            DropSlime(frequency);
+        }
         if (Input.GetKeyUp(KeyCode.P))
         {
             SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
@@ -112,4 +122,15 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sprite = spriteInverted;
         startIdle = false;
     }
+
+    private void DropSlime(float frequency)
+    {
+        if (timer >= frequency)
+        {
+            Instantiate(slimePrefab, transform.position, Quaternion.identity);
+            timer = 0;
+        }
+    }
+
+
 }

@@ -16,6 +16,10 @@ public class SegmentCameraChange : MonoBehaviour
     private PlayerStats playerStats;
     private Segment segment;
 
+    [SerializeField] GameObject verticalWall;
+    [SerializeField] GameObject horizontalWall;
+
+
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -47,7 +51,8 @@ public class SegmentCameraChange : MonoBehaviour
                 if (segment.isFirstEnter && !segment.isStartintgSegment)
                 {
                     playerStats.IsCompleted = false;
-                    enemySpawner.SpawnEnemies(true);
+
+                    SpawnEnemies();
                     chestSpawner.SpawnChest();
                     spikesSpawner.GenerateSpikes(transform);
                     //rocksSpawner.GenerateRocks(transform);
@@ -70,6 +75,7 @@ public class SegmentCameraChange : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            
             if (playerStats.IsCompleted && !segment.isFirstEnter)
             {
                 GetComponent<BoxCollider2D>().isTrigger = true;
@@ -81,10 +87,10 @@ public class SegmentCameraChange : MonoBehaviour
                 if (!segment.isStartintgSegment)
                 {
                     playerStats.IsCompleted = false;
-                    enemySpawner.SpawnEnemies(true);
+                    SpawnEnemies();
                     chestSpawner.SpawnChest();
                     spikesSpawner.GenerateSpikes(transform);
-                    rocksSpawner.GenerateRocks(transform);
+                    //rocksSpawner.GenerateRocks(transform);
                     segment.isFirstEnter = false;
                 }
                 GetComponent<BoxCollider2D>().isTrigger = true;
@@ -93,4 +99,44 @@ public class SegmentCameraChange : MonoBehaviour
             }
         }
     }
+
+    private void SpawnEnemies()
+    {
+        if (segment.isEndingSegment && playerStats.level == 4)
+        {
+            enemySpawner.SpawnSpiderBoss();
+        }
+        else if( segment.isEndingSegment && playerStats.level == 8)
+        {
+            enemySpawner.SpawnWaveShootherBoss();
+        }
+        else if (segment.isEndingSegment && playerStats.level == 12)
+        {
+            enemySpawner.SpawnWizzardBoss();
+        }
+        else
+        {
+            enemySpawner.SpawnEnemies(true);
+        }
+    }
+
+    public void InstantiateEnemyWall()
+    {
+        int type = Random.Range(0, 2);
+        if (type == 0)
+        {
+            //Vertical wall
+            Vector3 spawnPoint = new Vector3(0, Random.Range(-0.1f, 0.5f), 1);
+            GameObject wall = Instantiate(verticalWall, transform);
+            wall.transform.localPosition = spawnPoint;
+        }
+        else
+        {
+            //Horizontal wall
+            Vector3 spawnPoint = new Vector3(Random.Range(-0.5f, 0.1f), -0.5f, 1);
+            GameObject wall = Instantiate(horizontalWall, transform);
+            wall.transform.localPosition = spawnPoint;
+        }
+    }
+
 }

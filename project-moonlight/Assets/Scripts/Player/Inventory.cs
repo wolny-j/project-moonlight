@@ -38,6 +38,7 @@ public class Inventory : MonoBehaviour
         {
             animator.Play("InventoryEnter");
             onItemChangedCallback?.Invoke();
+            InventoryUI.Instance.UpdtaeClover();
             isOpened = true;
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && isOpened)

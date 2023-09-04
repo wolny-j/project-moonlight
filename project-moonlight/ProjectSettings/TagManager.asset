@@ -21,6 +21,12 @@ TagManager:
   - Rock
   - Explosion
   - Music
+  - Left
+  - Right
+  - Top
+  - Bottom
+  - MagicWall
+  - PlayerSlime
   layers:
   - Default
   - TransparentFX

@@ -25,6 +25,8 @@ public class ZombieEnemy : MonoBehaviour
     [SerializeField] AudioSource takeDamage;
     [SerializeField] AudioSource aimSound;
 
+    private bool hit = false;
+    private float hitCounter = 0;
 
     private float timer = 0;
 
@@ -42,6 +44,7 @@ public class ZombieEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateHit();
         timer += Time.deltaTime;
 
         dropItem.CheckDeath(health, levelManager.brain, levelManager.brainDropChance);
@@ -71,10 +74,25 @@ public class ZombieEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BasicSpell"))
         {
-            health -= PlayerStats.Instance.power;
-            spriteUpdate.BlinkAnimation();
-            takeDamage.Play();
-            Destroy(collision.gameObject);
+            if (!hit)
+            {
+                health -= PlayerStats.Instance.power;
+
+                spriteUpdate.BlinkAnimation();
+                takeDamage.Play();
+                Destroy(collision.gameObject);
+                hit = true;
+            }
+        }
+        if (collision.gameObject.CompareTag("PlayerSlime"))
+        {
+            if (!hit)
+            {
+                spriteUpdate.BlinkAnimation();
+                takeDamage.Play();
+                health -= PlayerStats.Instance.power / 4;
+                hit = true;
+            }
         }
         if (collision.gameObject.CompareTag("Explosion"))
         {
@@ -106,5 +124,16 @@ public class ZombieEnemy : MonoBehaviour
         yield return new WaitForSeconds(1);
         isAiming = true;
         Destroy(target);
+    }
+
+    private void UpdateHit()
+    {
+        if (hit)
+            hitCounter += Time.deltaTime;
+        if (hitCounter > 0.1f)
+        {
+            hit = false;
+            hitCounter = 0;
+        }
     }
 }

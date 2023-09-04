@@ -12,7 +12,7 @@ public class FieldSegment : MonoBehaviour
     [SerializeField] Sprite normalFieldSprite;
 
     private int growingIndex = 0;
-    private bool isGrowing = false;
+    public bool isGrowing = false;
 
     public static FieldSegment currentHighlightedSquare;
     public static FieldSegment nextHighlightedSquare;
@@ -31,9 +31,8 @@ public class FieldSegment : MonoBehaviour
     {
         int chance = UnityEngine.Random.Range(0, 100);
 
-        if (!isGrowing && chance > 97)
+        if (!isGrowing && chance > 96)
         {
-            Debug.Log("Grow");
             GetSeed(ItemsList.Instance.cloverSeed);
             Grow();
         }
@@ -41,6 +40,15 @@ public class FieldSegment : MonoBehaviour
 
     private void Update()
     {
+        if(currentHighlightedSquare != null)
+        {
+            if (currentHighlightedSquare.growingIndex >= 3 && currentHighlightedSquare == this)
+            {
+                GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(true);
+            }
+
+        }
+        
         if (Input.GetKeyDown(KeyCode.G) && currentHighlightedSquare.growingIndex >= 3 && currentHighlightedSquare == this)
         {
 
@@ -74,6 +82,7 @@ public class FieldSegment : MonoBehaviour
                     {
                         ResetField();
                     }
+                    InventoryUI.Instance.UpdtaeClover();
                     break;
             }
         }
@@ -107,10 +116,7 @@ public class FieldSegment : MonoBehaviour
         { 
             nextHighlightedSquare = this;
         }
-        if (currentHighlightedSquare.growingIndex == 3 && currentHighlightedSquare == this)
-        {
-            GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(true);
-        }
+        
 
     }
 
@@ -119,13 +125,13 @@ public class FieldSegment : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
+
         if (currentHighlightedSquare == this && !isGrowing)
         {
             HighlightField.Dim(spriteRenderer);
             if (nextHighlightedSquare != null)
             {
                 currentHighlightedSquare = nextHighlightedSquare;
-
                 HighlightField.Highlight(currentHighlightedSquare.spriteRenderer);
                 nextHighlightedSquare = null;
             }
@@ -137,8 +143,7 @@ public class FieldSegment : MonoBehaviour
         }
         else if (currentHighlightedSquare == this && isGrowing)
         {
-            
-                HighlightField.White(currentHighlightedSquare.spriteRenderer);
+            HighlightField.White(currentHighlightedSquare.spriteRenderer);
             if (nextHighlightedSquare != null)
             {
                 currentHighlightedSquare = nextHighlightedSquare;
@@ -149,10 +154,17 @@ public class FieldSegment : MonoBehaviour
             {
                 currentHighlightedSquare = null;
                 nextHighlightedSquare = null;
+
             }
+        }
+        else
+        {
+            HighlightField.Dim(spriteRenderer);
+            currentHighlightedSquare = null;
         }
         GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(false);
     }
+
 
     public void GetSeed(Item item)
     {

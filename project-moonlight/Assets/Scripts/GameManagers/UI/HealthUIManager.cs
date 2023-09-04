@@ -98,4 +98,11 @@ public class HealthUIManager : MonoBehaviour
         hearts[PlayerStats.Instance.healthContainers - 1].SetActive(true);
         hearts[PlayerStats.Instance.healthContainers - 1].GetComponent<Image>().color = Color.black;
     }
+
+    public void SubstractHealthContainer()
+    {
+        PlayerStats.Instance.healthContainers--;
+        PlayerStats.Instance.health--;
+        hearts[PlayerStats.Instance.healthContainers].SetActive(false);
+    }
 }

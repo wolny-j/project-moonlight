@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86;
 
 public class EnemySpell : MonoBehaviour
 {
@@ -39,6 +40,18 @@ public class EnemySpell : MonoBehaviour
             case Direction.Right:
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
                 break;
+            case Direction.TopLeft:
+                transform.Translate(new Vector3(-1, 1, 1) * speed * Time.deltaTime);
+                break;
+            case Direction.TopRight:
+                transform.Translate(new Vector3(1, 1, 1) * speed * Time.deltaTime);
+                break;
+            case Direction.BottomLeft:
+                transform.Translate(new Vector3(-1, -1, 1) * speed * Time.deltaTime);
+                break;
+            case Direction.BottomRight:
+                transform.Translate(new Vector3(1, -1, 1) * speed * Time.deltaTime);
+                break;
             default:
                 break;
         }
@@ -75,12 +88,22 @@ public class EnemySpell : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void SetSpeed(float x)
+    {
+        speed = x;
+    }
 }
+
+
 
 public enum Direction
 {
     Left,
     Right,
     Up, 
-    Down
+    Down,
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight,
 }

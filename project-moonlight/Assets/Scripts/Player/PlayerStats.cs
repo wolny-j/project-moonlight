@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance;
+    [Header("UI objects")]
     [SerializeField] Text powerText;
     [SerializeField] Text speedText;
     [SerializeField] Text shootText;
@@ -16,6 +17,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] GameObject pickaxeUI;
     [SerializeField] Slider pickaxeDurabilitySlider;
     [SerializeField] Image pickaxeDurabilityFillRect;
+
+    [Header("Shrine powerups")]
+    public bool bouncingSpellPowerUp = false;
+    public bool toxicTracePowerUp = false;
 
     private float basePower { get; set; } = 2;
     private float baseSpeed { get; set; } = 0.6f;
@@ -27,6 +32,7 @@ public class PlayerStats : MonoBehaviour
 
     public bool IsCompleted { get; set; } = true;
 
+    [Header("Player stats")]
     //PLAYER STATTSTICS
     public int health = 4;
     public int healthContainers = 4;
@@ -38,6 +44,9 @@ public class PlayerStats : MonoBehaviour
     public float luck = 1;
 
     public int dynamiteCounter = 0;
+
+    public float shootSize = 1;
+    public float shootSpeed = 1;
 
     public struct pickaxe
     {
@@ -61,6 +70,21 @@ public class PlayerStats : MonoBehaviour
         InitializeUI();
         pickaxe1.hasPickaxe = false;
         pickaxe1.durability = 0;
+        
+    }
+
+    public void CheckDeath()
+    {
+        if (health <= 0)
+        {
+            PlayerStatsDTO saveData = new();
+            SaveSystem.SavePlayer(saveData);
+            ChestDTO chestData = new();
+            SaveSystem.SaveChest(chestData);
+
+            SaveSystem.DeleteFields();
+            SceneManager.LoadScene(0);
+        }
     }
 
     void Start()
@@ -138,6 +162,10 @@ public class PlayerStats : MonoBehaviour
         pickaxe1.hasPickaxe = data.hasPickaxe;
         pickaxe1.durability = data.pickaxeDurability;
         dynamiteCounter = data.dynamiteCounter;
+
+        shootSpeed= data.shootSpeed;
+        shootSize = data.shootSize;
+
         UseDynamite.Instance.UpdateCounterUI();
         if (pickaxe1.hasPickaxe)
         {
@@ -147,6 +175,9 @@ public class PlayerStats : MonoBehaviour
 
         UpdatePowerups();
         HealthUIManager.Instance.InitializeHearth(healthContainers);
+
+        bouncingSpellPowerUp = data.bouncingSpellPowerUp;
+        toxicTracePowerUp = data.toxicTracePowerUp;
 
     }
 

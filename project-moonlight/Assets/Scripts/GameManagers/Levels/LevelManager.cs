@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public int brainDropChance { get; set; } = 77;
     public int eyeDropChance { get; set; } = 80;
     public int shellDropChance { get; set; } = 75;
-    public int heartDropChance { get; set; } = 88;
+    public int heartDropChance { get; set; } = 92;
     public int webDropChance { get; set; } = 85;
 
     [SerializeField] public GameObject map;
@@ -28,6 +28,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public GameObject coreEnemy;
     [SerializeField] public GameObject spiderEnemy;
     [SerializeField] public GameObject ninjaEnemy;
+    [SerializeField] public GameObject jumpingSlimeEnemy;
+
+    [SerializeField] public GameObject spiderBoss;
+    [SerializeField] public GameObject waveShooterBoss;
+    [SerializeField] public GameObject wizzardBoss;
     void Awake()
     {
         Instance = this;
@@ -39,6 +44,8 @@ public class LevelManager : MonoBehaviour
         SaveSystem.SavePlayer(saveData);
         ChestDTO chestData = new();
         SaveSystem.SaveChest(chestData);
+
+        //SaveSystem.DeleteFields();
     }
 
 }

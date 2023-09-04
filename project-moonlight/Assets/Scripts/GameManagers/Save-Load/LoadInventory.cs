@@ -19,6 +19,7 @@ public class LoadInventory : MonoBehaviour
     [SerializeField] private Item healthPotion;
     [SerializeField] private Item stringItem;
     [SerializeField] private Item gunpowder;
+    [SerializeField] private Item goldBar;
 
     private Dictionary<string, Item> itemMap;
 
@@ -52,7 +53,8 @@ public class LoadInventory : MonoBehaviour
             { "String", stringItem },
             { "Bamboo", bamboo },
             { "Bamboo Seed", bambooSeed },
-            { "Gunpowder", gunpowder}
+            { "Gunpowder", gunpowder},
+            { "Gold bar", goldBar}
         };
     }
 

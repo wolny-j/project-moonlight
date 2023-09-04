@@ -16,7 +16,8 @@ public class Item : ScriptableObject
     {
         EnemyDrop,
         Seed,
-        Potion
+        Potion,
+        GoldBar,
     }
 
     public List<Sprite> growingSprites;

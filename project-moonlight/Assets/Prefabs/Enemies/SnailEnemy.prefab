@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 6907626239591102966}
   - component: {fileID: -51626306968456384}
   - component: {fileID: -3467864217204044397}
+  - component: {fileID: 8975454267043173663}
   m_Layer: 0
   m_Name: SnailEnemy
   m_TagString: Enemy
@@ -206,7 +207,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 000bd70478ba2ad4d971d3b651d69588, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -273,7 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f48cef8f6b27745b132c722ecb2b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  takeDamage: {fileID: 5346390044635302971}
 --- !u!114 &-51626306968456384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,3 +300,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bd705a16d089d5b4b833ea730d0d3b3d, type: 3}
   spriteInverted: {fileID: 21300000, guid: 000bd70478ba2ad4d971d3b651d69588, type: 3}
+--- !u!50 &8975454267043173663
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837036998943562202}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

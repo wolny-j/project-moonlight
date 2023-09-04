@@ -14,6 +14,7 @@ public class TakingDamage : MonoBehaviour
         CheckDamage(collision, "Spikes", PlayerStats.Instance.health);
         CheckDamage(collision, "Slime", PlayerStats.Instance.health);
         CheckDamage(collision, "EnemySpell", PlayerStats.Instance.health);
+        CheckDamage(collision, "MagicWall", PlayerStats.Instance.health);
     }
 
     void CheckDamage(Collider2D collision, string tag, int health)
@@ -33,6 +34,8 @@ public class TakingDamage : MonoBehaviour
             }
 
         }
+
+        PlayerStats.Instance.CheckDeath();
     }
 
 
