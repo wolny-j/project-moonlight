@@ -31,9 +31,14 @@ public class FieldSegment : MonoBehaviour
     {
         int chance = UnityEngine.Random.Range(0, 100);
 
-        if (!isGrowing && chance > 96)
+        if (!isGrowing && (chance > 91 && chance <= 95))
         {
             GetSeed(ItemsList.Instance.cloverSeed);
+            Grow();
+        }
+        if(!isGrowing && chance  > 95)
+        {
+            GetSeed(ItemsList.Instance.weed);
             Grow();
         }
     }
@@ -43,6 +48,10 @@ public class FieldSegment : MonoBehaviour
         if(currentHighlightedSquare != null)
         {
             if (currentHighlightedSquare.growingIndex >= 3 && currentHighlightedSquare == this)
+            {
+                GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(true);
+            }
+            else if(PlayerStats.Instance.pickaxe1.hasPickaxe && currentHighlightedSquare == this && seed.name == "Weed")
             {
                 GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>().harvestIcon.SetActive(true);
             }
@@ -83,6 +92,25 @@ public class FieldSegment : MonoBehaviour
                         ResetField();
                     }
                     InventoryUI.Instance.UpdtaeClover();
+                    break;
+                case "Starfruit Seed":
+                    result = HarvestManager.Instance.HarvestStarfruit();
+                    if (result)
+                    {
+                        ResetField();
+                    }
+                    break;
+
+
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.G) && PlayerStats.Instance.pickaxe1.hasPickaxe && currentHighlightedSquare == this)
+        {
+            switch (seed.name)
+            {
+                case "Weed":
+                    PlayerStats.Instance.UpdatePickaxe();
+                    ResetField();
                     break;
             }
         }
@@ -186,9 +214,12 @@ public class FieldSegment : MonoBehaviour
         else
             growingIndex++;
 
-        if(growingIndex == 5)
-            ResetField();
 
+        if (seed.name != "Weed")
+        {
+            if (growingIndex == 5)
+                ResetField();
+        }
 
     }
     private void OnDisable()

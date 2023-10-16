@@ -15,12 +15,19 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] GameObject map;
     [SerializeField] GameObject pickaxeUI;
+    [SerializeField] GameObject shieldUI;
+    [SerializeField] GameObject goldenHeartUI;
     [SerializeField] Slider pickaxeDurabilitySlider;
     [SerializeField] Image pickaxeDurabilityFillRect;
 
     [Header("Shrine powerups")]
     public bool bouncingSpellPowerUp = false;
     public bool toxicTracePowerUp = false;
+    public bool wingsPowerup = false;
+    public bool shieldPowerup = false;
+    public bool goldenHeartPowerUp = false;
+
+    public bool isShieldActive = false;
 
     private float basePower { get; set; } = 2;
     private float baseSpeed { get; set; } = 0.6f;
@@ -75,7 +82,7 @@ public class PlayerStats : MonoBehaviour
 
     public void CheckDeath()
     {
-        if (health <= 0)
+        if (health <= 0 && !goldenHeartPowerUp)
         {
             PlayerStatsDTO saveData = new();
             SaveSystem.SavePlayer(saveData);
@@ -84,6 +91,14 @@ public class PlayerStats : MonoBehaviour
 
             SaveSystem.DeleteFields();
             SceneManager.LoadScene(0);
+        }
+        else if(health <= 0 & goldenHeartPowerUp)
+        {
+            goldenHeartPowerUp = false;
+            health++;
+            HealthUIManager.Instance.AddHealth();
+            SaveSystem.BuildSaveObject(PlayerStats.Instance, Inventory.Instance);
+            SceneManager.LoadScene(2);
         }
     }
 
@@ -99,6 +114,26 @@ public class PlayerStats : MonoBehaviour
         }
         Load();
         //HealthUIManager.Instance.AddHealth(health);
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            if (isShieldActive)
+            {
+                shieldUI.SetActive(true);
+            }
+            else
+            {
+                shieldUI.SetActive(false);
+            }
+
+            if (goldenHeartPowerUp)
+                goldenHeartUI.SetActive(true);
+            else
+                goldenHeartUI.SetActive(false);
+        }
     }
 
     private void InitializeUI()
@@ -178,6 +213,14 @@ public class PlayerStats : MonoBehaviour
 
         bouncingSpellPowerUp = data.bouncingSpellPowerUp;
         toxicTracePowerUp = data.toxicTracePowerUp;
+        wingsPowerup = data.wingsPowerUp;
+        shieldPowerup = data.shieldPowerUp;
+        goldenHeartPowerUp = data.goldenHeartPowerUp;
+
+        if (shieldPowerup)
+        {
+            isShieldActive = true;
+        }
 
     }
 

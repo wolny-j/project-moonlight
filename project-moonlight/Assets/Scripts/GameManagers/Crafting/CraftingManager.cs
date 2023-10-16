@@ -10,6 +10,7 @@ public class CraftingManager : MonoBehaviour
 
     [SerializeField] public Button healthContainerButton;
     [SerializeField] public Button healthPotionButton;
+    [SerializeField] public Button fullHealthPotionButton;
     [SerializeField] public Button stringButton;
     [SerializeField] public Button inventoryUpgradeButton;
     [SerializeField] public Button chestUpgradeButton;
@@ -92,8 +93,24 @@ public class CraftingManager : MonoBehaviour
             Inventory.Instance.SearchAndRemove(ItemsList.Instance.eye);
             Inventory.Instance.SearchAndRemove(ItemsList.Instance.dandelion);
         }
-        
+
+        isGoldBarUsed = false;
         Inventory.Instance.AddItem(ItemsList.Instance.healthPotion);
+        CheckInventory();
+        UpdateButtons();
+        UpdateRecipits();
+    }
+
+    public void CraftFullHelthPotion()
+    {
+        if (!isGoldBarUsed)
+        {
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.starfruit);
+            Inventory.Instance.SearchAndRemove(ItemsList.Instance.poppy);
+        }
+
+        isGoldBarUsed = false;
+        Inventory.Instance.AddItem(ItemsList.Instance.fullHealthPotion);
         CheckInventory();
         UpdateButtons();
         UpdateRecipits();
@@ -116,6 +133,8 @@ public class CraftingManager : MonoBehaviour
 
     public void UpgradeInventory() 
     {
+        
+        
         if (!isGoldBarUsed)
         {
             if (Inventory.Instance.space > 3)
@@ -130,11 +149,11 @@ public class CraftingManager : MonoBehaviour
         }
 
         isGoldBarUsed = false;
-        
-        Inventory.Instance.UpgradeInventory();
-        CheckInventory();
         UpdateButtons();
         UpdateRecipits();
+        Inventory.Instance.UpgradeInventory();
+        CheckInventory();
+
     }
 
     public void UpgradeChest()
@@ -271,6 +290,7 @@ public class CraftingManager : MonoBehaviour
                 chestUpgradeButton.interactable = GetItemCount("Bamboo") > 0;
 
             healthPotionButton.interactable = GetItemCount("Eye") > 0 && GetItemCount("Dandelion") > 0;
+            fullHealthPotionButton.interactable = GetItemCount("Starfruit") > 0 && GetItemCount("Poppy") > 0;
             stringButton.interactable = GetItemCount("Web") >= 2;
 
 

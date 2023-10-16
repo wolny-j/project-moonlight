@@ -13,8 +13,8 @@ public class BossHealthBar : MonoBehaviour
     [SerializeField] Image healthBar;
 
     public static int SPIDER_HEALTH = 68;
-    public static int SHOOTER_HEALTH = 80;
-    public static int WIZZARD_HEALTH = 90;
+    public static int SHOOTER_HEALTH = 72;
+    public static int WIZZARD_HEALTH = 130;
 
     private void Start()
     {

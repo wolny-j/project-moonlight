@@ -102,15 +102,15 @@ public class SegmentCameraChange : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        if (segment.isEndingSegment && playerStats.level == 4)
+        if (segment.isEndingSegment && playerStats.level == 3)
         {
             enemySpawner.SpawnSpiderBoss();
         }
-        else if( segment.isEndingSegment && playerStats.level == 8)
+        else if( segment.isEndingSegment && playerStats.level == 6)
         {
             enemySpawner.SpawnWaveShootherBoss();
         }
-        else if (segment.isEndingSegment && playerStats.level == 12)
+        else if (segment.isEndingSegment && playerStats.level == 9)
         {
             enemySpawner.SpawnWizzardBoss();
         }

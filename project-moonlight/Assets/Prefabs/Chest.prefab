@@ -126,6 +126,7 @@ MonoBehaviour:
   dandelionSeed: {fileID: 6816674418525633988, guid: 9cf3a52067b45494ab129d6dd5597478, type: 3}
   bambooSeed: {fileID: 6816674418525633988, guid: 2c563c140b4e4a0488bc447ce56593ff, type: 3}
   goldBar: {fileID: 6816674418525633988, guid: 4350c6e045b27cf429a37b507cb7041c, type: 3}
+  starfruitSeed: {fileID: 6816674418525633988, guid: 218adef52b4c08b449df6ef758f86c8b, type: 3}
 --- !u!61 &8095187351619216177
 BoxCollider2D:
   m_ObjectHideFlags: 0

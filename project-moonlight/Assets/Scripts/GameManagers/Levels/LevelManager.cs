@@ -8,11 +8,11 @@ public class LevelManager : MonoBehaviour
 
     public bool isMapSpawned { get; set; } = false;
     public int mapDropChance { get; set; } = 92;
-    public int brainDropChance { get; set; } = 77;
-    public int eyeDropChance { get; set; } = 80;
-    public int shellDropChance { get; set; } = 75;
+    public int brainDropChance { get; set; } = 76;
+    public int eyeDropChance { get; set; } = 78;
+    public int shellDropChance { get; set; } = 78;
     public int heartDropChance { get; set; } = 92;
-    public int webDropChance { get; set; } = 85;
+    public int webDropChance { get; set; } = 80;
 
     [SerializeField] public GameObject map;
     [SerializeField] public GameObject heart;
@@ -29,6 +29,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public GameObject spiderEnemy;
     [SerializeField] public GameObject ninjaEnemy;
     [SerializeField] public GameObject jumpingSlimeEnemy;
+    [SerializeField] public GameObject jumingSpiderEnemy;
+    [SerializeField] public GameObject devilEnemy;
 
     [SerializeField] public GameObject spiderBoss;
     [SerializeField] public GameObject waveShooterBoss;

@@ -16,19 +16,11 @@ public class EnemyDropItem : MonoBehaviour
     {
         if (health <= 0)
         {
-            bool dropped = false;
-            if (!dropped)
-            {
-                dropped = DropHeartOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = DropMapOnDeath();
-            }
-            if (!dropped)
-            {
-                dropped = DropItemOnDeath(item, chance);
-            }
+            DropHeartOnDeath();
+            DropMapOnDeath();
+            DropItemOnDeath(item, chance);
+
+
             Destroy(gameObject);
         }
     }

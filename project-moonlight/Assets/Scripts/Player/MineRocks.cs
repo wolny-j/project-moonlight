@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class MineRocks : MonoBehaviour
 {
-    private bool rockTouched = false;
+    public static MineRocks Instance;
 
-    private GameObject rock = null;
-    
+    public bool rockTouched = false;
+
+    public GameObject rock = null;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            MineRocks.Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+    }
 
     private void Update()
     {
@@ -35,4 +49,5 @@ public class MineRocks : MonoBehaviour
             rockTouched = false;
         }
     }
+
 }

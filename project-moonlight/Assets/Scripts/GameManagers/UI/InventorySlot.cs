@@ -113,6 +113,18 @@ public class InventorySlot : MonoBehaviour
                     Inventory.Instance.RemoveItem(item);
 
                     break;
+                case "Full Health Potion":
+
+                    while(PlayerStats.Instance.health < PlayerStats.Instance.healthContainers)
+                    {
+                        PlayerStats.Instance.health++;
+                        HealthUIManager.Instance.AddHealth();
+                    }
+                    
+
+                    Inventory.Instance.RemoveItem(item);
+
+                    break;
 
             }
             if (!item.isUsable && item != null)

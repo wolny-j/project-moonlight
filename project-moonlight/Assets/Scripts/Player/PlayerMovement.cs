@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float frequency = 0.5f;
     private float timer = 0;
     [SerializeField] GameObject slimePrefab;
+    [SerializeField] GameObject shadow;
 
     private void Start()
     {
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (playerStats.wingsPowerup)
+            shadow.SetActive(true);
 
         if(PlayerStats.Instance.toxicTracePowerUp)
         {
@@ -57,6 +60,17 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = false;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Rock") && playerStats.wingsPowerup)
+        {
+           /* MineRocks.Instance.rockTouched = true;
+            MineRocks.Instance.rock = collision.gameObject;*/
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+        
     }
 
 

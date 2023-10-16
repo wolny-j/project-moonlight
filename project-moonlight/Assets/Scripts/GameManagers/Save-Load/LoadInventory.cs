@@ -16,10 +16,15 @@ public class LoadInventory : MonoBehaviour
     [SerializeField] private Item dandelion;
     [SerializeField] private Item bamboo;
     [SerializeField] private Item web;
+    [SerializeField] private Item starfruitSeed;
+    [SerializeField] private Item starfruit;
     [SerializeField] private Item healthPotion;
+    [SerializeField] private Item fullHealthPotion;
     [SerializeField] private Item stringItem;
     [SerializeField] private Item gunpowder;
     [SerializeField] private Item goldBar;
+    
+
 
     private Dictionary<string, Item> itemMap;
 
@@ -50,10 +55,13 @@ public class LoadInventory : MonoBehaviour
             { "Dandelion", dandelion },
             { "Web", web },
             { "Health Potion", healthPotion },
+            { "Full Health Potion", fullHealthPotion },
             { "String", stringItem },
             { "Bamboo", bamboo },
             { "Bamboo Seed", bambooSeed },
             { "Gunpowder", gunpowder},
+            { "Starfruit", starfruit},
+            { "Starfruit Seed", starfruitSeed},
             { "Gold bar", goldBar}
         };
     }

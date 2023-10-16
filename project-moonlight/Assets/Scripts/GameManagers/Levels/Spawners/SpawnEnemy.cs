@@ -104,7 +104,7 @@ public class SpawnEnemy : MonoBehaviour
             }
             else
             {
-                enemySpawnStrategy = new Level8AndAboveEnemySpawnStrategy();
+                enemySpawnStrategy = new Level8To9EnemySpawnStrategy();
                 enemySpawnStrategy.SpawnEnemy(isInitial, transform, ref enemyList);
                 int chance = Random.Range(1, 10);
                 if (chance > 6 && i == 0 && isInitial)

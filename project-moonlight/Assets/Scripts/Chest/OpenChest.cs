@@ -14,6 +14,7 @@ public class OpenChest : MonoBehaviour
     [SerializeField] GameObject dandelionSeed;
     [SerializeField] GameObject bambooSeed;
     [SerializeField] GameObject goldBar;
+    [SerializeField] GameObject starfruitSeed;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class OpenChest : MonoBehaviour
 
     private void SpawnRandomLoot()
     {
-        int rand = Random.Range(1, 11);
+        int rand = Random.Range(1, 12);
         GameObject item = null;
         switch (rand) 
         { 
@@ -69,6 +70,9 @@ public class OpenChest : MonoBehaviour
                 break;
             case 10:
                 item = Instantiate(goldBar, transform);
+                break;
+            case 11:
+                item = Instantiate(starfruitSeed, transform);
                 break;
         }
         StartCoroutine(AnimateLoot(item));

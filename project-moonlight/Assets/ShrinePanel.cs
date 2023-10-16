@@ -21,7 +21,7 @@ public class ShrinePanel : MonoBehaviour
         {
 
             HealthUIManager.Instance.SubstractHealthContainer();
-            int random = UnityEngine.Random.Range(1, 5);
+            int random = UnityEngine.Random.Range(1, 8);
             resultPanel.SetActive(true);
             switch (random)
             {
@@ -44,6 +44,18 @@ public class ShrinePanel : MonoBehaviour
                     HealthUIManager.Instance.AddHealthContainer();
                     HealthUIManager.Instance.AddHealthContainer();
                     title.text = "2 health containers unlocked!";
+                    break;
+                case 5:
+                    PlayerStats.Instance.wingsPowerup = true;
+                    title.text = "Levitation bless unlocked";
+                    break;
+                case 6:
+                    PlayerStats.Instance.shieldPowerup = true;
+                    title.text = "Shield bless unlocked";
+                    break;
+                case 7:
+                    PlayerStats.Instance.goldenHeartPowerUp = true;
+                    title.text = "Golden heart unlocked";
                     break;
             }
             used = true;

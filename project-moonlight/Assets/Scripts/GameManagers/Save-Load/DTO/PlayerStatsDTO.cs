@@ -22,6 +22,9 @@ public class PlayerStatsDTO
     public float shootSize;
     public bool bouncingSpellPowerUp;
     public bool toxicTracePowerUp;
+    public bool wingsPowerUp;
+    public bool shieldPowerUp;
+    public bool goldenHeartPowerUp;
 
 
     public List<string> items = new();
@@ -63,6 +66,9 @@ public class PlayerStatsDTO
 
         bouncingSpellPowerUp = stats.bouncingSpellPowerUp;
         toxicTracePowerUp = stats.toxicTracePowerUp;
+        wingsPowerUp = stats.wingsPowerup;
+        shieldPowerUp = stats.shieldPowerup;
+        goldenHeartPowerUp = stats.goldenHeartPowerUp;
     }
 
     public PlayerStatsDTO()
@@ -86,5 +92,8 @@ public class PlayerStatsDTO
 
         bouncingSpellPowerUp = false;
         toxicTracePowerUp = false;
+        wingsPowerUp = false;
+        shieldPowerUp = false;
+        goldenHeartPowerUp = false;
     }
 }

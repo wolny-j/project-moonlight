@@ -79,7 +79,7 @@ public class StartingSetManager : MonoBehaviour
     }
     public void DestroyerSet()
     {
-        PlayerStats.Instance.dynamiteCounter += 3;
+        PlayerStats.Instance.dynamiteCounter += 4;
         UseDynamite.Instance.UpdateCounterUI();
         gemsCounter = 2;
         CloseAllSets(true);

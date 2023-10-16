@@ -5,9 +5,6 @@ using UnityEngine;
 public class HarvestManager : MonoBehaviour
 {
     public static HarvestManager Instance;
-    [SerializeField] Item poppy;
-    [SerializeField] Item dandelion;
-    [SerializeField] Item bamboo;
     void Awake()
     {
         if (Instance == null)
@@ -25,18 +22,25 @@ public class HarvestManager : MonoBehaviour
     }
     public bool HarvestPoppy()
     {
-        bool result = Inventory.Instance.AddItem(poppy);
+        bool result = Inventory.Instance.AddItem(ItemsList.Instance.poppy);
         return result;
     }
     public bool HarvestDandelion()
     {
-        bool result = Inventory.Instance.AddItem(dandelion);
+        bool result = Inventory.Instance.AddItem(ItemsList.Instance.dandelion);
         return result;
         
     }
     public bool HarvestBamboo()
     {
-        bool result = Inventory.Instance.AddItem(bamboo);
+        bool result = Inventory.Instance.AddItem(ItemsList.Instance.bamboo);
+        return result;
+
+    }
+
+    public bool HarvestStarfruit()
+    {
+        bool result = Inventory.Instance.AddItem(ItemsList.Instance.starfruit);
         return result;
 
     }
@@ -46,8 +50,7 @@ public class HarvestManager : MonoBehaviour
         return true;
 
     }
-    void OnApplication
-        ()
+    void OnApplicationQuit()
     {
         PlayerStatsDTO saveData = new();
         ChestDTO chestData = new();

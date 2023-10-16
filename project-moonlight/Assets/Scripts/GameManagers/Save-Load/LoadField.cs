@@ -11,6 +11,8 @@ public class LoadField : MonoBehaviour
     [SerializeField] Item dandelionSeed;
     [SerializeField] Item bambooSeed;
     [SerializeField] Item cloverSeed;
+    [SerializeField] Item weed;
+    [SerializeField] Item starfruidSeed;
     public static LoadField Instance;
 
     private void Awake()
@@ -62,6 +64,18 @@ public class LoadField : MonoBehaviour
                         case "Clover Seed":
                             fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
                             fieldTemp.GetSeed(cloverSeed);
+                            for (int i = 0; i <= field.growingIndex; i++)
+                                fieldTemp.Grow();
+                            break;
+                        case "Weed":
+                            fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
+                            fieldTemp.GetSeed(weed);
+                            for (int i = 0; i <= field.growingIndex; i++)
+                                fieldTemp.Grow();
+                            break;
+                        case "Starfruit Seed":
+                            fieldTemp = fields[field.fieldIndex].GetComponent<FieldSegment>();
+                            fieldTemp.GetSeed(starfruidSeed);
                             for (int i = 0; i <= field.growingIndex; i++)
                                 fieldTemp.Grow();
                             break;

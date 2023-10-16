@@ -8,6 +8,8 @@ public class TakingDamage : MonoBehaviour
 
     [SerializeField] AudioSource takeDamageSource;
 
+    [SerializeField] GameObject shieldUI;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CheckDamage(collision, "Enemy", PlayerStats.Instance.health);
@@ -19,12 +21,22 @@ public class TakingDamage : MonoBehaviour
 
     void CheckDamage(Collider2D collision, string tag, int health)
     {
+        if ((tag == "Slime" || tag == "Spikes") && PlayerStats.Instance.wingsPowerup)
+            return;
 
         if (collision.gameObject.CompareTag(tag) && !immortality)
         {
-            health--;
-            PlayerStats.Instance.health = health;
-            HealthUIManager.Instance.SubtractHealth(health);
+            if(PlayerStats.Instance.isShieldActive)
+            {
+                PlayerStats.Instance.isShieldActive = false;
+            }
+            else
+            {
+                health--;
+                PlayerStats.Instance.health = health;
+                HealthUIManager.Instance.SubtractHealth(health);
+            }
+            
 
             takeDamageSource.Play();
             StartCoroutine(BlinkImmortalityAnimation());
