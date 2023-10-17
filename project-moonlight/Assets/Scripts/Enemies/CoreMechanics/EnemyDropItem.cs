@@ -25,6 +25,20 @@ public class EnemyDropItem : MonoBehaviour
         }
     }
 
+    public bool CheckDeathWithExplosion(float health, GameObject item, int chance)
+    {
+        if (health <= 0)
+        {
+            DropHeartOnDeath();
+            DropMapOnDeath();
+            DropItemOnDeath(item, chance);
+
+
+            return true;
+        }
+        return false;
+    }
+
 
     public bool DropHeartOnDeath()
     {

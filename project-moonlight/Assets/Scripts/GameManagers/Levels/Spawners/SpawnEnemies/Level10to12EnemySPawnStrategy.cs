@@ -10,7 +10,7 @@ public class Level10to12EnemySPawnStrategy : IEnemySpawnStrategy
 
     public void SpawnEnemy(bool isInitial, Transform localTransform, ref List<GameObject> enemyList)
     {
-        int enemyType = UnityEngine.Random.Range(1, 9);
+        int enemyType = UnityEngine.Random.Range(1, 10);
 
         switch (enemyType)
         {
@@ -40,6 +40,9 @@ public class Level10to12EnemySPawnStrategy : IEnemySpawnStrategy
                 break;
             case 7:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.devilEnemy, isInitial, localTransform, ref enemyList);
+                break;
+            case 8:
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.explosiveEnemy, isInitial, localTransform, ref enemyList);
                 break;
             default:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.jumingSpiderEnemy, isInitial, localTransform, ref enemyList);

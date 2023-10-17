@@ -7,7 +7,7 @@ public class Level6To7EnemySpawnStrategy : IEnemySpawnStrategy
 {
     public void SpawnEnemy(bool isInitial, Transform localTransform, ref List<GameObject> enemyList)
     {
-        int enemyType = UnityEngine.Random.Range(1, 7);
+        int enemyType = UnityEngine.Random.Range(1, 8);
 
         switch (enemyType)
         {
@@ -31,6 +31,9 @@ public class Level6To7EnemySpawnStrategy : IEnemySpawnStrategy
                     SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.coreEnemy, isInitial, localTransform, ref enemyList);
                 else
                     SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);
+                break;
+            case 6:
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.explosiveEnemy, isInitial, localTransform, ref enemyList);
                 break;
             default:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);

@@ -19,7 +19,7 @@ public class RockDropItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Explosion") && !exploded)
+        if((collision.CompareTag("Explosion") || collision.CompareTag("EnemyExplosion")) && !exploded)
         {
             exploded= true;
             DestroyRock();

@@ -7,7 +7,7 @@ public class Level4To5EnemySpawnStrategy : IEnemySpawnStrategy
 {
     public void SpawnEnemy(bool isInitial, Transform localTransform, ref List<GameObject> enemyList)
     {
-        int enemyType = UnityEngine.Random.Range(1, 5);
+        int enemyType = UnityEngine.Random.Range(1, 6);
 
         switch (enemyType)
         {
@@ -22,6 +22,9 @@ public class Level4To5EnemySpawnStrategy : IEnemySpawnStrategy
                 break;
             case 4:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.zombieEnemy, isInitial, localTransform, ref enemyList);
+                break;
+            case 5:
+                SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.explosiveEnemy, isInitial, localTransform, ref enemyList);
                 break;
             default:
                 SpawnEnemyOfType.Instance.Spawn(LevelManager.Instance.spiderEnemy, isInitial, localTransform, ref enemyList);

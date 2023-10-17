@@ -20157,6 +20157,7 @@ MonoBehaviour:
   jumpingSlimeEnemy: {fileID: 8274891974327807967, guid: a8001c87b6476be4eb42bac59a6fb2ef, type: 3}
   jumingSpiderEnemy: {fileID: 5837036998943562202, guid: 3e05964d0e6d74a439cbafe821919ab6, type: 3}
   devilEnemy: {fileID: 5837036998943562202, guid: 23540b4fb969ef54aaa534eb5a68a791, type: 3}
+  explosiveEnemy: {fileID: 5837036998943562202, guid: 164275b42dc8295489f85b9f1bca112f, type: 3}
   spiderBoss: {fileID: 5837036998943562202, guid: ab4033e781277dd4f842d623185b7169, type: 3}
   waveShooterBoss: {fileID: 5837036998943562202, guid: f58fe988f6dbe4b4b82d01824dda7276, type: 3}
   wizzardBoss: {fileID: 5837036998943562202, guid: 524374d8253b0ff4587c75b1a2e012f5, type: 3}

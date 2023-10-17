@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public GameObject jumpingSlimeEnemy;
     [SerializeField] public GameObject jumingSpiderEnemy;
     [SerializeField] public GameObject devilEnemy;
+    [SerializeField] public GameObject explosiveEnemy;
 
     [SerializeField] public GameObject spiderBoss;
     [SerializeField] public GameObject waveShooterBoss;

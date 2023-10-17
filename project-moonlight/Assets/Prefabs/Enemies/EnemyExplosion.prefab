@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7085253175777744244}
   m_Layer: 0
   m_Name: BasicSpell
-  m_TagString: Explosion
+  m_TagString: EnemyExplosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 402053161694973629}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9159180006613997722}
@@ -121,9 +121,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03736029, y: 0}
+  m_Offset: {x: 0.05095306, y: 0}
   serializedVersion: 2
-  m_Radius: 0.41826236
+  m_Radius: 0.4174842
 --- !u!95 &7085253175777744244
 Animator:
   serializedVersion: 5
@@ -218,7 +218,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: d43b1d810e71be940b9b704716e50668, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -239,8 +239,8 @@ GameObject:
   - component: {fileID: 9159180006613997722}
   - component: {fileID: 5516593954922617595}
   m_Layer: 0
-  m_Name: Dynamite
-  m_TagString: Explosion
+  m_Name: EnemyExplosion
+  m_TagString: EnemyExplosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,10 +276,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 402053161694973629}
-  dynamite: {fileID: 4281127195507490780, guid: f2d9e65853aa5864e8c720a10275a865, type: 3}
+  dynamite: {fileID: 1252484856172861076}
   circleCollider: {fileID: 628299034414083116}
   explosionSound: {fileID: 6949246931925097280}
-  explosionTime: 2
+  explosionTime: 0.1
 --- !u!1 &6574943554959990717
 GameObject:
   m_ObjectHideFlags: 0

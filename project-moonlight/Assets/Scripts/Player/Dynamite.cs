@@ -11,7 +11,7 @@ public class Dynamite : MonoBehaviour
 
 
     private float timer;
-    private const float explosionTime = 2f;
+    [SerializeField] float explosionTime = 2f;
 
 
     private void Update()
