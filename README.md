@@ -18,6 +18,12 @@ The isometric camera perspective provides a unique gameplay experience, with the
 -Herb-harvesting system where the player can gather different herbs to create various potions
 -Charming pixel art graphics that are relatively easy to learn and enjoy
 
+![Zrzut ekranu (6)](https://github.com/wolny-j/project-moonlight/assets/78600029/95469bb5-bf74-4215-a594-c892258eb5ac)
+![Zrzut ekranu (11)](https://github.com/wolny-j/project-moonlight/assets/78600029/fbee8f67-3a2c-4016-82e6-a0f6e297bbcc)
+![Zrzut ekranu (7)](https://github.com/wolny-j/project-moonlight/assets/78600029/4b9a0799-c29f-4723-93d4-57e1f1ef0a0e)
+![Zrzut ekranu (8)](https://github.com/wolny-j/project-moonlight/assets/78600029/e9dbf8d6-dd10-4657-9962-42da18197983)
+
+
 ## Technologies Used
 
 This Unity game repository was created using the following technologies:
@@ -25,3 +31,5 @@ This Unity game repository was created using the following technologies:
 -Unity game engine
 -C# programming language
 -Pixel art graphics software
+
+
